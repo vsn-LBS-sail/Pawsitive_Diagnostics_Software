@@ -233,19 +233,19 @@ function HeroCard({ pet, dogName }: { pet: PetProfile; dogName: string }) {
 
   return (
     <div style={{
-      background: "#FFFFFF",
+      background: "#B9D8E1",
       borderRadius: 24,
       marginBottom: 16,
       overflow: "hidden",
-      boxShadow: "0 8px 32px rgba(232,130,154,0.12)",
+      borderLeft: "4px solid #447F98",
+      boxShadow: "0 8px 32px rgba(68,127,152,0.12)",
     }}>
-      <div style={{ height: 8, background: "linear-gradient(90deg, #E8829A, #7B68C8, #6BAF92)" }} />
       <div style={{ padding: 20 }}>
         {/* Row 1: identity */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{
             width: 44, height: 44, borderRadius: "50%",
-            border: "2px solid #FFD4E8", overflow: "hidden",
+            border: "2px solid #447F98", overflow: "hidden",
             boxShadow: "0 4px 12px rgba(232,130,154,0.2)",
             display: "flex", alignItems: "center", justifyContent: "center",
             background: "#fff", flexShrink: 0,
@@ -600,32 +600,32 @@ function QRCard() {
 
   return (
     <div style={{
-      background: "var(--color-primary)",
-      borderRadius: 20, border: "1.5px solid #C8C0F0",
-      padding: 16, boxShadow: "0 4px 16px rgba(123,104,200,0.15)",
-      display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+      background: "#B9D8E1",
+      borderRadius: 20, border: "1.5px solid #447F98",
+      padding: "20px 18px", boxShadow: "0 4px 16px rgba(68,127,152,0.15)",
+      display: "flex", flexDirection: "column", alignItems: "center", gap: 8, flex: 1,
     }}>
       <div style={{
         width: 56, height: 56, borderRadius: "50%", background: "#fff",
         display: "flex", alignItems: "center", justifyContent: "center",
-        boxShadow: "0 4px 12px rgba(123,104,200,0.2)", flexShrink: 0,
+        boxShadow: "0 4px 12px rgba(68,127,152,0.2)", flexShrink: 0,
       }}>
-        <QrCode size={28} color="#7B68C8" />
+        <QrCode size={28} color="#447F98" />
       </div>
-      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#4A3A8A", textAlign: "center" }}>
+      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3A47", textAlign: "center" }}>
         {t("獣医用QRコード", "Vet QR Code")}
       </div>
-      <div style={{ fontSize: 10, color: "#7B68C8", textAlign: "center" }}>
+      <div style={{ fontSize: 10, color: "#4A7FA5", textAlign: "center" }}>
         {t("毎回新しいQRを生成", "New QR every visit")}
       </div>
       
       <div style={{
         width: 120, height: 120, background: "#fff", borderRadius: 12,
-        border: "2px solid #C8C0F0", padding: generating || refId ? 8 : 6,
+        border: "2px solid #A8CCD8", padding: generating || refId ? 8 : 6,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         {generating ? (
-          <span style={{ fontSize: 13, color: "#7B68C8", fontFamily: "var(--font-heading)", fontWeight: 600 }}>Generating...</span>
+          <span style={{ fontSize: 13, color: "#4A7FA5", fontFamily: "var(--font-heading)", fontWeight: 600 }}>Generating...</span>
         ) : refId ? (
           <QRCode value={qrText} size={100} fgColor="#7C3AED" />
         ) : (
@@ -650,9 +650,9 @@ function QRCard() {
 
       <button onClick={generateQR} disabled={generating} style={{
         width: "100%", height: 40, marginTop: "auto",
-        background: generating ? "#C8C0F0" : "linear-gradient(135deg, #7B68C8, #9B88D8)",
+        background: generating ? "#A8CCD8" : "#447F98",
         color: "#fff", fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 13, borderRadius: 12,
-        boxShadow: generating ? "none" : "0 4px 12px rgba(123,104,200,0.3)",
+        boxShadow: generating ? "none" : "0 4px 12px rgba(68,127,152,0.3)",
       }}>
         {t("生成", "Generate")}
       </button>
@@ -775,39 +775,39 @@ function HealthReportCard() {
   ];
   return (
     <div style={{
-      background: "var(--color-primary)",
-      borderRadius: 20, border: "1.5px solid #F0D890",
-      padding: 16, boxShadow: "0 4px 16px rgba(212,168,67,0.15)",
-      display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+      background: "#B9D8E1",
+      borderRadius: 20, border: "1.5px solid #447F98",
+      padding: "20px 18px", boxShadow: "0 4px 16px rgba(68,127,152,0.15)",
+      display: "flex", flexDirection: "column", alignItems: "center", gap: 8, flex: 1,
     }}>
       <div style={{
         width: 56, height: 56, borderRadius: "50%", background: "#fff",
         display: "flex", alignItems: "center", justifyContent: "center",
-        boxShadow: "0 4px 12px rgba(212,168,67,0.2)", flexShrink: 0,
+        boxShadow: "0 4px 12px rgba(68,127,152,0.2)", flexShrink: 0,
       }}>
-        <FileDown size={28} color="#D4A843" />
+        <FileDown size={28} color="#447F98" />
       </div>
-      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#78540A", textAlign: "center" }}>
+      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3A47", textAlign: "center" }}>
         {t("健康レポート", "Health Report")}
       </div>
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 4, marginTop: 4 }}>
+      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 8, marginTop: 4, flex: 1, justifyContent: "center" }}>
         {items.map(([jp, en]) => (
           <div key={en} style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <div style={{
-              width: 14, height: 14, borderRadius: "50%", background: "#D4A843",
+              width: 14, height: 14, borderRadius: "50%", background: "#447F98",
               display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
             }}>
               <Check size={9} color="#fff" strokeWidth={3} />
             </div>
-            <span style={{ fontSize: 10, color: "#5C4000" }}>{t(jp, en)}</span>
+            <span style={{ fontSize: 10, color: "#1C3A47" }}>{t(jp, en)}</span>
           </div>
         ))}
       </div>
       <button onClick={generatePDF} style={{
         width: "100%", height: 40, marginTop: "auto",
-        background: "var(--color-primary)",
-        color: "#fff", fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 12, borderRadius: 12,
-        boxShadow: "0 4px 12px rgba(212,168,67,0.4)",
+        background: "#447F98",
+        color: "#fff", fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 13, borderRadius: 12,
+        boxShadow: "0 4px 12px rgba(68,127,152,0.3)",
         display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
       }}>
          {t("PDFをエクスポート", "Export PDF")}

@@ -54,7 +54,7 @@ function Welcome() {
             className="text-center mt-8 text-[26px] font-extrabold leading-tight"
             style={{ color: "var(--color-text-primary)", fontFamily: "var(--font-heading)" }}
           >
-            {t("Pawsitiveへようこそ！", "Welcome to Pawsitive Diagnostics!")}
+            {t("Pawsitive Diagnosticsへようこそ！", "Welcome to Pawsitive Diagnostics!")}
           </h1>
           <p
             className="text-center mt-3 text-[14px] leading-relaxed max-w-[300px]"

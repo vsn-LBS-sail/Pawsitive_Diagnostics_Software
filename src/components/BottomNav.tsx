@@ -84,7 +84,7 @@ export default function BottomNav() {
                   height: 52,
                   borderRadius: "50%",
                   background: "#B9D8E1",
-                  border: "3px solid #D6E9F3",
+                  border: "3px solid #D6EBF3",
                   boxShadow: active
                     ? "0 6px 20px rgba(185,216,225,0.5)"
                     : "0 4px 16px rgba(185,216,225,0.4)",
