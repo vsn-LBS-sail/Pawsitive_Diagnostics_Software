@@ -47,7 +47,7 @@ export function TopBar({
               style={{ height: 42, background: "transparent" }}
               aria-label="Profile"
             >
-              <span style={{ fontFamily: "var(--font-display)", fontSize: 18, color: "#fff" }}>Pawsitive Diagnostics</span>
+              <PawLogo size={28} color="#FFFFFF" />
             </Link>
           </div>
           {showTitle ? (
