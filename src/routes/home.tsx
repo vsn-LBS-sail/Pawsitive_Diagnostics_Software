@@ -199,7 +199,7 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
         height: 160,
         borderRadius: 24,
         overflow: "hidden",
-        background: "#EAF4F9",
+        background: "#B9DBE1", // Glacier (1st in alternating cycle)
         border: "0.5px solid #B9D8E1",
         boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
         animation: celebrate ? "heroCelebrate 0.8s ease-out" : "none",
@@ -278,7 +278,7 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
           inset: 0,
           zIndex: 4,
           pointerEvents: "none",
-          background: "linear-gradient(to right, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.3) 25%, rgba(255, 255, 255, 0) 55%)"
+          background: "linear-gradient(to right, rgba(185, 219, 229, 0.85) 0%, rgba(185, 219, 229, 0.3) 25%, rgba(185, 219, 229, 0) 55%)"
         }} />
 
         {/* Sakura Petals */}
@@ -313,15 +313,15 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
       {/* Left content */}
       <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "50%", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
         <div>
-          <div style={{ fontSize: 11, color: JP.sakura, letterSpacing: "0.05em", fontWeight: 600 }}>
+          <div style={{ fontSize: 11, color: "#447F98", letterSpacing: "0.05em", fontWeight: 600 }}>
             {t(`${labelJp} / ${labelEn}`, `${labelEn} / ${labelJp}`)}
           </div>
           <div style={{ fontSize: 24, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 4 }}>
             {greeting}
           </div>
           <div className="flex items-center" style={{ gap: 6, marginTop: 6 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: JP.matcha, display: "inline-block" }} />
-            <span style={{ fontSize: 12, color: JP.matcha, fontWeight: 500 }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#447F98", display: "inline-block" }} />
+            <span style={{ fontSize: 12, color: JP.usuzumi, fontWeight: 500 }}>
               {mood}
             </span>
           </div>
@@ -330,8 +330,8 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
         <div>
           <span style={{
             display: "inline-block",
-            background: JP.sakuraSoft,
-            color: JP.sakura,
+            background: "rgba(68, 127, 152, 0.12)",
+            color: "#447F98",
             borderRadius: 20,
             padding: "4px 12px",
             fontSize: 11,
@@ -390,9 +390,9 @@ function Home() {
 
       <div style={{ padding: "0 16px" }}>
 
-        {/* Daily fact */}
+        {/* Daily fact - Platinum (#DAEEE1) */}
         <motion.div key={factIdx} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 8 }}>
-          <JCard accent="#447F98" strip="transparent" style={{ background: "#B9D8E1" }}>
+          <JCard accent="#447F98" strip="transparent" style={{ background: "#DAEEE1" }}>
             <div style={{ padding: 16 }}>
               <div className="flex justify-between items-center">
                 <div className="flex items-center" style={{ gap: 6 }}>
@@ -412,9 +412,9 @@ function Home() {
           </JCard>
         </motion.div>
 
-        {/* Health score */}
+        {/* Health score - Ice Blue (#D6EBF3) */}
         <div style={{ marginTop: 8 }}>
-          <JCard accent={JP.matcha} strip={JP.matchaStrip}>
+          <JCard accent="#447F98" strip="transparent" style={{ background: "#D6EBF3" }}>
             <div style={{ padding: 16 }} className="flex items-center gap-4">
               <ScoreRing value={score} />
               <div className="flex-1">
@@ -424,10 +424,10 @@ function Home() {
                 {language === "mixed" && <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 2 }}>Overall Health Score</div>}
                 <div className="flex items-center" style={{ gap: 6, marginTop: 8, fontSize: 12 }}>
                   <span className="relative inline-block" style={{ width: 8, height: 8 }}>
-                    <span style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#1D9E75" }}/>
-                    <span className="animate-ping" style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#1D9E75", opacity: 0.6 }}/>
+                    <span style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#628BB5" }}/>
+                    <span className="animate-ping" style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#628BB5", opacity: 0.6 }}/>
                   </span>
-                  <span style={{ color: "#1D9E75", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.05em" }}>LIVE</span>
+                  <span style={{ color: "#628BB5", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.05em" }}>LIVE</span>
                   <span style={{ color: JP.usuzumi }}>· {t("全センサー稼働中", "All sensors active")}</span>
                 </div>
               </div>
@@ -435,17 +435,17 @@ function Home() {
           </JCard>
         </div>
 
-        {/* Collar status */}
+        {/* Collar status - Glacier (#B9DBE1) */}
         <div style={{ marginTop: 8 }}>
-          <JCard accent={JP.sora} strip={JP.soraStrip}>
+          <JCard accent="#447F98" strip="transparent" style={{ background: "#B9DBE1" }}>
             <div style={{ padding: 16 }}>
               <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, marginBottom: 14, letterSpacing: "0.02em" }}>
                 {t("カラーステータス", "Collar Status")}
               </div>
 
               <div className="flex items-center" style={{ gap: 12 }}>
-                <div className="flex items-center justify-center" style={{ width: 40, height: 40, borderRadius: "50%", background: "#EBF4FF" }}>
-                  <Check size={20} strokeWidth={2.5} style={{ color: JP.sora }} />
+                <div className="flex items-center justify-center" style={{ width: 40, height: 40, borderRadius: "50%", background: "#FFFFFF" }}>
+                  <Check size={20} strokeWidth={2.5} style={{ color: "#628BB5" }} />
                 </div>
                 <div className="flex-1">
                   <div style={{ fontSize: 14, fontWeight: 600, color: JP.sumi }}>{t("接続済み", "Connected")}</div>
@@ -453,42 +453,45 @@ function Home() {
                 </div>
               </div>
 
-              <div style={{ height: 1, background: JP.divider, margin: "14px 0" }} />
+              <div style={{ height: 1, background: "rgba(0,0,0,0.06)", margin: "14px 0" }} />
 
-              <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
-                <div className="flex items-center" style={{ gap: 6 }}>
-                  <BatteryMedium size={18} strokeWidth={1.5} style={{ color: JP.sora }} />
-                  <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("バッテリー", "Battery")}</span>
-                </div>
-                <div className="flex items-center">
-                  <div style={{ width: 110, height: 6, background: "#EBF4FF", borderRadius: 4, overflow: "hidden" }}>
-                    <div style={{ width: "87%", height: "100%", background: JP.sora, borderRadius: 4 }}/>
+              {/* Battery & Signal container - Platinum (#DAEEE1) */}
+              <div style={{ background: "#DAEEE1", padding: "12px 14px", borderRadius: 16, marginBottom: 14 }}>
+                <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
+                  <div className="flex items-center" style={{ gap: 6 }}>
+                    <BatteryMedium size={18} strokeWidth={1.5} style={{ color: "#628BB5" }} />
+                    <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("バッテリー", "Battery")}</span>
                   </div>
-                  <span style={{ marginLeft: 8, fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sora, fontVariantNumeric: "tabular-nums" }}>87%</span>
+                  <div className="flex items-center">
+                    <div style={{ width: 110, height: 6, background: "#FFFFFF", borderRadius: 4, overflow: "hidden" }}>
+                      <div style={{ width: "87%", height: "100%", background: "#628BB5", borderRadius: 4 }}/>
+                    </div>
+                    <span style={{ marginLeft: 8, fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#628BB5", fontVariantNumeric: "tabular-nums" }}>87%</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
-                <div className="flex items-center" style={{ gap: 6 }}>
-                  <Signal size={18} strokeWidth={1.5} style={{ color: JP.sora }} />
-                  <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("信号強度", "Signal Strength")}</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="flex items-end" style={{ gap: 3 }}>
-                    {[6, 10, 14, 18].map((h) => (
-                      <div key={h} style={{ width: 4, height: h, background: JP.sora, borderRadius: 2 }} />
-                    ))}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center" style={{ gap: 6 }}>
+                    <Signal size={18} strokeWidth={1.5} style={{ color: "#628BB5" }} />
+                    <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("信号強度", "Signal Strength")}</span>
                   </div>
-                  <span style={{ marginLeft: 8, fontSize: 13, fontWeight: 600, color: JP.sora }}>{t("優秀", "Excellent")}</span>
+                  <div className="flex items-center">
+                    <div className="flex items-end" style={{ gap: 3 }}>
+                      {[6, 10, 14, 18].map((h) => (
+                        <div key={h} style={{ width: 4, height: h, background: "#628BB5", borderRadius: 2 }} />
+                      ))}
+                    </div>
+                    <span style={{ marginLeft: 8, fontSize: 13, fontWeight: 600, color: "#628BB5" }}>{t("優秀", "Excellent")}</span>
+                  </div>
                 </div>
               </div>
 
               <button
                 className="w-full flex items-center justify-center"
                 style={{
-                  background: "#F0F6FF",
-                  color: JP.sora,
-                  border: "1px solid #C8E0F8",
+                  background: "#FFFFFF",
+                  color: "#628BB5",
+                  border: "1px solid rgba(98, 139, 181, 0.3)",
                   borderRadius: 12,
                   height: 44,
                   fontSize: 14,
@@ -508,26 +511,35 @@ function Home() {
         <SectionLabel jp="AI センサー" en="AI Sensors" />
 
         <div className="grid grid-cols-2" style={{ gap: 8 }}>
-          {sensors.map((s) => {
+          {sensors.map((s, idx) => {
             const Icon = s.Icon;
+            const sensorBgColors = [
+              "#D6EBF3", // 0: BarkSense AI (Ice Blue)
+              "#B9DBE1", // 1: SkinSense AI (Glacier)
+              "#DAEEE1", // 2: MotionSense (Platinum)
+              "#D6EBF3", // 3: TempSense AI (Ice Blue)
+              "#B9DBE1", // 4: LocationSense (Glacier)
+              "#DAEEE1", // 5: PressureSense (Platinum)
+              "#D6EBF3", // 6: LightSense AI (Ice Blue)
+              "#B9DBE1", // 7: CombineSense (Glacier)
+            ];
+            const currentBg = sensorBgColors[idx % sensorBgColors.length];
             return (
               <Link
                 key={s.en}
                 to={s.to}
                 style={{
                   position: "relative",
-                  background: "var(--color-bg-card)",
+                  background: currentBg,
                   borderRadius: 20,
-                  border: "1.5px solid #629885",
+                  borderLeft: "4px solid #447F98", // Turquoise border left on all sensor cards
                   boxShadow: CARD_SHADOW,
                   overflow: "hidden",
                   transition: "transform 0.2s ease",
                 }}
                 className="flex flex-col"
               >
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 10, background: s.strip, pointerEvents: "none" }} />
-                <div style={{ padding: 14, paddingTop: 18, display: "flex", flexDirection: "column", flex: 1 }}>
-
+                <div style={{ padding: 16, display: "flex", flexDirection: "column", flex: 1 }}>
 
                   <div style={{ width: 44, height: 44, borderRadius: 12, background: s.iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Icon size={22} strokeWidth={1.5} style={{ color: s.accent }} />
@@ -554,8 +566,8 @@ function Home() {
                   )}
 
                   {s.progress !== undefined && (
-                    <div style={{ marginTop: 10, height: 4, borderRadius: 4, overflow: "hidden", background: "#F0ECE8" }}>
-                      <div style={{ width: `${s.progress}%`, height: "100%", background: s.accent, borderRadius: 4 }}/>
+                    <div style={{ marginTop: 10, height: 4, borderRadius: 4, overflow: "hidden", background: "#FFFFFF" }}>
+                      <div style={{ width: `${s.progress}%`, height: "100%", background: "#628BB5", borderRadius: 4 }}/>
                     </div>
                   )}
 
@@ -569,43 +581,43 @@ function Home() {
         <SectionLabel jp="クイックアクセス" en="Quick Access" />
 
         <div className="grid grid-cols-2" style={{ gap: 10, marginBottom: 16 }}>
-          {/* Health Report Card */}
+          {/* Health Report Card - Platinum (#DAEEE1) */}
           <Link
             to="/report"
             className="relative overflow-hidden"
             style={{
               height: 90,
               borderRadius: 20,
-              background: "#447F98",
-              border: "0.5px solid #A8CCD8",
-              boxShadow: "0 8px 24px rgba(68,127,152,0.35)",
+              background: "#DAEEE1",
+              border: "0.5px solid #628BB5",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
               transition: "transform 0.2s ease, box-shadow 0.2s ease",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "scale(1.02)";
-              e.currentTarget.style.boxShadow = "0 12px 32px rgba(102,126,234,0.45)";
+              e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "scale(1)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(102,126,234,0.35)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
             }}
           >
             {/* Inner highlight */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.3)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
             {/* Decorative circles */}
-            <div style={{ position: "absolute", top: -20, right: 20, width: 60, height: 60, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 10, left: -10, width: 40, height: 40, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", top: 30, right: 50, width: 80, height: 80, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: -20, right: 20, width: 60, height: 60, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: 10, left: -10, width: 40, height: 40, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: 30, right: 50, width: 80, height: 80, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
             {/* Content */}
             <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div>
-                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.75)", letterSpacing: "0.08em", fontWeight: 600 }}>
+                <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
                   {t("レポート", "Report")}
                 </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#fff", lineHeight: 1.1, marginTop: 2 }}>
+                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
                   Health
                 </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#fff", lineHeight: 1.1 }}>
+                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
                   Report <span style={{ fontSize: 14 }}>→</span>
                 </div>
               </div>
@@ -615,9 +627,7 @@ function Home() {
               position: "absolute",
               top: 10,
               right: 10,
-              background: "rgba(255,255,255,0.2)",
-              backdropFilter: "blur(4px)",
-              WebkitBackdropFilter: "blur(4px)",
+              background: "#628BB5",
               color: "#fff",
               fontSize: 11,
               fontFamily: "var(--font-heading)", fontWeight: 600,
@@ -633,48 +643,48 @@ function Home() {
               position: "absolute",
               right: -8,
               bottom: -8,
-              color: "rgba(255,255,255,0.15)",
+              color: "rgba(98, 139, 181, 0.12)",
               pointerEvents: "none",
             }} />
           </Link>
 
-          {/* Breeds Card */}
+          {/* Breeds Card - Ice Blue (#D6EBF3) */}
           <Link
             to="/breeds"
             className="relative overflow-hidden"
             style={{
               height: 90,
               borderRadius: 20,
-              background: "#4A7FA5",
-              border: "0.5px solid #A8CCD8",
-              boxShadow: "0 8px 24px rgba(74,127,165,0.35)",
+              background: "#D6EBF3",
+              border: "0.5px solid #628BB5",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
               transition: "transform 0.2s ease, box-shadow 0.2s ease",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "scale(1.02)";
-              e.currentTarget.style.boxShadow = "0 12px 32px rgba(74,127,165,0.45)";
+              e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "scale(1)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(74,127,165,0.35)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
             }}
           >
             {/* Inner highlight */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.3)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
             {/* Decorative circles */}
-            <div style={{ position: "absolute", top: -15, right: 25, width: 55, height: 55, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 5, left: -5, width: 45, height: 45, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", top: 25, right: 55, width: 75, height: 75, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: -15, right: 25, width: 55, height: 55, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: 5, left: -5, width: 45, height: 45, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: 25, right: 55, width: 75, height: 75, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
             {/* Content */}
             <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div>
-                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.75)", letterSpacing: "0.08em", fontWeight: 600 }}>
+                <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
                   {t("犬種図鑑", "Breeds")}
                 </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#fff", lineHeight: 1.1, marginTop: 2 }}>
+                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
                   Breed
                 </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#fff", lineHeight: 1.1 }}>
+                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
                   Guide <span style={{ fontSize: 14 }}>→</span>
                 </div>
               </div>
@@ -684,9 +694,7 @@ function Home() {
               position: "absolute",
               top: 10,
               right: 10,
-              background: "rgba(255,255,255,0.2)",
-              backdropFilter: "blur(4px)",
-              WebkitBackdropFilter: "blur(4px)",
+              background: "#628BB5",
               color: "#fff",
               fontSize: 11,
               fontFamily: "var(--font-heading)", fontWeight: 600,
@@ -702,7 +710,7 @@ function Home() {
               position: "absolute",
               right: -8,
               bottom: -8,
-              color: "rgba(255,255,255,0.15)",
+              color: "rgba(98, 139, 181, 0.12)",
               pointerEvents: "none",
             }} />
           </Link>
@@ -719,7 +727,7 @@ function ScoreRing({ value }: { value: number }) {
     <div className="relative" style={{ width: 80, height: 80 }}>
       <svg className="-rotate-90" width="80" height="80" viewBox="0 0 80 80">
         <circle cx="40" cy="40" r={r} stroke="#A8CCD8" strokeWidth="6" fill="none"/>
-        <circle cx="40" cy="40" r={r} stroke="#1A56DB" strokeWidth="6" fill="none" strokeLinecap="round"
+        <circle cx="40" cy="40" r={r} stroke="#628BB5" strokeWidth="6" fill="none" strokeLinecap="round"
           strokeDasharray={c} strokeDashoffset={off} style={{ transition: "stroke-dashoffset 1.2s ease" }}/>
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
