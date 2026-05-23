@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { useT, useLanguage } from "@/context/LanguageContext";
 import { usePet, type PetProfile } from "@/context/PetContext";
-import DogAvatar, { BREED_KEY_BY_JP, type BreedKey } from "@/components/DogAvatar";
 
 export const Route = createFileRoute("/report")({ component: Report });
 
@@ -78,7 +77,7 @@ function Report() {
         }}
       >
         <HeroBanner pet={pet} />
-        <HeroCard pet={pet} dogName={dogName} />
+        <HeroCard />
 
         {/* Time filter tabs */}
         <div
@@ -239,7 +238,7 @@ function Report() {
 }
 
 /* ─────────── Hero ─────────── */
-function HeroCard({ pet: _pet, dogName: _dogName }: { pet: PetProfile; dogName: string }) {
+function HeroCard() {
   const t = useT();
   const score = 87;
   const r = 44;
@@ -793,6 +792,4 @@ function HeroBanner({ pet }: { pet: PetProfile }) {
 }
 
 // AlertTriangle import retained for future overdue states
-void AlertTriangle;
-
 void AlertTriangle;
