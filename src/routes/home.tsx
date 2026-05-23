@@ -56,32 +56,30 @@ const CARD_SHADOW = "0 2px 20px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04)";
 
 /* Refined card wrapper: white bg, left accent border, top color strip */
 function JCard({
-  accent,
-  strip,
   children,
   className = "",
   style,
 }: {
-  accent: string;
-  strip: string;
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
+  accent?: string;
+  strip?: string;
 }) {
   return (
     <div
       className={"relative " + className}
       style={{
-        background: JP.card,
         borderRadius: 20,
-        borderLeft: `4px solid ${accent}`,
-        boxShadow: CARD_SHADOW,
+        border: "1px solid rgba(255, 255, 255, 0.45)",
+        backdropFilter: "blur(18px) saturate(160%)",
+        WebkitBackdropFilter: "blur(18px) saturate(160%)",
+        boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
         overflow: "hidden",
         transition: "transform 0.2s ease",
         ...style,
       }}
     >
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 8, background: strip, pointerEvents: "none" }} />
       <div style={{ paddingTop: 8 }}>{children}</div>
     </div>
   );
@@ -199,9 +197,11 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
         height: 160,
         borderRadius: 24,
         overflow: "hidden",
-        background: "#B9DBE1", // Glacier (1st in alternating cycle)
-        border: "0.5px solid #B9D8E1",
-        boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+        background: "rgba(213, 235, 243, 0.55)", // Color A (1st in alternating cycle)
+        backdropFilter: "blur(18px) saturate(160%)",
+        WebkitBackdropFilter: "blur(18px) saturate(160%)",
+        border: "1px solid rgba(255, 255, 255, 0.45)",
+        boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
         animation: celebrate ? "heroCelebrate 0.8s ease-out" : "none",
       }}
     >
@@ -386,14 +386,20 @@ function Home() {
 
   return (
     <AppShell titleJp="" titleEn="" noPadding>
-      <div style={{ background: "#D5EBF3", minHeight: "100%", display: "flex", flexDirection: "column", paddingBottom: 24 }}>
+      <div style={{
+        background: "radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(213,235,243,0.8) 100%), #EAF5F8",
+        minHeight: "100%",
+        display: "flex",
+        flexDirection: "column",
+        paddingBottom: 24,
+      }}>
         <HeroPostcard score={score} name={heroName} mood={mood} celebrate={celebrate} ownerGender={pet.ownerGender} />
 
         <div style={{ padding: "0 16px" }}>
 
-          {/* Daily fact - Platinum (#DADEE1) */}
+          {/* Daily fact - Color B: Glacier rgba(185, 219, 225, 0.60) */}
           <motion.div key={factIdx} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 8 }}>
-            <JCard accent="#447F98" strip="transparent" style={{ background: "#DADEE1" }}>
+            <JCard style={{ background: "rgba(185, 219, 225, 0.60)" }}>
               <div style={{ padding: 16 }}>
                 <div className="flex justify-between items-center">
                   <div className="flex items-center" style={{ gap: 6 }}>
@@ -413,9 +419,9 @@ function Home() {
             </JCard>
           </motion.div>
 
-          {/* Health score - Ice Blue (#D5EBF3) */}
+          {/* Health score - Color A: Ice Blue rgba(213, 235, 243, 0.55) */}
           <div style={{ marginTop: 8 }}>
-            <JCard accent="#447F98" strip="transparent" style={{ background: "#D5EBF3" }}>
+            <JCard style={{ background: "rgba(213, 235, 243, 0.55)" }}>
               <div style={{ padding: 16 }} className="flex items-center gap-4">
                 <ScoreRing value={score} />
                 <div className="flex-1">
@@ -436,9 +442,9 @@ function Home() {
             </JCard>
           </div>
 
-          {/* Collar status - Glacier (#B9DBE1) */}
+          {/* Collar status - Color B: Glacier rgba(185, 219, 225, 0.60) */}
           <div style={{ marginTop: 8 }}>
-            <JCard accent="#447F98" strip="transparent" style={{ background: "#B9DBE1" }}>
+            <JCard style={{ background: "rgba(185, 219, 225, 0.60)" }}>
               <div style={{ padding: 16 }}>
                 <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, marginBottom: 14, letterSpacing: "0.02em" }}>
                   {t("カラーステータス", "Collar Status")}
@@ -456,8 +462,17 @@ function Home() {
 
                 <div style={{ height: 1, background: "rgba(0,0,0,0.06)", margin: "14px 0" }} />
 
-                {/* Battery & Signal container - Platinum (#DADEE1) */}
-                <div style={{ background: "#DADEE1", padding: "12px 14px", borderRadius: 16, marginBottom: 14 }}>
+                {/* Battery & Signal container - Color A: Ice Blue rgba(213, 235, 243, 0.55) */}
+                <div style={{
+                  background: "rgba(213, 235, 243, 0.55)",
+                  backdropFilter: "blur(18px) saturate(160%)",
+                  WebkitBackdropFilter: "blur(18px) saturate(160%)",
+                  border: "1px solid rgba(255, 255, 255, 0.45)",
+                  boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
+                  padding: "12px 14px",
+                  borderRadius: 16,
+                  marginBottom: 14,
+                }}>
                   <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
                     <div className="flex items-center" style={{ gap: 6 }}>
                       <BatteryMedium size={18} strokeWidth={1.5} style={{ color: "#628BB6" }} />
@@ -515,14 +530,14 @@ function Home() {
             {sensors.map((s, idx) => {
               const Icon = s.Icon;
               const sensorBgColors = [
-                "#D5EBF3", // 0: BarkSense AI (Ice Blue)
-                "#B9DBE1", // 1: SkinSense AI (Glacier)
-                "#DADEE1", // 2: MotionSense (Platinum)
-                "#D5EBF3", // 3: TempSense AI (Ice Blue)
-                "#B9DBE1", // 4: LocationSense (Glacier)
-                "#DADEE1", // 5: PressureSense (Platinum)
-                "#D5EBF3", // 6: LightSense AI (Ice Blue)
-                "#B9DBE1", // 7: CombineSense (Glacier)
+                "rgba(185, 219, 225, 0.60)", // 0: BarkSense AI (Color B)
+                "rgba(213, 235, 243, 0.55)", // 1: SkinSense AI (Color A)
+                "rgba(185, 219, 225, 0.60)", // 2: MotionSense (Color B)
+                "rgba(213, 235, 243, 0.55)", // 3: TempSense AI (Color A)
+                "rgba(185, 219, 225, 0.60)", // 4: LocationSense (Color B)
+                "rgba(213, 235, 243, 0.55)", // 5: PressureSense (Color A)
+                "rgba(185, 219, 225, 0.60)", // 6: LightSense AI (Color B)
+                "rgba(213, 235, 243, 0.55)", // 7: CombineSense (Color A)
               ];
               const currentBg = sensorBgColors[idx % sensorBgColors.length];
               return (
@@ -533,8 +548,10 @@ function Home() {
                     position: "relative",
                     background: currentBg,
                     borderRadius: 20,
-                    borderLeft: "4px solid #447F98", // Turquoise border left on all sensor cards
-                    boxShadow: CARD_SHADOW,
+                    border: "1px solid rgba(255, 255, 255, 0.45)",
+                    backdropFilter: "blur(18px) saturate(160%)",
+                    WebkitBackdropFilter: "blur(18px) saturate(160%)",
+                    boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
                     overflow: "hidden",
                     transition: "transform 0.2s ease",
                   }}
@@ -542,7 +559,7 @@ function Home() {
                 >
                   <div style={{ padding: 16, display: "flex", flexDirection: "column", flex: 1 }}>
 
-                    <div style={{ width: 44, height: 44, borderRadius: 12, background: s.iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: s.iconBg, display: "flex", alignItems: "center", justify: "center" }}>
                       <Icon size={22} strokeWidth={1.5} style={{ color: s.accent }} />
                     </div>
 
@@ -582,16 +599,18 @@ function Home() {
           <SectionLabel jp="クイックアクセス" en="Quick Access" />
 
           <div className="grid grid-cols-2" style={{ gap: 10, marginBottom: 16 }}>
-            {/* Health Report Card - Platinum (#DADEE1) */}
+            {/* Health Report Card - Color B: Glacier rgba(185, 219, 225, 0.60) */}
             <Link
               to="/report"
               className="relative overflow-hidden"
               style={{
                 height: 90,
                 borderRadius: 20,
-                background: "#DADEE1",
-                border: "0.5px solid #628BB6",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                background: "rgba(185, 219, 225, 0.60)",
+                border: "1px solid rgba(255, 255, 255, 0.45)",
+                backdropFilter: "blur(18px) saturate(160%)",
+                WebkitBackdropFilter: "blur(18px) saturate(160%)",
+                boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
               }}
               onMouseEnter={(e) => {
@@ -610,7 +629,7 @@ function Home() {
               <div style={{ position: "absolute", bottom: 10, left: -10, width: 40, height: 40, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
               <div style={{ position: "absolute", top: 30, right: 50, width: 80, height: 80, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
               {/* Content */}
-              <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifycontent: "space-between" }}>
                 <div>
                   <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
                     {t("レポート", "Report")}
@@ -649,16 +668,18 @@ function Home() {
               }} />
             </Link>
 
-            {/* Breeds Card - Ice Blue (#D5EBF3) */}
+            {/* Breeds Card - Color A: Ice Blue rgba(213, 235, 243, 0.55) */}
             <Link
               to="/breeds"
               className="relative overflow-hidden"
               style={{
                 height: 90,
                 borderRadius: 20,
-                background: "#D5EBF3",
-                border: "0.5px solid #628BB6",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                background: "rgba(213, 235, 243, 0.55)",
+                border: "1px solid rgba(255, 255, 255, 0.45)",
+                backdropFilter: "blur(18px) saturate(160%)",
+                WebkitBackdropFilter: "blur(18px) saturate(160%)",
+                boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
               }}
               onMouseEnter={(e) => {
@@ -677,7 +698,7 @@ function Home() {
               <div style={{ position: "absolute", bottom: 5, left: -5, width: 45, height: 45, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
               <div style={{ position: "absolute", top: 25, right: 55, width: 75, height: 75, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
               {/* Content */}
-              <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifycontent: "space-between" }}>
                 <div>
                   <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
                     {t("犬種図鑑", "Breeds")}
