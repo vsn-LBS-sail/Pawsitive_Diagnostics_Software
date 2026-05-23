@@ -11,15 +11,15 @@ type Lang = "english" | "japanese" | "mixed";
 
 // Soft pastel purple palette for this page
 const P = {
-  primary: "#9B8EC4",   // was #7C3AED
-  deep:    "#6B5B9E",   // was #3B1F6A
-  mid:     "#A99DD4",   // was #6D28D9
-  soft:    "#F0ECFF",   // was #EDE9FE
-  pale:    "#F8F6FF",   // was #F5F3FF
-  accent:  "#B5A8D8",   // was #8B5CF6
-  muted:   "#E8E3FF",   // was #DDD6FE
-  light:   "#D4CCF5",   // was #C4B5FD
-  darker:  "#8B7DBF",   // was #5B21B6
+  primary: "#447F98",
+  deep:    "#1C3A47",
+  mid:     "#4A7FA5",
+  soft:    "#B9D8E1",
+  pale:    "#D6EBF3",
+  accent:  "#447F98",
+  muted:   "#A8CCD8",
+  light:   "#B9D8E1",
+  darker:  "#1C3A47",
 };
 
 type EmotionKey =
