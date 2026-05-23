@@ -284,17 +284,19 @@ function LoginForm({
           <ArrowLeft className="w-5 h-5" style={{ color: "#2C2C2C" }} />
         </button>
         <div
-          className="flex items-center gap-2 rounded-full pl-1 pr-3 py-1"
-          style={{ background: accentBg }}
+          className="flex items-center gap-2 rounded-full pr-3 py-1"
+          style={{ background: accentBg, paddingLeft: isOwner ? 12 : 4 }}
         >
-          <div
-            className="w-9 h-9 rounded-full flex items-center justify-center"
-            style={{ background: "#FFFFFF" }}
-          >
-            <div style={{ transform: "scale(0.55)", transformOrigin: "center" }}>
-              {isOwner ? <OwnerDoodle /> : <ClinicDoodle />}
+          {!isOwner && (
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center"
+              style={{ background: "#FFFFFF" }}
+            >
+              <div style={{ transform: "scale(0.55)", transformOrigin: "center" }}>
+                <ClinicDoodle />
+              </div>
             </div>
-          </div>
+          )}
           <div className="leading-tight">
             <div className="font-bold" style={{ fontSize: 13, color: "#2C2C2C" }}>{roleJp}</div>
             <div className="font-semibold" style={{ fontSize: 11, color: accent }}>{roleEn}</div>
