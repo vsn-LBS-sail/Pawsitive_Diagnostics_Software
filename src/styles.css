@@ -39,9 +39,9 @@
 
 :root {
   /* Global Theme Tokens */
-  --color-bg-app: #D6E9F3;
+  --color-bg-app: #D6EBF3;
   --color-bg-card: #B9D8E1;
-  --color-bg-card-elevated: #EAF4F9;
+  --color-bg-card-elevated: #B9D8E1;
   --color-nav: #447F98;
   --color-primary: #447F98;
   --color-secondary: #629885;
@@ -49,10 +49,10 @@
   --color-health-ring: #1A56DB;
   --color-ai-btn: #B9D8E1;
   --color-sos: #E24B4A;
-  --color-petal: #FFB7C5;
-  --color-text-primary: #2C3E50;
-  --color-text-secondary: #3A6B80;
-  --color-text-muted: #629885;
+  --color-petal: #A8CCD8;
+  --color-text-primary: #1C3A47;
+  --color-text-secondary: #1C3A47;
+  --color-text-muted: #4A7FA5;
   --color-border-card: #A8CCD8;
   --color-border-sensor: #629885;
 
@@ -60,7 +60,7 @@
   --font-display: 'Hachi Maru Pop', 'Lato', sans-serif;
   --font-heading: 'Hachi Maru Pop', 'Lato', sans-serif;
   --font-body: 'Hachi Maru Pop', 'Lato', sans-serif;
-  --font-mono: "Kosugi Maru", "Noto Sans JP", system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
 
   /* Chrome / surface tokens mapped to old variables for compatibility */
   --bg-page: var(--color-bg-app);
@@ -405,4 +405,5 @@
       scroll-behavior: auto !important;
     }
   }
+* { font-family: var(--font-body) !important; }
 * { font-family: var(--font-body) !important; }

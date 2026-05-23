@@ -1794,27 +1794,27 @@ function Breeds() {
       {/* HERO BANNER */}
       <div style={{
         position: "relative", height: 110, overflow: "hidden",
-        background: "linear-gradient(135deg, #FFF0F5 0%, #F5F0FF 50%, #FFF8DC 100%)",
+        background: "linear-gradient(to bottom, #DAE6ED 0%, #B9D8E1 100%)",
         borderRadius: "0 0 24px 24px",
       }}>
         <div style={{ position: "absolute", left: 20, top: 24 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#E8829A", fontSize: 13, letterSpacing: "0.1em", fontWeight: 600 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#1C3A47", fontSize: 13, letterSpacing: "0.1em", fontWeight: 600 }}>
             <BookOpen size={14} strokeWidth={2} />
             <span>犬種図鑑</span>
           </div>
-          <div style={{ fontSize: 22, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#2C2C2C", marginTop: 2, letterSpacing: "-0.01em" }}>
+          <div style={{ fontSize: 22, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3A47", marginTop: 2, letterSpacing: "-0.01em" }}>
             {t("犬種図鑑", "Breed Encyclopedia")}
           </div>
-          <div style={{ fontSize: 12, color: "#8A8A8A", marginTop: 2 }}>
+          <div style={{ fontSize: 12, color: "#1C3A47", opacity: 0.8, marginTop: 2 }}>
             {t("200以上の犬種", "200+ breeds")}
           </div>
         </div>
 
         {/* Right: stacked size pills (small/medium/large suggestion) */}
         <div style={{ position: "absolute", right: 22, top: 32, display: "flex", flexDirection: "column", gap: 6, opacity: 0.5 }}>
-          <div style={{ width: 20, height: 8, borderRadius: 4, background: "#FFB7C5", alignSelf: "flex-end" }} />
-          <div style={{ width: 28, height: 8, borderRadius: 4, background: "#C8C0F0", alignSelf: "flex-end" }} />
-          <div style={{ width: 36, height: 8, borderRadius: 4, background: "#A8D0E8", alignSelf: "flex-end" }} />
+          <div style={{ width: 20, height: 8, borderRadius: 4, background: "#447F98", alignSelf: "flex-end" }} />
+          <div style={{ width: 28, height: 8, borderRadius: 4, background: "#4A7FA5", alignSelf: "flex-end" }} />
+          <div style={{ width: 36, height: 8, borderRadius: 4, background: "#629885", alignSelf: "flex-end" }} />
         </div>
       </div>
 
@@ -2100,19 +2100,19 @@ function BreedCard({ breed, onOpen, language, t, matches }: { breed: Breed; onOp
         {/* DIAGNOSTIC NOTE */}
         <div style={{
           marginTop: 4, padding: "10px 12px",
-          background: "var(--color-primary)",
-          border: "1px solid #F5D9D2", borderRadius: 12,
+          background: "#FFF3CD",
+          border: "1px solid #FDE68A", borderRadius: 12,
           display: "flex", gap: 10, alignItems: "flex-start",
         }}>
-          <AlertTriangle size={14} color="#E8829A" strokeWidth={2.4} style={{ marginTop: 2, flexShrink: 0 }} />
+          <AlertTriangle size={14} color="#B45309" strokeWidth={2.4} style={{ marginTop: 2, flexShrink: 0 }} />
           <div style={{ minWidth: 0 }}>
             <div style={{
-              fontSize: 9, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#C86882",
+              fontSize: 9, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#92400E",
               letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 2,
             }}>
               {t("診断ノート", "Diagnostic Note")}
             </div>
-            <div style={{ fontSize: 11.5, color: "#5A3D45", fontWeight: 500, lineHeight: 1.4 }}>
+            <div style={{ fontSize: 11.5, color: "#B45309", fontWeight: 500, lineHeight: 1.4 }}>
               {language === "japanese" ? (
                 <Highlight text={breed.diagnosticNoteJp} matches={matches} keyName="diagnostic_jp" />
               ) : (

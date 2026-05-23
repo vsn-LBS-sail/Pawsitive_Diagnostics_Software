@@ -108,10 +108,10 @@ export function HeroIllustration({ compact = false }: { compact?: boolean }) {
       </svg>
       {[
         { l: "20%", t: "30%", s: 8, c: "#A8CCD8", d: 0 },
-        { l: "70%", t: "20%", s: 12, c: "#D6E9F3", d: 2 },
-        { l: "85%", t: "55%", s: 10, c: "#A8CCD8", d: 4 },
-        { l: "15%", t: "65%", s: 14, c: "#B9D8E1", d: 1 },
-        { l: "55%", t: "75%", s: 9, c: "#D6E9F3", d: 5 },
+        { l: "70%", t: "20%", s: 10, c: "#D6E9F3", d: 1 },
+        { l: "85%", t: "55%", s: 6, c: "#A8CCD8", d: 2 },
+        { l: "15%", t: "65%", s: 9, c: "#B9D8E1", d: 3 },
+        { l: "55%", t: "75%", s: 7, c: "#D6E9F3", d: 1.5 },
       ].map((p, i) => (
         <div
           key={i}
