@@ -11,25 +11,25 @@ export const Route = createFileRoute("/motion-sense")({ component: MotionSensePa
 
 // ---------- Tokens ----------
 const C = {
-  page: "#F0F7FC",
+  page: "#EAF2F8",
   card: "#FFFFFF",
-  sumi: "#1A1A2E",
-  ink: "#374151",
-  ink2: "#4B5563",
-  muted: "#9CA3AF",
-  faint: "#B6C8D4",
-  divider: "#E8F4FD",
+  sumi: "#1A2E40",
+  ink: "#1A2E40",
+  ink2: "#1A2E40",
+  muted: "#6B8FA8",
+  faint: "#6B8FA8",
+  divider: "#D6EAF5",
   // Pastel blue identity (token names kept as `rose*` for minimal diff)
-  rose: "#7BB3D4",       // primary soft sky blue
-  roseDeep: "#5B9FBF",   // medium ocean blue
-  roseSoft: "#93C4E0",   // pastel cornflower
-  rosePale: "#BDD8ED",   // soft blue
-  roseTint: "#E8F4FD",   // very light blue tint
+  rose: "#5BAFD6",       // primary soft sky blue
+  roseDeep: "#3A87B0",   // best/peak bar emphasis only
+  roseSoft: "#7EC8E3",   // pastel cornflower
+  rosePale: "#A8D4EA",   // soft blue
+  roseTint: "#D6EAF5",   // very light blue tint
   roseFill: "#D6EAF5",   // barely blue
-  roseMid: "#93C4E0",    // medium pastel blue
+  roseMid: "#7EC8E3",    // medium pastel blue
   roseTrack: "#D6EAF5",  // progress track
-  indigo: "#6366F1",
-  orange: "#F97316",
+  indigo: "#7EC8E3",
+  orange: "#F4A261",
   green: "#16A34A",
   greenBg: "#F0FDF4",
 };
@@ -83,8 +83,8 @@ function CardBox({ children, style }: { children: React.ReactNode; style?: React
     <div
       style={{
         background: C.card,
-        borderRadius: 22,
-        boxShadow: "0 2px 16px rgba(0,0,0,0.05)",
+        borderRadius: 16,
+        boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
         padding: 20,
         ...style,
       }}
@@ -100,7 +100,7 @@ function SectionHeader({ jp, en, rightJp, rightEn }: { jp: string; en: string; r
     <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
       <div className="flex items-center" style={{ gap: 6 }}>
         <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.rose }} />
-        <span style={{ fontSize: 11, color: C.rose, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+        <span style={{ fontSize: 11, color: C.muted, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
           {t(jp, en)}
         </span>
       </div>
@@ -208,9 +208,9 @@ function HeroStepCard({ mounted }: { mounted: boolean }) {
     <div style={{
       position: "relative",
       background: C.card,
-      borderRadius: 24,
+      borderRadius: 16,
       padding: 24,
-      boxShadow: "0 12px 36px rgba(61,122,158,0.15)",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
       overflow: "hidden",
     }}>
       <div style={{
@@ -565,16 +565,15 @@ function AIInsightBlock({ name }: { name: string }) {
   const en = `${name} is 12% more active than last week. Thursday was the most active day with 5,200 steps!`;
   return (
     <div style={{
-      background: "linear-gradient(135deg,#3D7A9E 0%,#5B9FBF 100%)",
-      borderRadius: 22,
+      background: "#2C4A6E",
+      borderRadius: 16,
       padding: 20,
-      boxShadow: "0 2px 16px rgba(61,122,158,0.18)",
-      borderLeft: "4px solid #7BB3D4",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
       color: "#FFFFFF",
     }}>
       <div className="flex items-center" style={{ gap: 6 }}>
-        <Sparkles size={16} color="#BDD8ED" />
-        <span style={{ fontSize: 11, color: "#BDD8ED", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+        <Sparkles size={16} color="#FFFFFF" />
+        <span style={{ fontSize: 11, color: "#FFFFFF", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
           {t("AIインサイト", "AI Insight")}
         </span>
       </div>

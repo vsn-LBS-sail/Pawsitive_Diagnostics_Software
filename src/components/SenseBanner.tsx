@@ -49,13 +49,12 @@ export function SenseBanner({
             top: 10,
             fontSize: 120,
             lineHeight: 1,
-            fontFamily: "var(--font-heading)", fontWeight: 600,
+            fontWeight: 600,
             color: kanjiColor,
             pointerEvents: "none",
             userSelect: "none",
             fontFamily: "'Noto Serif JP', serif",
-          }}
-        >
+          }}>
           {kanji}
         </span>
         <div
@@ -72,7 +71,7 @@ export function SenseBanner({
               style={{
                 fontSize: 13,
                 fontWeight: 400,
-                color: subtitleColor,
+                color: subtitleColor ?? "#6B8FA8",
                 letterSpacing: "0.08em",
                 lineHeight: 1.2,
               }}
@@ -82,8 +81,8 @@ export function SenseBanner({
             <div
               style={{
                 fontSize: 26,
-                fontFamily: "var(--font-heading)", fontWeight: 600,
-                color: "#1A1A2E",
+                fontFamily: "var(--font-heading)", fontWeight: 700,
+                color: "#1A2E40",
                 lineHeight: 1.15,
                 marginTop: 4,
                 letterSpacing: "-0.01em",
@@ -95,7 +94,7 @@ export function SenseBanner({
               style={{
                 fontSize: 13,
                 fontWeight: 400,
-                color: "#6B7280",
+                color: "#6B8FA8",
                 marginTop: 6,
                 lineHeight: 1.3,
               }}

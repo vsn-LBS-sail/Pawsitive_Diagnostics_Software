@@ -9,25 +9,25 @@ import { SenseBanner } from "@/components/SenseBanner";
  */
 export const SP = {
   // Backgrounds
-  page: "#FAFAF9",
+  page: "#EAF2F8",
   card: "#FFFFFF",
   // Text
-  sumi: "#1A1A2E",          // primary deep navy
-  ink: "#4B5563",           // Japanese body
-  usuzumi: "#6B7280",       // secondary
-  muted: "#9CA3AF",          // tertiary
-  divider: "#F3F4F6",
+  sumi: "#1A2E40",          // primary deep navy
+  ink: "#1A2E40",           // Japanese body
+  usuzumi: "#6B8FA8",       // secondary
+  muted: "#6B8FA8",          // tertiary
+  divider: "#D6EAF5",
   // Rose / sakura accent
-  rose: "#F43F72",
-  roseSoft: "#FF6B8A",
-  roseTint: "#FFF0F3",
-  roseFaint: "rgba(244,63,114,0.08)",
+  rose: "#5BAFD6",
+  roseSoft: "#7EC8E3",
+  roseTint: "#D6EAF5",
+  roseFaint: "rgba(91, 175, 214, 0.08)",
   // Status
   ok: "#16A34A", okDot: "#22C55E", okBg: "#F0FDF4",
   warn: "#D97706", warnDot: "#F59E0B", warnBg: "#FFFBEB",
-  danger: "#E11D48", dangerDot: "#F43F72", dangerBg: "#FFF1F2",
+  danger: "#E11D48", dangerDot: "#5BAFD6", dangerBg: "#FFF1F2",
   // Legacy alias (kept so existing components compile without changes)
-  sakura: "#F43F72",
+  sakura: "#5BAFD6",
   matcha: "#6BAF92",
   yuzu: "#D4A843",
   fuji: "#7B68C8",
@@ -35,8 +35,8 @@ export const SP = {
   sora: "#5B9BD5",
 };
 
-export const CARD_SHADOW = "0 2px 20px rgba(0,0,0,0.055)";
-export const SAKURA_HEADER = "linear-gradient(180deg,#FFF5F7 0%,#FFE8EF 100%)";
+export const CARD_SHADOW = "0 2px 12px rgba(91, 175, 214, 0.10)";
+export const SAKURA_HEADER = "linear-gradient(180deg,#EAF2F8 0%,#D6EAF5 100%)";
 
 export function SensorPage({
   titleJp,
@@ -99,10 +99,10 @@ export function SensorPage({
           titleEn={titleEn}
           descriptorJp={descriptorJp ?? ""}
           descriptorEn={descriptorEn ?? ""}
-          bgGradient={bannerGradient ?? "linear-gradient(135deg,#FFF5F7 0%,#FCE7F3 100%)"}
+          bgGradient={bannerGradient ?? "linear-gradient(135deg, #EAF2F8 0%, #D6EAF5 100%)"}
           kanji={bannerKanji ?? "心"}
-          kanjiColor={bannerKanjiColor ?? "rgba(236,72,153,0.07)"}
-          subtitleColor={bannerSubtitleColor ?? "#C98BA8"}
+          kanjiColor={bannerKanjiColor ?? "rgba(91, 175, 214, 0.07)"}
+          subtitleColor={bannerSubtitleColor ?? "#6B8FA8"}
         />
 
         {/* Content */}
@@ -132,7 +132,7 @@ export function Card({
     <div
       style={{
         background: SP.card,
-        borderRadius: 22,
+        borderRadius: 16,
         boxShadow: CARD_SHADOW,
         padding: 20,
         marginBottom: 14,
@@ -151,7 +151,7 @@ export function TimeTabs({ value, onChange }: { value: string; onChange: (v: str
       className="flex"
       style={{
         background: SP.divider,
-        borderRadius: 50,
+        borderRadius: 999,
         padding: 4,
         gap: 4,
         marginBottom: 14,
@@ -166,7 +166,7 @@ export function TimeTabs({ value, onChange }: { value: string; onChange: (v: str
             style={{
               flex: 1,
               height: 32,
-              borderRadius: 50,
+              borderRadius: 999,
               fontSize: 13,
               fontWeight: active ? 600 : 500,
               background: active ? SP.rose : "transparent",
@@ -199,7 +199,7 @@ export function BL({ jp, en }: { jp: string; en: string }) {
 }
 
 /**
- * Small uppercase rose-pink label with a 2px dot. Use at the top of every card.
+ * Small uppercase label with a 2px dot. Use at the top of every card.
  */
 export function SectionLabel({ jp, en }: { jp: string; en: string }) {
   const t = useT();
@@ -215,7 +215,7 @@ export function SectionLabel({ jp, en }: { jp: string; en: string }) {
       <span
         style={{
           fontSize: 11,
-          color: SP.rose,
+          color: SP.muted,
           fontWeight: 600,
           letterSpacing: "0.08em",
           textTransform: "uppercase",
@@ -228,8 +228,7 @@ export function SectionLabel({ jp, en }: { jp: string; en: string }) {
 }
 
 /**
- * AI Insight card — the ONLY card in the system with a left border.
- * 3px rose-pink translucent stripe on the left edge.
+ * AI Insight card — deep navy background with white text.
  */
 export function AIInsightCard({
   jp,
@@ -246,20 +245,20 @@ export function AIInsightCard({
   return (
     <div
       style={{
-        background: SP.card,
-        borderRadius: 22,
+        background: "#2C4A6E",
+        borderRadius: 16,
         padding: 20,
         marginBottom: 14,
         boxShadow: CARD_SHADOW,
-        borderLeft: "3px solid rgba(244,63,114,0.3)",
+        color: "#FFFFFF",
       }}
     >
       <div className="flex items-center" style={{ gap: 6 }}>
-        <span style={{ color: SP.rose, fontSize: 13, lineHeight: 1 }}>✦</span>
+        <span style={{ color: "#FFFFFF", fontSize: 13, lineHeight: 1 }}>✦</span>
         <span
           style={{
             fontSize: 11,
-            color: SP.rose,
+            color: "#FFFFFF",
             fontWeight: 600,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
@@ -268,14 +267,14 @@ export function AIInsightCard({
           {t("AI インサイト", "AI Insight")}
         </span>
       </div>
-      <div style={{ height: 1, background: SP.divider, margin: "10px 0 12px" }} />
+      <div style={{ height: 1, background: "rgba(255, 255, 255, 0.15)", margin: "10px 0 12px" }} />
       <Bi
         jp={jp}
         en={en}
-        jpStyle={{ fontSize: 13, color: SP.ink, lineHeight: 1.7 }}
-        enStyle={{ fontSize: 13, color: SP.ink, lineHeight: 1.7 }}
+        jpStyle={{ fontSize: 13, color: "#FFFFFF", lineHeight: 1.7 }}
+        enStyle={{ fontSize: 13, color: "rgba(255, 255, 255, 0.8)", lineHeight: 1.7 }}
       />
-      <div style={{ fontSize: 11, color: SP.muted, marginTop: 12 }}>
+      <div style={{ fontSize: 11, color: "rgba(255, 255, 255, 0.6)", marginTop: 12 }}>
         {t(`最終更新 ${timestampJp}`, `Last updated: ${timestampEn}`)}
       </div>
     </div>

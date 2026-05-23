@@ -7,22 +7,21 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/light-sense")({ component: LightSensePage });
 
-// ───────────── Blue palette — matches motion-sense ─────────────
 const P = {
-  primary: "#F4A0BC",
-  medium: "#E8849A",
-  deep: "#C96B82",
-  soft: "#FEF0F5",
-  pale: "#FFF5F8",
-  accent: "#F7B8CC",
-  muted: "#FAD0DF",
-  light: "#FDE8EF",
-  divider: "#FEE8F0",
+  primary: "#5BAFD6",
+  medium: "#3A87B0",
+  deep: "#2C4A6E",
+  soft: "#D6EAF5",
+  pale: "#EAF2F8",
+  accent: "#7EC8E3",
+  muted: "#6B8FA8",
+  light: "#D6EAF5",
+  divider: "#D6EAF5",
   white: "#FFFFFF",
-  text: "#1A1A2E",
-  text2: "#6B7280",
-  text3: "#9CA3AF",
-  ink: "#4B5563",
+  text: "#1A2E40",
+  text2: "#6B8FA8",
+  text3: "#6B8FA8",
+  ink: "#1A2E40",
 };
 
 // ───────────── Color utils ─────────────
@@ -256,12 +255,12 @@ function LightSensePage() {
     "none";
 
   const cardBase: React.CSSProperties = {
-    background: P.white, borderRadius: 22, padding: 20, overflow: "hidden",
-    boxShadow: "0 4px 20px rgba(244,160,188,0.10)",
-    borderLeft: `4px solid ${P.accent}`, boxSizing: "border-box",
+    background: P.white, borderRadius: 16, padding: 20, overflow: "hidden",
+    boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
+    boxSizing: "border-box",
   };
   const labelStyle: React.CSSProperties = {
-    color: P.primary, fontSize: 11, letterSpacing: "0.08em", fontFamily: "var(--font-heading)", fontWeight: 600, marginBottom: 14,
+    color: P.muted, fontSize: 11, letterSpacing: "0.08em", fontFamily: "var(--font-heading)", fontWeight: 600, marginBottom: 14,
     display: "flex", alignItems: "center", gap: 6,
   };
 
@@ -290,7 +289,6 @@ function LightSensePage() {
           box-shadow: 0 2px 6px rgba(0,0,0,0.18); border: none;
         }
       `}</style>
-
       <div style={{ background: P.pale, minHeight: "100%", paddingBottom: 120, boxSizing: "border-box" }}>
         {/* HERO */}
         <SenseBanner
@@ -298,17 +296,17 @@ function LightSensePage() {
           titleEn="LightSense AI"
           descriptorJp="カラーライト制御"
           descriptorEn="Collar light control"
-          bgGradient="linear-gradient(135deg, #FFF5F8 0%, #FEE8F0 100%)"
+          bgGradient="linear-gradient(135deg, #EAF2F8 0%, #D6EAF5 100%)"
           kanji="光"
-          kanjiColor="rgba(244,160,188,0.08)"
-          subtitleColor="#D4849E"
+          kanjiColor="rgba(91, 175, 214, 0.08)"
+          subtitleColor="#6B8FA8"
         />
 
         {/* Stats card below banner */}
         <div style={{ padding: "0 16px", marginTop: -36, position: "relative", zIndex: 2 }}>
           <div style={{
-            background: P.white, borderRadius: 20, padding: 16,
-            boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+            background: P.white, borderRadius: 16, padding: 16,
+            boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
             display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
             boxSizing: "border-box",
           }}>
@@ -328,9 +326,8 @@ function LightSensePage() {
         </div>
 
         <div style={{ padding: "16px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
-
           {/* CARD 1: Color Wheel */}
-          <div style={{ ...cardBase, borderLeft: `4px solid ${P.primary}`, borderRadius: 24 }}>
+          <div style={cardBase}>
             <div style={labelStyle}>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: P.primary }} />
               {t("カラー選択", "COLOR SELECT")}
@@ -556,10 +553,10 @@ function LightSensePage() {
           <button
             onClick={() => toast.success(t("カラーを設定しました", "Color set!"))}
             style={{
-              width: "100%", height: 52, borderRadius: 50, border: "none",
-              background: `linear-gradient(135deg, ${P.medium}, ${P.primary})`,
-              color: "#fff", fontSize: 16, fontWeight: 600, cursor: "pointer",
-              boxShadow: "0 6px 20px rgba(244,160,188,0.4)",
+              width: "100%", height: 52, borderRadius: 12, border: "none",
+              background: "linear-gradient(135deg, #5BAFD6, #7EC8E3)",
+              color: "#FFFFFF", fontSize: 16, fontWeight: 600, cursor: "pointer",
+              boxShadow: "0 4px 12px rgba(91, 175, 214, 0.2)",
               letterSpacing: "0.02em",
             }}>
             {t("カラーを設定", "Set Color")}

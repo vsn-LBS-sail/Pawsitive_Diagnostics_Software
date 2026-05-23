@@ -11,15 +11,15 @@ type Lang = "english" | "japanese" | "mixed";
 
 // Soft pastel purple palette for this page
 const P = {
-  primary: "#9B8EC4",   // was #7C3AED
-  deep:    "#6B5B9E",   // was #3B1F6A
-  mid:     "#A99DD4",   // was #6D28D9
-  soft:    "#F0ECFF",   // was #EDE9FE
-  pale:    "#F8F6FF",   // was #F5F3FF
-  accent:  "#B5A8D8",   // was #8B5CF6
-  muted:   "#E8E3FF",   // was #DDD6FE
-  light:   "#D4CCF5",   // was #C4B5FD
-  darker:  "#8B7DBF",   // was #5B21B6
+  primary: "#5BAFD6",   // primary accent
+  deep:    "#2C4A6E",   // ai card bg
+  mid:     "#5BAFD6",   // primary accent
+  soft:    "#D6EAF5",   // track/tint
+  pale:    "#EAF2F8",   // page background
+  accent:  "#6B8FA8",   // subtext/labels
+  muted:   "#D6EAF5",   // track/tint
+  light:   "#7EC8E3",   // secondary accent
+  darker:  "#3A87B0",   // accent deep
 };
 
 type EmotionKey =
@@ -52,13 +52,12 @@ function Section({ children, style }: { children: ReactNode; style?: CSSProperti
     <section
       style={{
         background: "#FFFFFF",
-        borderRadius: 24,
+        borderRadius: 16,
         padding: 20,
         width: "100%",
         boxSizing: "border-box",
         overflow: "hidden",
-        boxShadow: "0 12px 32px rgba(139,125,191,0.10)",
-        borderLeft: `4px solid #B5A8D8`,
+        boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
         ...style,
       }}
     >
@@ -682,10 +681,10 @@ function BarkSensePage() {
           <section
             style={{
               position: "relative",
-              borderRadius: 26,
+              borderRadius: 16,
               padding: 22,
-              background: `linear-gradient(135deg, ${P.deep} 0%, ${P.darker} 100%)`,
-              boxShadow: "0 16px 40px rgba(59,31,106,0.35)",
+              background: "#2C4A6E",
+              boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
               overflow: "hidden",
               animation: "bsFadeUp .6s ease-out .4s both",
             }}
@@ -723,7 +722,7 @@ function BarkSensePage() {
 
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{
-                fontSize: 11, color: P.light,
+                fontSize: 11, color: "#FFFFFF",
                 fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.1em",
               }}>AI INSIGHT</div>
               <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.15)" }} />
@@ -871,9 +870,9 @@ function HeroStatsBar({
           style={{
             // @ts-expect-error css var
             "--alertC": hexA(emo.color, 0.55),
-            background: `linear-gradient(135deg, ${hexA(emo.color, 0.14)} 0%, #FFFFFF 70%)`,
+            background: alert ? `linear-gradient(135deg, ${hexA(emo.color, 0.14)} 0%, #FFFFFF 70%)` : "#FFFFFF",
             borderRadius: 16,
-            boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+            boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
             padding: 16,
             position: "relative",
             overflow: "hidden",
@@ -882,16 +881,16 @@ function HeroStatsBar({
         >
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
             <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: 11, color: "#6B7280", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              <div style={{ fontSize: 11, color: "#6B8FA8", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
                 {pickT(lang, "現在の感情", "Current Emotion")}
               </div>
-              <div style={{ fontSize: 32, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A1A2E", lineHeight: 1.05, marginTop: 4, letterSpacing: "-0.02em" }}>
+              <div style={{ fontSize: 32, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A2E40", lineHeight: 1.05, marginTop: 4, letterSpacing: "-0.02em" }}>
                 {lang === "japanese" ? emo.jp : emo.en}
               </div>
               {lang === "mixed" && (
-                <div style={{ fontSize: 12, color: "#9CA3AF", fontWeight: 500, marginTop: 2 }}>{emo.jp}</div>
+                <div style={{ fontSize: 12, color: "#6B8FA8", fontWeight: 500, marginTop: 2 }}>{emo.jp}</div>
               )}
-              <div style={{ fontSize: 11, color: "#6B7280", fontWeight: 500, marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
+              <div style={{ fontSize: 11, color: "#6B8FA8", fontWeight: 500, marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ color: emo.color, fontFamily: "var(--font-heading)", fontWeight: 600 }}>↑</span>
                 {pickT(lang, trendJp, trendEn)}
               </div>
@@ -928,7 +927,7 @@ function HeroStatsBar({
           </div>
 
           {/* Timestamp */}
-          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 6, marginTop: 10, fontSize: 10, color: "#9CA3AF", fontWeight: 600 }}>
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 6, marginTop: 10, fontSize: 10, color: "#6B8FA8", fontWeight: 600 }}>
             {live ? (
               <>
                 <span>{pickT(lang, `最終更新 ${timestamp}`, `Last updated ${timestamp}`)}</span>
@@ -948,11 +947,11 @@ function HeroStatsBar({
           {/* Confidence */}
           <div style={{
             background: "#FFFFFF", borderRadius: 16, padding: 14,
-            boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+            boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
             position: "relative", overflow: "hidden",
             animation: "bsFadeUp .7s ease-out .15s both",
           }}>
-            <div style={{ fontSize: 11, color: "#6B7280", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            <div style={{ fontSize: 11, color: "#6B8FA8", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
               {pickT(lang, "信頼度", "Confidence")}
             </div>
             <div style={{ display: "flex", alignItems: "flex-end", gap: 10, marginTop: 8 }}>
@@ -966,11 +965,11 @@ function HeroStatsBar({
                   style={{ transition: "stroke-dashoffset .8s ease-out" }}
                 />
               </svg>
-              <div style={{ fontSize: 28, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A1A2E", lineHeight: 1, letterSpacing: "-0.02em" }}>
-                {confidence}<span style={{ fontSize: 16, color: "#9CA3AF" }}>%</span>
+              <div style={{ fontSize: 28, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A2E40", lineHeight: 1, letterSpacing: "-0.02em" }}>
+                {confidence}<span style={{ fontSize: 16, color: "#6B8FA8" }}>%</span>
               </div>
             </div>
-            <div style={{ fontSize: 10, color: lowConf ? "#D97706" : "#6B7280", fontWeight: 600, marginTop: 6 }}>
+            <div style={{ fontSize: 10, color: lowConf ? "#D97706" : "#6B8FA8", fontWeight: 600, marginTop: 6 }}>
               {lowConf
                 ? pickT(lang, "信号弱 — 首輪を近づけてください", "Low signal — move collar closer")
                 : pickT(lang, confSubJp, confSubEn)}
@@ -980,15 +979,15 @@ function HeroStatsBar({
           {/* Bark Samples */}
           <div style={{
             background: "#FFFFFF", borderRadius: 16, padding: 14,
-            boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+            boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
             position: "relative", overflow: "hidden",
             animation: "bsFadeUp .7s ease-out .22s both",
           }}>
-            <div style={{ fontSize: 11, color: "#6B7280", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            <div style={{ fontSize: 11, color: "#6B8FA8", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
               {pickT(lang, "本日の鳴き声", "Bark Samples Today")}
             </div>
-            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 6, marginTop: 8 }}>
-              <div style={{ fontSize: 28, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A1A2E", lineHeight: 1, letterSpacing: "-0.02em" }}>
+            <div style={{ display: "flex", alignItems: "flex-end", justifycontent: "space-between", gap: 6, marginTop: 8 }}>
+              <div style={{ fontSize: 28, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A2E40", lineHeight: 1, letterSpacing: "-0.02em" }}>
                 {barkSamples}
               </div>
               <svg width={sw} height={sh} viewBox={`0 0 ${sw} ${sh}`} style={{ flexShrink: 0 }}>
@@ -1002,14 +1001,14 @@ function HeroStatsBar({
                       width={bw}
                       height={h}
                       rx={1.5}
-                      fill={i === sparkline.length - 1 ? "#9B8EC4" : "#D4CCF5"}
+                      fill={i === sparkline.length - 1 ? P.primary : P.soft}
                     />
                   );
                 })}
               </svg>
             </div>
             <div style={{ fontSize: 10, fontWeight: 600, marginTop: 6,
-              color: deltaYesterday === null ? "#9CA3AF" : deltaYesterday >= 0 ? "#2EA56A" : "#B57373" }}>
+              color: deltaYesterday === null ? "#6B8FA8" : deltaYesterday >= 0 ? "#2EA56A" : "#B57373" }}>
               {deltaYesterday === null
                 ? pickT(lang, "基準日 1日目", "Baseline day 1")
                 : deltaYesterday >= 0

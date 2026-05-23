@@ -385,7 +385,7 @@ function Step1({
                   background: sel ? PINK_BG : "#faf5f2",
                   border: sel ? `2px solid ${ROSE}` : "2px solid #f0e6e0",
                   color: sel ? ROSE : TEXT,
-                  fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 14, fontFamily: FONT,
+                  fontWeight: 600, fontSize: 14, fontFamily: FONT,
                   cursor: "pointer",
                 }}
               >
@@ -408,7 +408,7 @@ function Step1({
                   background: sel ? PINK_BG : "#faf5f2",
                   border: sel ? `2px solid ${ROSE}` : "2px solid #f0e6e0",
                   color: sel ? ROSE : TEXT,
-                  fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 16, fontFamily: FONT,
+                  fontWeight: 600, fontSize: 16, fontFamily: FONT,
                   cursor: "pointer",
                 }}
                 aria-label={`Eye style ${i + 1}`}
@@ -671,7 +671,7 @@ function Step3({
           style={{
             background: ROSE, color: "#fff", border: "none",
             padding: "8px 16px", borderRadius: 999,
-            fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 13, fontFamily: FONT, cursor: "pointer",
+            fontWeight: 600, fontSize: 13, fontFamily: FONT, cursor: "pointer",
           }}
         >
           Set ✓
@@ -823,7 +823,7 @@ function PrimaryButton({ children, onClick }: { children: React.ReactNode; onCli
         width: "100%", padding: "16px 20px",
         background: `linear-gradient(135deg, ${ROSE} 0%, #f08aa8 100%)`,
         color: "#fff", border: "none", borderRadius: 999,
-        fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 16, fontFamily: FONT,
+        fontWeight: 600, fontSize: 16, fontFamily: FONT,
         cursor: "pointer", display: "flex",
         alignItems: "center", justifyContent: "center",
         boxShadow: "0 8px 20px rgba(232,103,138,0.35)",

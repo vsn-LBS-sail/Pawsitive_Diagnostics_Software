@@ -54,29 +54,49 @@ const JP = {
 
 const CARD_SHADOW = "0 2px 20px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04)";
 
+const CARD_A_STYLE = {
+  background: "linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.00) 100%) top / 100% 30% no-repeat, linear-gradient(135deg, rgba(255,255,255,0.50) 0%, rgba(255,255,255,0.18) 35%, rgba(255,255,255,0.00) 55%, rgba(255,255,255,0.06) 100%), rgba(107, 175, 196, 0.85)",
+  backdropFilter: "blur(20px) saturate(180%)",
+  WebkitBackdropFilter: "blur(20px) saturate(180%)",
+  border: "1px solid rgba(255,255,255,0.65)",
+  borderTop: "2px solid rgba(255,255,255,0.90)",
+  borderLeft: "4px solid #1C3D52",
+  boxShadow: "0px 8px 24px rgba(44, 100, 128, 0.28), inset 0px 2px 5px rgba(255,255,255,0.55), inset 0px -2px 4px rgba(44,100,128,0.12)",
+  color: "#1C3D52",
+};
+
+const CARD_B_STYLE = {
+  background: "linear-gradient(180deg, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0.00) 100%) top / 100% 30% no-repeat, linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.20) 35%, rgba(255,255,255,0.00) 55%, rgba(255,255,255,0.08) 100%), rgba(185, 219, 225, 0.85)",
+  backdropFilter: "blur(20px) saturate(180%)",
+  WebkitBackdropFilter: "blur(20px) saturate(180%)",
+  border: "1px solid rgba(255,255,255,0.65)",
+  borderTop: "2px solid rgba(255,255,255,0.90)",
+  borderLeft: "4px solid #2E6E8E",
+  boxShadow: "0px 8px 24px rgba(44, 100, 128, 0.28), inset 0px 2px 5px rgba(255,255,255,0.55), inset 0px -2px 4px rgba(44,100,128,0.12)",
+  color: "#1C3D52",
+};
+
 /* Refined card wrapper: white bg, left accent border, top color strip */
 function JCard({
   children,
   className = "",
   style,
+  variant = "A",
 }: {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
-  accent?: string;
-  strip?: string;
+  variant?: "A" | "B";
 }) {
+  const baseStyle = variant === "A" ? CARD_A_STYLE : CARD_B_STYLE;
   return (
     <div
       className={"relative " + className}
       style={{
         borderRadius: 20,
-        border: "1px solid rgba(255, 255, 255, 0.45)",
-        backdropFilter: "blur(18px) saturate(160%)",
-        WebkitBackdropFilter: "blur(18px) saturate(160%)",
-        boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
         overflow: "hidden",
         transition: "transform 0.2s ease",
+        ...baseStyle,
         ...style,
       }}
     >
@@ -195,13 +215,10 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
       style={{
         margin: "12px 16px 4px",
         height: 160,
-        borderRadius: 24,
         overflow: "hidden",
-        background: "rgba(213, 235, 243, 0.55)", // Color A (1st in alternating cycle)
-        backdropFilter: "blur(18px) saturate(160%)",
-        WebkitBackdropFilter: "blur(18px) saturate(160%)",
-        border: "1px solid rgba(255, 255, 255, 0.45)",
-        boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
+        ...CARD_B_STYLE,
+        borderLeft: "1.5px solid rgba(255, 255, 255, 0.60)",
+        borderRadius: 24, // keep exactly as currently rendered
         animation: celebrate ? "heroCelebrate 0.8s ease-out" : "none",
       }}
     >
@@ -313,15 +330,15 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
       {/* Left content */}
       <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "50%", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
         <div>
-          <div style={{ fontSize: 11, color: "#447F98", letterSpacing: "0.05em", fontWeight: 600 }}>
+          <div style={{ fontSize: 11, color: "#2E6E8E", letterSpacing: "0.05em", fontWeight: 600 }}>
             {t(`${labelJp} / ${labelEn}`, `${labelEn} / ${labelJp}`)}
           </div>
-          <div style={{ fontSize: 24, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 4 }}>
+          <div style={{ fontSize: 24, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", lineHeight: 1.1, marginTop: 4 }}>
             {greeting}
           </div>
           <div className="flex items-center" style={{ gap: 6, marginTop: 6 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#447F98", display: "inline-block" }} />
-            <span style={{ fontSize: 12, color: JP.usuzumi, fontWeight: 500 }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#2E6E8E", display: "inline-block" }} />
+            <span style={{ fontSize: 12, color: "rgba(28, 61, 82, 0.75)", fontWeight: 500 }}>
               {mood}
             </span>
           </div>
@@ -330,8 +347,8 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
         <div>
           <span style={{
             display: "inline-block",
-            background: "rgba(68, 127, 152, 0.12)",
-            color: "#447F98",
+            background: "rgba(46, 110, 142, 0.12)",
+            color: "#2E6E8E",
             borderRadius: 20,
             padding: "4px 12px",
             fontSize: 11,
@@ -387,7 +404,7 @@ function Home() {
   return (
     <AppShell titleJp="" titleEn="" noPadding>
       <div style={{
-        background: "radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(213,235,243,0.8) 100%), #EAF5F8",
+        background: "radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(213, 235, 243, 0.50) 100%), #D6EEF5",
         minHeight: "100%",
         display: "flex",
         flexDirection: "column",
@@ -397,56 +414,56 @@ function Home() {
 
         <div style={{ padding: "0 16px" }}>
 
-          {/* Daily fact - Color B: Glacier rgba(185, 219, 225, 0.60) */}
+          {/* Daily fact - Card A: Slate Blue glass */}
           <motion.div key={factIdx} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 8 }}>
-            <JCard style={{ background: "rgba(185, 219, 225, 0.60)" }}>
+            <JCard variant="A">
               <div style={{ padding: 16 }}>
                 <div className="flex justify-between items-center">
                   <div className="flex items-center" style={{ gap: 6 }}>
-                    <PawPrint size={14} strokeWidth={1.75} style={{ color: "#447F98" }} />
-                    <span style={{ fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#447F98", letterSpacing: "0.02em" }}>
+                    <PawPrint size={14} strokeWidth={1.75} style={{ color: "#1C3D52" }} />
+                    <span style={{ fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", letterSpacing: "0.02em" }}>
                       {t("今日の豆知識", "Daily Dog Fact")}
                     </span>
                   </div>
                 </div>
-                <div style={{ marginTop: 10, fontSize: 15, lineHeight: 1.5, color: "#2C3E50", fontWeight: 500 }}>
+                <div style={{ marginTop: 10, fontSize: 15, lineHeight: 1.5, color: "#1C3D52", fontWeight: 500 }}>
                   {language === "english" ? fact.en : fact.jp}
                 </div>
                 {language === "mixed" && (
-                  <div style={{ marginTop: 6, fontSize: 11, color: JP.usuzumi, lineHeight: 1.5 }}>{fact.en}</div>
+                  <div style={{ marginTop: 6, fontSize: 11, color: "rgba(28, 61, 82, 0.75)", lineHeight: 1.5 }}>{fact.en}</div>
                 )}
               </div>
             </JCard>
           </motion.div>
 
-          {/* Health score - Color A: Ice Blue rgba(213, 235, 243, 0.55) */}
+          {/* Health score - Card B: Glacier glass */}
           <div style={{ marginTop: 8 }}>
-            <JCard style={{ background: "rgba(213, 235, 243, 0.55)" }}>
+            <JCard variant="B">
               <div style={{ padding: 16 }} className="flex items-center gap-4">
                 <ScoreRing value={score} />
                 <div className="flex-1">
-                  <div style={{ fontSize: 16, fontWeight: 600, color: JP.sumi, letterSpacing: "0.02em" }}>
+                  <div style={{ fontSize: 16, fontWeight: 600, color: "#1C3D52", letterSpacing: "0.02em" }}>
                     {t("総合健康スコア", "Overall Health Score")}
                   </div>
-                  {language === "mixed" && <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 2 }}>Overall Health Score</div>}
+                  {language === "mixed" && <div style={{ fontSize: 11, color: "rgba(28, 61, 82, 0.75)", marginTop: 2 }}>Overall Health Score</div>}
                   <div className="flex items-center" style={{ gap: 6, marginTop: 8, fontSize: 12 }}>
                     <span className="relative inline-block" style={{ width: 8, height: 8 }}>
                       <span style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#1D9E75" }}/>
                       <span className="animate-ping" style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#1D9E75", opacity: 0.6 }}/>
                     </span>
                     <span style={{ color: "#1D9E75", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.05em" }}>LIVE</span>
-                    <span style={{ color: JP.usuzumi }}>· {t("全センサー稼働中", "All sensors active")}</span>
+                    <span style={{ color: "rgba(28, 61, 82, 0.75)" }}>· {t("全センサー稼働中", "All sensors active")}</span>
                   </div>
                 </div>
               </div>
             </JCard>
           </div>
 
-          {/* Collar status - Color B: Glacier rgba(185, 219, 225, 0.60) */}
+          {/* Collar status - Card A: Slate Blue glass */}
           <div style={{ marginTop: 8 }}>
-            <JCard style={{ background: "rgba(185, 219, 225, 0.60)" }}>
+            <JCard variant="A">
               <div style={{ padding: 16 }}>
-                <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, marginBottom: 14, letterSpacing: "0.02em" }}>
+                <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", marginBottom: 14, letterSpacing: "0.02em" }}>
                   {t("カラーステータス", "Collar Status")}
                 </div>
 
@@ -455,49 +472,45 @@ function Home() {
                     <Check size={20} strokeWidth={2.5} style={{ color: "#628BB6" }} />
                   </div>
                   <div className="flex-1">
-                    <div style={{ fontSize: 14, fontWeight: 600, color: JP.sumi }}>{t("接続済み", "Connected")}</div>
-                    <div style={{ fontSize: 12, color: JP.usuzumi }}>{t("最終同期: 2分前", "Last sync: 2 minutes ago")}</div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: "#1C3D52" }}>{t("接続済み", "Connected")}</div>
+                    <div style={{ fontSize: 12, color: "rgba(28, 61, 82, 0.75)" }}>{t("最終同期: 2分前", "Last sync: 2 minutes ago")}</div>
                   </div>
                 </div>
 
-                <div style={{ height: 1, background: "rgba(0,0,0,0.06)", margin: "14px 0" }} />
+                <div style={{ height: 1, background: "rgba(28, 61, 82, 0.15)", margin: "14px 0" }} />
 
-                {/* Battery & Signal container - Color A: Ice Blue rgba(213, 235, 243, 0.55) */}
+                {/* Battery & Signal container - Card B: Glacier glass */}
                 <div style={{
-                  background: "rgba(213, 235, 243, 0.55)",
-                  backdropFilter: "blur(18px) saturate(160%)",
-                  WebkitBackdropFilter: "blur(18px) saturate(160%)",
-                  border: "1px solid rgba(255, 255, 255, 0.45)",
-                  boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
+                  ...CARD_B_STYLE,
+                  borderRadius: 16, // keep exactly as currently rendered
                   padding: "12px 14px",
-                  borderRadius: 16,
                   marginBottom: 14,
                 }}>
                   <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
                     <div className="flex items-center" style={{ gap: 6 }}>
-                      <BatteryMedium size={18} strokeWidth={1.5} style={{ color: "#628BB6" }} />
-                      <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("バッテリー", "Battery")}</span>
+                      <BatteryMedium size={18} strokeWidth={1.5} style={{ color: "#1C3D52" }} />
+                      <span style={{ fontSize: 13, color: "#1C3D52", fontWeight: 500 }}>{t("バッテリー", "Battery")}</span>
                     </div>
                     <div className="flex items-center">
-                      <div style={{ width: 110, height: 6, background: "#DADEE1", borderRadius: 4, overflow: "hidden" }}>
+                      <div style={{ width: 110, height: 6, background: "rgba(28, 61, 82, 0.15)", borderRadius: 4, overflow: "hidden" }}>
                         <div style={{ width: "87%", height: "100%", background: "#628BB6", borderRadius: 4 }}/>
                       </div>
-                      <span style={{ marginLeft: 8, fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#628BB6", fontVariantNumeric: "tabular-nums" }}>87%</span>
+                      <span style={{ marginLeft: 8, fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", fontVariantNumeric: "tabular-nums" }}>87%</span>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center" style={{ gap: 6 }}>
-                      <Signal size={18} strokeWidth={1.5} style={{ color: "#628BB6" }} />
-                      <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("信号強度", "Signal Strength")}</span>
+                      <Signal size={18} strokeWidth={1.5} style={{ color: "#1C3D52" }} />
+                      <span style={{ fontSize: 13, color: "#1C3D52", fontWeight: 500 }}>{t("信号強度", "Signal Strength")}</span>
                     </div>
                     <div className="flex items-center">
                       <div className="flex items-end" style={{ gap: 3 }}>
                         {[6, 10, 14, 18].map((h) => (
-                          <div key={h} style={{ width: 4, height: h, background: "#628BB6", borderRadius: 2 }} />
+                          <div key={h} style={{ width: 4, height: h, background: "#1C3D52", borderRadius: 2 }} />
                         ))}
                       </div>
-                      <span style={{ marginLeft: 8, fontSize: 13, fontWeight: 600, color: "#628BB6" }}>{t("優秀", "Excellent")}</span>
+                      <span style={{ marginLeft: 8, fontSize: 13, fontWeight: 600, color: "#1C3D52" }}>{t("優秀", "Excellent")}</span>
                     </div>
                   </div>
                 </div>
@@ -529,31 +542,19 @@ function Home() {
           <div className="grid grid-cols-2" style={{ gap: 8 }}>
             {sensors.map((s, idx) => {
               const Icon = s.Icon;
-              const sensorBgColors = [
-                "rgba(185, 219, 225, 0.60)", // 0: BarkSense AI (Color B)
-                "rgba(213, 235, 243, 0.55)", // 1: SkinSense AI (Color A)
-                "rgba(185, 219, 225, 0.60)", // 2: MotionSense (Color B)
-                "rgba(213, 235, 243, 0.55)", // 3: TempSense AI (Color A)
-                "rgba(185, 219, 225, 0.60)", // 4: LocationSense (Color B)
-                "rgba(213, 235, 243, 0.55)", // 5: PressureSense (Color A)
-                "rgba(185, 219, 225, 0.60)", // 6: LightSense AI (Color B)
-                "rgba(213, 235, 243, 0.55)", // 7: CombineSense (Color A)
-              ];
-              const currentBg = sensorBgColors[idx % sensorBgColors.length];
+              const sensorCardStyle = idx % 2 === 0 ? CARD_A_STYLE : CARD_B_STYLE;
+              const titleColor = "#1C3D52";
+              const subColor = "rgba(28, 61, 82, 0.75)";
               return (
                 <Link
                   key={s.en}
                   to={s.to}
                   style={{
                     position: "relative",
-                    background: currentBg,
-                    borderRadius: 20,
-                    border: "1px solid rgba(255, 255, 255, 0.45)",
-                    backdropFilter: "blur(18px) saturate(160%)",
-                    WebkitBackdropFilter: "blur(18px) saturate(160%)",
-                    boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
                     overflow: "hidden",
                     transition: "transform 0.2s ease",
+                    ...sensorCardStyle,
+                    borderRadius: 20, // keep exactly as currently rendered
                   }}
                   className="flex flex-col"
                 >
@@ -563,28 +564,28 @@ function Home() {
                       <Icon size={22} strokeWidth={1.5} style={{ color: s.accent }} />
                     </div>
 
-                    <div style={{ marginTop: 12, fontSize: 14, fontWeight: 600, color: JP.sumi, letterSpacing: "0.01em", lineHeight: 1.2 }}>
+                    <div style={{ marginTop: 12, fontSize: 14, fontWeight: 600, color: titleColor, letterSpacing: "0.01em", lineHeight: 1.2 }}>
                       {t(s.jp, s.en)}
                     </div>
-                    <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 2, lineHeight: 1.3 }}>
+                    <div style={{ fontSize: 11, color: subColor, marginTop: 2, lineHeight: 1.3 }}>
                       {t(s.subJp, s.subEn)}
                     </div>
 
                     <div className="flex items-center justify-between" style={{ marginTop: 10, gap: 6 }}>
-                      <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, fontVariantNumeric: "tabular-nums", lineHeight: 1.1 }}>
+                      <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: titleColor, fontVariantNumeric: "tabular-nums", lineHeight: 1.1 }}>
                         {t(s.valJp, s.valEn)}
                       </div>
                       <span className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: s.accent, flexShrink: 0 }}/>
                     </div>
 
                     {s.noteJp && (
-                      <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 4 }}>
+                      <div style={{ fontSize: 11, color: subColor, marginTop: 4 }}>
                         {t(s.noteJp, s.noteEn!)}
                       </div>
                     )}
 
                     {s.progress !== undefined && (
-                      <div style={{ marginTop: 10, height: 4, borderRadius: 4, overflow: "hidden", background: "#DADEE1" }}>
+                      <div style={{ marginTop: 10, height: 4, borderRadius: 4, overflow: "hidden", background: "rgba(28, 61, 82, 0.15)" }}>
                         <div style={{ width: `${s.progress}%`, height: "100%", background: "#628BB6", borderRadius: 4 }}/>
                       </div>
                     )}
@@ -599,45 +600,41 @@ function Home() {
           <SectionLabel jp="クイックアクセス" en="Quick Access" />
 
           <div className="grid grid-cols-2" style={{ gap: 10, marginBottom: 16 }}>
-            {/* Health Report Card - Color B: Glacier rgba(185, 219, 225, 0.60) */}
+            {/* Health Report Card - Card A: Slate Blue glass */}
             <Link
               to="/report"
               className="relative overflow-hidden"
               style={{
                 height: 90,
-                borderRadius: 20,
-                background: "rgba(185, 219, 225, 0.60)",
-                border: "1px solid rgba(255, 255, 255, 0.45)",
-                backdropFilter: "blur(18px) saturate(160%)",
-                WebkitBackdropFilter: "blur(18px) saturate(160%)",
-                boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
+                ...CARD_A_STYLE,
+                borderRadius: 20, // keep exactly as currently rendered
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.02)";
-                e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+                e.currentTarget.style.boxShadow = "0px 12px 32px rgba(44, 100, 128, 0.36), inset 0px 2px 5px rgba(255, 255, 255, 0.65)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+                e.currentTarget.style.boxShadow = "0px 8px 24px rgba(44, 100, 128, 0.28), inset 0px 2px 5px rgba(255, 255, 255, 0.55), inset 0px -2px 4px rgba(44, 100, 128, 0.12)";
               }}
             >
               {/* Inner highlight */}
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
               {/* Decorative circles */}
-              <div style={{ position: "absolute", top: -20, right: 20, width: 60, height: 60, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-              <div style={{ position: "absolute", bottom: 10, left: -10, width: 40, height: 40, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-              <div style={{ position: "absolute", top: 30, right: 50, width: 80, height: 80, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: -20, right: 20, width: 60, height: 60, borderRadius: "50%", background: "rgba(28,61,82,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", bottom: 10, left: -10, width: 40, height: 40, borderRadius: "50%", background: "rgba(28,61,82,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: 30, right: 50, width: 80, height: 80, borderRadius: "50%", background: "rgba(28,61,82,0.02)", pointerEvents: "none" }} />
               {/* Content */}
               <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifycontent: "space-between" }}>
                 <div>
-                  <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
+                  <div style={{ fontSize: 10, color: "rgba(28, 61, 82, 0.75)", letterSpacing: "0.08em", fontWeight: 600 }}>
                     {t("レポート", "Report")}
                   </div>
-                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", lineHeight: 1.1, marginTop: 2 }}>
                     Health
                   </div>
-                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", lineHeight: 1.1 }}>
                     Report <span style={{ fontSize: 14 }}>→</span>
                   </div>
                 </div>
@@ -668,45 +665,41 @@ function Home() {
               }} />
             </Link>
 
-            {/* Breeds Card - Color A: Ice Blue rgba(213, 235, 243, 0.55) */}
+            {/* Breeds Card - Card B: Glacier glass */}
             <Link
               to="/breeds"
               className="relative overflow-hidden"
               style={{
                 height: 90,
-                borderRadius: 20,
-                background: "rgba(213, 235, 243, 0.55)",
-                border: "1px solid rgba(255, 255, 255, 0.45)",
-                backdropFilter: "blur(18px) saturate(160%)",
-                WebkitBackdropFilter: "blur(18px) saturate(160%)",
-                boxShadow: "0px 8px 24px rgba(185, 219, 225, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.60)",
+                ...CARD_B_STYLE,
+                borderRadius: 20, // keep exactly as currently rendered
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.02)";
-                e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+                e.currentTarget.style.boxShadow = "0px 12px 32px rgba(44, 100, 128, 0.36), inset 0px 2px 5px rgba(255, 255, 255, 0.65)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+                e.currentTarget.style.boxShadow = "0px 8px 24px rgba(44, 100, 128, 0.28), inset 0px 2px 5px rgba(255, 255, 255, 0.55), inset 0px -2px 4px rgba(44, 100, 128, 0.12)";
               }}
             >
               {/* Inner highlight */}
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
               {/* Decorative circles */}
-              <div style={{ position: "absolute", top: -15, right: 25, width: 55, height: 55, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-              <div style={{ position: "absolute", bottom: 5, left: -5, width: 45, height: 45, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-              <div style={{ position: "absolute", top: 25, right: 55, width: 75, height: 75, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: -15, right: 25, width: 55, height: 55, borderRadius: "50%", background: "rgba(28, 61, 82, 0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", bottom: 5, left: -5, width: 45, height: 45, borderRadius: "50%", background: "rgba(28, 61, 82, 0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: 25, right: 55, width: 75, height: 75, borderRadius: "50%", background: "rgba(28, 61, 82, 0.02)", pointerEvents: "none" }} />
               {/* Content */}
               <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifycontent: "space-between" }}>
                 <div>
-                  <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
+                  <div style={{ fontSize: 10, color: "rgba(28, 61, 82, 0.75)", letterSpacing: "0.08em", fontWeight: 600 }}>
                     {t("犬種図鑑", "Breeds")}
                   </div>
-                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", lineHeight: 1.1, marginTop: 2 }}>
                     Breed
                   </div>
-                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3D52", lineHeight: 1.1 }}>
                     Guide <span style={{ fontSize: 14 }}>→</span>
                   </div>
                 </div>

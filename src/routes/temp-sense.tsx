@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Thermometer, TrendingDown, TrendingUp, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
-import { SensorPage, Card, useTimeTab, SP } from "@/components/SensorPage";
+import { SensorPage, Card, useTimeTab, SP, SectionLabel } from "@/components/SensorPage";
 import { useLanguage, useT } from "@/context/LanguageContext";
 import { usePet, displayName } from "@/context/PetContext";
 
@@ -9,20 +9,20 @@ export const Route = createFileRoute("/temp-sense")({ component: TempSensePage }
 
 // ---------- Blue palette — matches motion-sense ----------
 const O = {
-  primary: "#F4A56A",
-  medium: "#E8895A",
-  deep: "#C96B3A",
-  soft: "#FEF0E6",
-  pale: "#FEF5EF",
-  accent: "#F7BC8E",
-  muted: "#FAD4B4",
-  light: "#FDECD8",
-  cream: "#FFF8F3",
-  sumi: "#1A1A2E",
-  ink: "#4B5563",
-  ink2: "#6B7280",
-  textMuted: "#9CA3AF",
-  divider: "#FEF0E6",
+  primary: "#5BAFD6",
+  medium: "#7EC8E3",
+  deep: "#2C4A6E",
+  soft: "#D6EAF5",
+  pale: "#EAF2F8",
+  accent: "#7EC8E3",
+  muted: "#6B8FA8",
+  light: "#D6EAF5",
+  cream: "#FFFFFF",
+  sumi: "#1A2E40",
+  ink: "#1A2E40",
+  ink2: "#1A2E40",
+  textMuted: "#6B8FA8",
+  divider: "#D6EAF5",
   ok: "#16A34A",
   okBg: "#F0FDF4",
   warn: "#D97706",
@@ -61,22 +61,6 @@ function useCount(target: number, duration = 1100) {
   return v;
 }
 
-// Local orange SectionLabel
-function OrangeSectionLabel({ jp, en }: { jp: string; en: string }) {
-  const t = useT();
-  return (
-    <div className="flex items-center" style={{ gap: 6, marginBottom: 12 }}>
-      <span style={{ width: 5, height: 5, borderRadius: "50%", background: O.primary, flexShrink: 0 }} />
-      <span style={{
-        fontSize: 11, color: O.primary, fontWeight: 600,
-        letterSpacing: "0.08em", textTransform: "uppercase",
-      }}>
-        {t(jp, en)}
-      </span>
-    </div>
-  );
-}
-
 function TempSensePage() {
   const [tab, setTab] = useTimeTab();
   const t = useT();
@@ -103,12 +87,12 @@ function TempSensePage() {
       subtitleJp="テンプセンス AI"
       descriptorJp="体温モニタリング"
       descriptorEn="Body temperature monitoring"
-      bannerGradient="linear-gradient(135deg,#FFF8F3 0%,#FEF0E6 100%)"
+      bannerGradient="linear-gradient(135deg, #EAF2F8 0%, #D6EAF5 100%)"
       bannerKanji="熱"
-      bannerKanjiColor="rgba(244,165,106,0.07)"
-      bannerSubtitleColor="#D4956A"
+      bannerKanjiColor="rgba(91, 175, 214, 0.07)"
+      bannerSubtitleColor="#6B8FA8"
     >
-      {/* full-bleed pastel orange page wash, sits behind all cards */}
+      {/* full-bleed pastel page wash, sits behind all cards */}
       <div style={{
         margin: "-16px -16px 0",
         padding: "16px 16px 110px",
@@ -116,16 +100,16 @@ function TempSensePage() {
         minHeight: "100%",
       }}>
         <div style={{ marginTop: -52, position: "relative", zIndex: 2 }}>
-          <OrangeTimeTabs value={tab} onChange={setTab} />
+          <TimeTabs value={tab} onChange={setTab} />
         </div>
 
         {/* ---- QUICK STATS ROW ---- */}
         <div style={{
           background: "#FFFFFF",
-          borderRadius: 20,
+          borderRadius: 16,
           padding: "16px 20px",
           marginBottom: 12,
-          boxShadow: "0 4px 16px rgba(244,165,106,0.1)",
+          boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
@@ -150,7 +134,7 @@ function TempSensePage() {
                   textOverflow: "ellipsis",
                 }}>{s.val}</div>
               </div>
-              {i < arr.length - 1 && <div style={{ width: 1, height: 28, background: "#FEF0E6" }} />}
+              {i < arr.length - 1 && <div style={{ width: 1, height: 28, background: O.divider }} />}
             </span>
           ))}
         </div>
@@ -163,21 +147,20 @@ function TempSensePage() {
         {/* ---- CURRENT TEMPERATURE ---- */}
         <div style={{
           background: "#FFFFFF",
-          borderRadius: 24,
+          borderRadius: 16,
           padding: 20,
           marginBottom: 14,
-          borderLeft: `4px solid ${O.primary}`,
-          boxShadow: "0 4px 20px rgba(244,165,106,0.12)",
+          boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
         }}>
-          <OrangeSectionLabel jp="現在の体温" en="Current Temperature" />
+          <SectionLabel jp="現在の体温" en="Current Temperature" />
           <div style={{ position: "relative", width: 180, height: 180, margin: "8px auto" }}>
             <svg width={180} height={180} viewBox="0 0 180 180" style={{ position: "absolute", inset: 0 }}>
-              <circle cx={cx} cy={cy} r={84} fill="none" stroke="rgba(244,165,106,0.2)" strokeWidth={1} />
+              <circle cx={cx} cy={cy} r={84} fill="none" stroke="rgba(91, 175, 214, 0.2)" strokeWidth={1} />
               {Array.from({ length: 12 }).map((_, i) => {
                 const a = (i * 30) * Math.PI / 180;
                 const x1 = cx + Math.cos(a) * 80, y1 = cy + Math.sin(a) * 80;
                 const x2 = cx + Math.cos(a) * 84, y2 = cy + Math.sin(a) * 84;
-                return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(244,165,106,0.35)" strokeWidth={1} />;
+                return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(91, 175, 214, 0.35)" strokeWidth={1} />;
               })}
               <defs>
                 <linearGradient id="tGrad" x1="0" y1="0" x2="1" y2="1">
@@ -191,7 +174,7 @@ function TempSensePage() {
                 strokeDasharray={C}
                 strokeDashoffset={drawn ? C * (1 - pct) : C}
                 transform={`rotate(-90 ${cx} ${cy})`}
-                style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)", filter: "drop-shadow(0 0 6px rgba(244,165,106,0.5))" }}
+                style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)", filter: "drop-shadow(0 0 6px rgba(91, 175, 214, 0.3))" }}
               />
             </svg>
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
@@ -227,13 +210,12 @@ function TempSensePage() {
         {/* ---- TEMPERATURE TREND ---- */}
         <div style={{
           background: "#FFFFFF",
-          borderRadius: 22,
+          borderRadius: 16,
           padding: 20,
           marginBottom: 14,
-          borderLeft: `4px solid ${O.accent}`,
-          boxShadow: "0 4px 20px rgba(244,165,106,0.1)",
+          boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
         }}>
-          <OrangeSectionLabel jp="体温の推移・7日間" en="Temperature Trend · 7 Days" />
+          <SectionLabel jp="体温の推移・7日間" en="Temperature Trend · 7 Days" />
           <svg viewBox="0 0 280 140" width="100%" height={140}>
             <defs>
               <linearGradient id="tFill" x1="0" y1="0" x2="0" y2="1">
@@ -253,7 +235,7 @@ function TempSensePage() {
             })()}
             {[37.5, 38.5, 39.5].map((v, i) => (
               <g key={i}>
-                <line x1={28} x2={278} y1={20 + i * 35} y2={20 + i * 35} stroke="rgba(244,165,106,0.08)" strokeWidth={1} />
+                <line x1={28} x2={278} y1={20 + i * 35} y2={20 + i * 35} stroke="rgba(91, 175, 214, 0.08)" strokeWidth={1} />
                 <text x={24} y={23 + i * 35} fontSize="9" fill={O.textMuted} textAnchor="end">{v}</text>
               </g>
             ))}
@@ -296,13 +278,12 @@ function TempSensePage() {
         {/* ---- TEMPERATURE ALERTS ---- */}
         <div style={{
           background: "#FFFFFF",
-          borderRadius: 22,
+          borderRadius: 16,
           padding: 20,
           marginBottom: 14,
-          borderLeft: `4px solid ${O.accent}`,
-          boxShadow: "0 4px 20px rgba(244,165,106,0.1)",
+          boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
         }}>
-          <OrangeSectionLabel jp="体温アラート" en="Temperature Alerts" />
+          <SectionLabel jp="体温アラート" en="Temperature Alerts" />
           <div style={{ position: "relative", height: 28, marginTop: 16, marginBottom: 30 }}>
             <div style={{
               position: "absolute", inset: 0, borderRadius: 50,
@@ -352,13 +333,12 @@ function HourlyPatternCard({ avg, min, max, drawn }: { avg: string; min: number;
   return (
     <div style={{
       background: "#FFFFFF",
-      borderRadius: 22,
+      borderRadius: 16,
       padding: 20,
       marginBottom: 14,
-      borderLeft: `4px solid ${O.accent}`,
-      boxShadow: "0 4px 20px rgba(244,165,106,0.1)",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
     }}>
-      <OrangeSectionLabel jp="体温の推移パターン" en="Temperature Pattern" />
+      <SectionLabel jp="体温の推移パターン" en="Temperature Pattern" />
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H}>
         {/* normal range band */}
         <rect x={PX} y={yNormalHi} width={innerW} height={yNormalLo - yNormalHi}
@@ -387,9 +367,9 @@ function HourlyPatternCard({ avg, min, max, drawn }: { avg: string; min: number;
         })}
       </svg>
       <div className="flex" style={{ gap: 8, marginTop: 12, flexWrap: "wrap" }}>
-        <StatPill bg="rgba(244,165,106,0.15)" color={O.deep} label={t("平均", "Avg")} value={`${avg}°C`} />
-        <StatPill bg="rgba(147,196,224,0.2)" color="#3D7A9E" label={t("最低", "Min")} value={`${min}°C`} />
-        <StatPill bg="rgba(247,188,142,0.25)" color={O.deep} label={t("最高", "Max")} value={`${max}°C`} />
+        <StatPill bg="rgba(91, 175, 214, 0.15)" color={O.deep} label={t("平均", "Avg")} value={`${avg}°C`} />
+        <StatPill bg="rgba(126, 200, 227, 0.2)" color="#3D7A9E" label={t("最低", "Min")} value={`${min}°C`} />
+        <StatPill bg="rgba(91, 175, 214, 0.15)" color={O.deep} label={t("最高", "Max")} value={`${max}°C`} />
       </div>
     </div>
   );
@@ -416,11 +396,11 @@ function OrangeAIInsightCard({ name }: { name: string }) {
     <div style={{
       position: "relative",
       overflow: "hidden",
-      background: "linear-gradient(135deg,#C96B3A 0%,#E8895A 100%)",
-      borderRadius: 26,
+      background: "#2C4A6E",
+      borderRadius: 16,
       padding: 22,
       color: "#FFFFFF",
-      boxShadow: "0 6px 24px rgba(201,107,58,0.2)",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
     }}>
       <span aria-hidden style={{
         position: "absolute", top: -28, right: -8,
@@ -428,9 +408,9 @@ function OrangeAIInsightCard({ name }: { name: string }) {
         color: "rgba(255,255,255,0.06)", pointerEvents: "none", userSelect: "none",
       }}>温</span>
       <div className="flex items-center" style={{ gap: 6, position: "relative" }}>
-        <Sparkles size={14} color={O.muted} />
+        <Sparkles size={14} color="#FFFFFF" />
         <span style={{
-          fontSize: 11, color: O.muted, fontWeight: 600,
+          fontSize: 11, color: "#FFFFFF", fontWeight: 600,
           letterSpacing: "0.1em", textTransform: "uppercase",
         }}>
           {t("AI インサイト", "AI Insight")}
@@ -488,7 +468,7 @@ void SP;
 void Card;
 
 // ─── New: orange time tabs (1D / 1W / 1M) ──────────────────────
-function OrangeTimeTabs({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+function TimeTabs({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const tabs: { k: string; en: string; jp: string }[] = [
     { k: "1d", en: "1D", jp: "今日" },
     { k: "1w", en: "1W", jp: "今週" },
@@ -497,8 +477,8 @@ function OrangeTimeTabs({ value, onChange }: { value: string; onChange: (v: stri
   return (
     <div
       style={{
-        background: "#FEF8F3",
-        borderRadius: 50,
+        background: O.soft,
+        borderRadius: 999,
         padding: 3,
         display: "flex",
         gap: 3,
@@ -515,16 +495,16 @@ function OrangeTimeTabs({ value, onChange }: { value: string; onChange: (v: stri
             style={{
               flex: 1,
               padding: "8px 0",
-              borderRadius: 50,
+              borderRadius: 999,
               background: active ? O.primary : "transparent",
-              color: active ? "#FFFFFF" : "#9CA3AF",
+              color: active ? "#FFFFFF" : O.muted,
               transition: "all 200ms ease",
               touchAction: "manipulation",
               lineHeight: 1.15,
             }}
           >
             <div style={{ fontSize: 13, fontWeight: 600 }}>{tb.en}</div>
-            <div style={{ fontSize: 9, color: active ? "rgba(255,255,255,0.85)" : "#9CA3AF", marginTop: 1 }}>{tb.jp}</div>
+            <div style={{ fontSize: 9, color: active ? "rgba(255,255,255,0.85)" : O.muted, marginTop: 1 }}>{tb.jp}</div>
           </button>
         );
       })}
@@ -543,11 +523,10 @@ function TrendStripCard({ tab }: { tab: string }) {
   return (
     <div style={{
       background: "#FFFFFF",
-      borderRadius: 22,
+      borderRadius: 16,
       padding: 20,
       marginBottom: 12,
-      borderLeft: "4px solid #F7BC8E",
-      boxShadow: "0 4px 20px rgba(244,165,106,0.1)",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
       overflow: "hidden",
     }}>
       <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
@@ -567,6 +546,7 @@ function TrendStripCard({ tab }: { tab: string }) {
   );
 }
 
+// 1D – hourly horizontal strip
 // 1D – hourly horizontal strip
 function HourlyStrip() {
   const t = useT();
@@ -605,22 +585,22 @@ function HourlyStrip() {
         {HOURS.map((d, i) =>
           d.h === 14 ? (
             <rect key={`bg${i}`} x={i * COL_W + 4} y={6} width={COL_W - 8} height={88}
-              rx={12} fill="#FEF0E6" />
+              rx={12} fill="#D6EAF5" />
           ) : null
         )}
-        <path d={sparkPath} stroke="#F4A56A" strokeWidth={1.5} fill="none" strokeLinecap="round" />
+        <path d={sparkPath} stroke="#5BAFD6" strokeWidth={1.5} fill="none" strokeLinecap="round" />
         {HOURS.map((d, i) => {
           const cx = i * COL_W + COL_W / 2;
           const isNow = d.h === 14;
           return (
             <g key={i} opacity={d.v == null ? 0.45 : 1}>
               {isNow && (
-                <text x={cx} y={18} fontSize="9" fill="#F4A56A" fontWeight={700} textAnchor="middle">
+                <text x={cx} y={18} fontSize="9" fill="#5BAFD6" fontWeight={700} textAnchor="middle">
                   {t("今", "Now")}
                 </text>
               )}
               {d.v != null && (
-                <text x={cx} y={TEMP_Y} fontSize="11" fontWeight={600} fill="#1A1A2E" textAnchor="middle">
+                <text x={cx} y={TEMP_Y} fontSize="11" fontWeight={600} fill="#1A2E40" textAnchor="middle">
                   {d.v.toFixed(1)}
                 </text>
               )}
@@ -646,7 +626,7 @@ function WeeklyStrip() {
     { jp: "土", en: "Sat", v: 38.4 },
     { jp: "日", en: "Sun", v: 38.5, today: true },
   ];
-  const ringColor = (v: number) => (v > 40 ? "#DC2626" : v > 39.2 ? "#D97706" : "#F4A56A");
+  const ringColor = (v: number) => (v > 40 ? "#DC2626" : v > 39.2 ? "#D97706" : "#5BAFD6");
   const dot = (v: number) => (v > 40 ? "#DC2626" : v > 39.2 ? "#D97706" : "#16A34A");
 
   return (
@@ -660,13 +640,13 @@ function WeeklyStrip() {
               background: "#FFFFFF",
               borderRadius: 14,
               padding: "10px 8px",
-              boxShadow: "0 2px 8px rgba(244,165,106,0.1)",
-              border: d.today ? "1.5px solid #F4A56A" : "1px solid #FEF0E6",
+              boxShadow: "0 2px 8px rgba(91, 175, 214, 0.10)",
+              border: d.today ? "1.5px solid #5BAFD6" : "1px solid #D6EAF5",
               textAlign: "center",
               position: "relative",
             }}>
               {d.today && (
-                <div style={{ fontSize: 9, color: "#F4A56A", fontFamily: "var(--font-heading)", fontWeight: 600, marginBottom: 2 }}>
+                <div style={{ fontSize: 9, color: "#5BAFD6", fontFamily: "var(--font-heading)", fontWeight: 600, marginBottom: 2 }}>
                   {t("今日", "Today")}
                 </div>
               )}
@@ -676,9 +656,9 @@ function WeeklyStrip() {
                 border: `2.5px solid ${ringColor(d.v)}`,
                 margin: "6px auto 4px",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                background: "#FFF8F3",
+                background: "#EAF2F8",
               }}>
-                <div style={{ fontSize: 10, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A1A2E", fontVariantNumeric: "tabular-nums" }}>
+                <div style={{ fontSize: 10, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A2E40", fontVariantNumeric: "tabular-nums" }}>
                   {d.v.toFixed(1)}
                 </div>
               </div>
@@ -723,7 +703,7 @@ function MonthlyCalendar() {
 
   const cellStyle = (n: number | null) => {
     const s = status(n);
-    if (s === "normal") return { bg: "#FEF0E6", dot: "#F4A56A" };
+    if (s === "normal") return { bg: "#D6EAF5", dot: "#5BAFD6" };
     if (s === "elevated") return { bg: "#FFF3CD", dot: "#D97706" };
     return { bg: "#F9F9F9", dot: null as string | null };
   };
@@ -736,11 +716,11 @@ function MonthlyCalendar() {
   return (
     <>
       <div className="flex items-center justify-center" style={{ gap: 12, marginBottom: 10 }}>
-        <button onClick={() => setMonthOffset((o) => o - 1)} style={{ color: "#1A1A2E", fontSize: 14 }}>←</button>
-        <div style={{ fontSize: 13, fontWeight: 600, color: "#1A1A2E" }}>
+        <button onClick={() => setMonthOffset((o) => o - 1)} style={{ color: "#1A2E40", fontSize: 14 }}>←</button>
+        <div style={{ fontSize: 13, fontWeight: 600, color: "#1A2E40" }}>
           {year}{t("年", "/")}{month + 1}{t("月", "")}
         </div>
-        <button onClick={() => setMonthOffset((o) => o + 1)} style={{ color: "#1A1A2E", fontSize: 14 }}>→</button>
+        <button onClick={() => setMonthOffset((o) => o + 1)} style={{ color: "#1A2E40", fontSize: 14 }}>→</button>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 6, marginBottom: 6 }}>
@@ -757,7 +737,7 @@ function MonthlyCalendar() {
               <div style={{
                 width: 30, height: 30, borderRadius: "50%",
                 background: n == null ? "transparent" : s.bg,
-                border: isToday ? "2px solid #F4A56A" : "none",
+                border: isToday ? "2px solid #5BAFD6" : "none",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 position: "relative",
               }}>
@@ -784,7 +764,7 @@ function MonthlyCalendar() {
           { jp: "アラート", en: "Alerts", v: "2" + t("回", "x") },
         ].map((s, i) => (
           <div key={i} style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 14, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A1A2E", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
+            <div style={{ fontSize: 14, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1A2E40", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
             <div style={{ fontSize: 10, color: "#9CA3AF", marginTop: 2 }}>{t(s.jp, s.en)}</div>
           </div>
         ))}

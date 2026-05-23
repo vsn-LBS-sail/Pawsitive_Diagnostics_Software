@@ -8,19 +8,19 @@ export const Route = createFileRoute("/pressure-sense")({ component: PressureSen
 
 // ───────── Palette ─────────
 const G = {
-  primary: "#D4A843",
-  medium: "#C49A30",
-  deep: "#9E7A1A",
-  soft: "#FEF8E1",
-  pale: "#FFFCF0",
-  accent: "#ECC95A",
-  muted: "#F5DFA0",
-  light: "#FCF0C0",
+  primary: "#5BAFD6",
+  medium: "#3A87B0",
+  deep: "#2C4A6E",
+  soft: "#D6EAF5",
+  pale: "#EAF2F8",
+  accent: "#7EC8E3",
+  muted: "#6B8FA8",
+  light: "#D6EAF5",
   white: "#FFFFFF",
-  text: "#1A1A2E",
-  text2: "#6B7280",
-  text3: "#9CA3AF",
-  ink: "#4B5563",
+  text: "#1A2E40",
+  text2: "#6B8FA8",
+  text3: "#6B8FA8",
+  ink: "#1A2E40",
   ok: "#16A34A", okBg: "#F0FDF4",
   warn: "#D97706", warnBg: "#FFFBEB",
   danger: "#DC2626", dangerBg: "#FEF2F2",
@@ -44,10 +44,10 @@ function PressureSensePage() {
       subtitleJp="プレッシャーセンス AI"
       descriptorJp="嚥下圧力解析"
       descriptorEn="Swallowing pressure analysis"
-      bannerGradient="linear-gradient(135deg,#FFFCF0 0%,#FEF8E1 100%)"
+      bannerGradient="linear-gradient(135deg, #EAF2F8 0%, #D6EAF5 100%)"
       bannerKanji="嚥"
-      bannerKanjiColor="rgba(212,168,67,0.07)"
-      bannerSubtitleColor="#C4A030"
+      bannerKanjiColor="rgba(91, 175, 214, 0.07)"
+      bannerSubtitleColor="#6B8FA8"
     >
       <style>{`
         @keyframes psWaveSlide { from{transform:translateX(0)} to{transform:translateX(-50%)} }
@@ -100,14 +100,15 @@ function PressureSensePage() {
 }
 
 
+
 function GlassStats() {
   const t = useT();
   return (
     <div style={{
       background: "#FFFFFF",
-      borderRadius: 20, padding: "16px 16px",
+      borderRadius: 16, padding: "16px 16px",
       marginTop: -52, marginBottom: 16, overflow: "hidden",
-      boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
       display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr",
       boxSizing: "border-box",
       position: "relative", zIndex: 2,
@@ -150,14 +151,14 @@ function TimeTabs({ value, onChange }: { value: TimeTab; onChange: (v: TimeTab) 
   };
   return (
     <div style={{
-      background: G.soft, borderRadius: 50, padding: 4,
+      background: G.soft, borderRadius: 999, padding: 4,
       display: "flex", gap: 4, marginBottom: 14, boxSizing: "border-box",
     }}>
       {TIME_TABS.map((k) => {
         const active = k === value;
         return (
           <button key={k} onClick={() => onChange(k)} style={{
-            flex: 1, height: 32, borderRadius: 50, border: "none",
+            flex: 1, height: 32, borderRadius: 999, border: "none",
             background: active ? G.primary : "transparent",
             color: active ? "#fff" : G.text3,
             fontSize: 12, fontWeight: 600, cursor: "pointer",
@@ -729,8 +730,9 @@ function WeeklyReportCard() {
     { d: "土", swallows: 144, p: 62, status: "ok" as const },
     { d: "日", swallows: 142, p: 62, status: "ok" as const, live: true },
   ];
+
   return (
-    <CardG borderColor={G.accent} bg="#FFFDF5">
+    <CardG borderColor={G.accent}>
       <SectionLabel jp="週次レポート" en="WEEKLY REPORT" />
 
       <div style={{ marginTop: 6 }}>
@@ -789,12 +791,13 @@ function WeeklyReportCard() {
 // ═════════════ CARD 7 — AI Insight ═════════════
 function AIInsightCard({ petName }: { petName: string }) {
   const t = useT();
+
   return (
     <div style={{
-      background: "linear-gradient(135deg,#9E7A1A 0%,#C49A30 100%)",
-      borderRadius: 26, padding: 22, marginBottom: 14, overflow: "hidden",
+      background: "#2C4A6E",
+      borderRadius: 16, padding: 22, marginBottom: 14, overflow: "hidden",
       position: "relative", boxSizing: "border-box",
-      boxShadow: "0 8px 28px rgba(158,122,26,0.25)",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
     }}>
       {/* kanji watermark */}
       <span aria-hidden style={{
@@ -811,8 +814,9 @@ function AIInsightCard({ petName }: { petName: string }) {
       </svg>
 
       <div style={{ position: "relative" }}>
+
         <div style={{
-          fontSize: 11, color: "#F5DFA0", letterSpacing: "0.12em",
+          fontSize: 11, color: "#FFFFFF", letterSpacing: "0.12em",
           fontFamily: "var(--font-heading)", fontWeight: 600, textTransform: "uppercase",
         }}>
           ✦ {t("AIインサイト", "AI INSIGHT")}
@@ -860,35 +864,43 @@ function InsightBadge({ children, bg }: { children: React.ReactNode; bg: string 
   );
 }
 
-// ═════════════ shared ═════════════
 function CardG({ children, borderColor, shadow, bg }: {
-  children: React.ReactNode; borderColor: string; shadow?: string; bg?: string;
+  children: React.ReactNode; borderColor?: string; shadow?: string; bg?: string;
 }) {
   return (
     <div style={{
-      background: bg ?? "#fff", borderRadius: 22, padding: 18,
-      marginBottom: 14, overflow: "hidden", boxSizing: "border-box",
-      borderLeft: `4px solid ${borderColor}`,
-      boxShadow: shadow ?? "0 2px 14px rgba(0,0,0,0.04)",
+      background: bg ?? "#FFFFFF",
+      borderRadius: 16,
+      padding: 18,
+      marginBottom: 14,
+      overflow: "hidden",
+      boxSizing: "border-box",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
     }}>{children}</div>
   );
 }
-
 function SectionLabel({ jp, en, inline }: { jp: string; en: string; inline?: boolean }) {
   const t = useT();
   return (
     <div style={{
-      display: "flex", alignItems: "center", gap: 6,
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
       marginBottom: inline ? 0 : 10,
     }}>
       <span style={{ width: 5, height: 5, borderRadius: "50%", background: G.primary }} />
       <span style={{
-        fontSize: 11, color: G.primary, fontFamily: "var(--font-heading)", fontWeight: 600,
-        letterSpacing: "0.08em", textTransform: "uppercase",
+        fontSize: 11,
+        color: G.muted,
+        fontFamily: "var(--font-heading)",
+        fontWeight: 600,
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
       }}>{t(jp, en)}</span>
     </div>
   );
 }
+
 
 function Pill({ children, color, bg, dot }: {
   children: React.ReactNode; color: string; bg: string; dot?: boolean;

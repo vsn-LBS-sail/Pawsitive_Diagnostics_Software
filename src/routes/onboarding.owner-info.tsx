@@ -198,8 +198,8 @@ function Step5() {
                   fontSize: 16,
                   color: "#3B2A23",
                   padding: "10px 2px",
-                  border: "none",
-                  border: "2px solid #EAF4F9", borderRadius: 12,
+                  border: "2px solid #EAF4F9",
+                  borderRadius: 12,
                 }}
                 onFocus={(e) => { e.currentTarget.style.border = "2px solid #447F98"; }}
                 onBlur={(e) => { e.currentTarget.style.border = "2px solid #EAF4F9"; }}

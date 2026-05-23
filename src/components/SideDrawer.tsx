@@ -310,8 +310,8 @@ export function HamburgerButton({ isOpen, onClick }: { isOpen: boolean; onClick:
       aria-expanded={isOpen}
       className="flex items-center justify-center shrink-0"
       style={{
-        width: 40, height: 40,
-        width: 40, height: 40,
+        width: 40,
+        height: 40,
         background: "transparent",
         border: "none",
       }}

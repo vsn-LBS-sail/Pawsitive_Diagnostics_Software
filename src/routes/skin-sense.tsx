@@ -9,18 +9,18 @@ export const Route = createFileRoute("/skin-sense")({ component: SkinSensePage }
 
 /* ---------- Pink palette ---------- */
 const C = {
-  primary: "#F5BDD4",
-  deep: "#E8A0BF",
-  mid: "#F0A8C4",
-  soft: "#FEF0F6",
-  pale: "#FEF6FA",
-  accent: "#FAD0E4",
-  muted: "#FCE4EF",
-  sakura: "#FFF0F7",
+  primary: "#5BAFD6",
+  deep: "#2C4A6E",
+  mid: "#5BAFD6",
+  soft: "#D6EAF5",
+  pale: "#EAF2F8",
+  accent: "#7EC8E3",
+  muted: "#D6EAF5",
+  sakura: "#EAF2F8",
   white: "#FFFFFF",
-  text: "#1A1A2E",
-  text2: "#6B7280",
-  text3: "#9CA3AF",
+  text: "#1A2E40",
+  text2: "#6B8FA8",
+  text3: "#6B8FA8",
   ok: "#16A34A",
   mild: "#D97706",
   mod: "#EA580C",
@@ -42,9 +42,8 @@ function PinkCard({ children, style }: { children: ReactNode; style?: CSSPropert
   return (
     <div style={{
       background: C.white,
-      borderRadius: 24,
-      boxShadow: "0 4px 20px rgba(245,189,212,0.1)",
-      borderLeft: "4px solid #E8B4CC",
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
       padding: 20,
       marginBottom: 14,
       overflow: "hidden",
@@ -59,8 +58,8 @@ function Label({ jp, en }: { jp: string; en: string }) {
   const t = useT();
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
-      <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#C98BA8" }} />
-      <span style={{ fontSize: 11, color: "#C98BA8", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+      <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.primary }} />
+      <span style={{ fontSize: 11, color: C.text2, fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
         {t(jp, en)}
       </span>
     </div>
@@ -585,7 +584,7 @@ function AIChat() {
             }}>
               {[0, 1, 2].map((i) => (
                 <span key={i} style={{
-                  width: 6, height: 6, borderRadius: "50%", background: "#E8B4CC",
+                  width: 6, height: 6, borderRadius: "50%", background: C.primary,
                   animation: `ssDot 1.2s ease-in-out ${i * 0.15}s infinite`,
                 }} />
               ))}
@@ -627,9 +626,9 @@ function AIInsight() {
   return (
     <div style={{
       position: "relative",
-      background: "linear-gradient(135deg, #C98BA8 0%, #DFA0BE 100%)",
-      borderRadius: 26, padding: 22, overflow: "hidden",
-      boxShadow: "0 8px 28px rgba(180,120,150,0.18)",
+      background: "#2C4A6E",
+      borderRadius: 16, padding: 22, overflow: "hidden",
+      boxShadow: "0 2px 12px rgba(91, 175, 214, 0.10)",
     }}>
       {/* sakura watermarks */}
       {[
@@ -647,7 +646,7 @@ function AIInsight() {
 
       <div style={{ position: "relative" }}>
         <div style={{
-          fontSize: 11, color: "#FCE4EF", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.1em",
+          fontSize: 11, color: "#FFFFFF", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.1em",
         }}>AI INSIGHT</div>
         <div style={{ height: 1, background: "rgba(255,255,255,0.15)", margin: "10px 0 14px" }} />
 
