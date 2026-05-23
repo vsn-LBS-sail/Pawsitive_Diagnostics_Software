@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import DogAvatar from "@/components/DogAvatar";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 import { PrimaryButton } from "@/routes/auth";
 import { PawLogo } from "@/components/PawLogo";
 import { useT } from "@/context/LanguageContext";
@@ -12,7 +12,7 @@ function Welcome() {
   const t = useT();
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
       <div
         className="min-h-screen flex flex-col px-6 pt-10 pb-10"
         style={{ background: "var(--color-bg-app)" }}
@@ -54,7 +54,7 @@ function Welcome() {
             className="text-center mt-8 text-[26px] font-extrabold leading-tight"
             style={{ color: "var(--color-text-primary)", fontFamily: "var(--font-heading)" }}
           >
-            {t("Pawsitive Diagnosticsへようこそ！", "Welcome to Pawsitive Diagnostics!")}
+            {t("Pawsitiveへようこそ！", "Welcome to Pawsitive Diagnostics!")}
           </h1>
           <p
             className="text-center mt-3 text-[14px] leading-relaxed max-w-[300px]"
@@ -83,7 +83,7 @@ function Welcome() {
           </div>
         </div>
       </div>
-    </PhoneFrame>
+    </AppShell>
   );
 }
 

@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Camera, Image as ImageIcon, RotateCcw, Loader2 } from "lucide-react";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 import DogAvatar from "@/components/DogAvatar";
 import { Stepper, TopBar } from "@/routes/onboarding.avatar";
 import { useT } from "@/context/LanguageContext";
@@ -150,7 +150,7 @@ function Step2() {
 
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
       <div
         className="min-h-screen pb-32"
         style={{ background: "var(--color-bg-app)", fontFamily: "'Nunito','Quicksand',system-ui,sans-serif" }}
@@ -346,7 +346,7 @@ function Step2() {
           </div>
         </div>
       )}
-    </PhoneFrame>
+    </AppShell>
   );
 }
 

@@ -27,12 +27,36 @@ export const DAILY_FACTS = [
 ];
 
 export const CLINICS = [
-  { jp: "渋谷動物病院", en: "Shibuya Animal Hospital", rating: 4.6, km: 0.8, open: true, em: true },
-  { jp: "原宿ペットクリニック", en: "Harajuku Pet Clinic", rating: 4.4, km: 1.2, open: true, em: false },
-  { jp: "新宿24時間動物医療センター", en: "Shinjuku 24h Animal Medical", rating: 4.8, km: 2.1, open: true, em: true },
-  { jp: "代々木さくら獣医", en: "Yoyogi Sakura Vet", rating: 4.2, km: 2.6, open: false, em: false },
-  { jp: "目黒プレミアム動物病院", en: "Meguro Premium Animal Hospital", rating: 4.7, km: 3.4, open: true, em: false },
+  { jp: "渋谷動物病院", en: "Shibuya Animal Hospital", rating: 4.6, km: 0.8, open: true, em: true, phone: "+81-3-1234-5678" },
+  { jp: "原宿ペットクリニック", en: "Harajuku Pet Clinic", rating: 4.4, km: 1.2, open: true, em: false, phone: "+81-3-2345-6789" },
+  { jp: "新宿24時間動物医療センター", en: "Shinjuku 24h Animal Medical", rating: 4.8, km: 2.1, open: true, em: true, phone: "+81-3-3456-7890" },
+  { jp: "代々木さくら獣医", en: "Yoyogi Sakura Vet", rating: 4.2, km: 2.6, open: false, em: false, phone: "+81-3-4567-8901" },
+  { jp: "目黒プレミアム動物病院", en: "Meguro Premium Animal Hospital", rating: 4.7, km: 3.4, open: true, em: false, phone: "+81-3-5678-9012" },
 ];
+
+export type VaccineStatus = "ok" | "soon" | "overdue";
+export const VACCINE_RECORDS: { jp: string; en: string; date: string; status: VaccineStatus }[] = [
+  { jp: "狂犬病", en: "Rabies", date: "2025/04/15", status: "ok" },
+  { jp: "混合ワクチン", en: "Combination", date: "2025/03/02", status: "ok" },
+  { jp: "フィラリア", en: "Heartworm", date: "2026/01/20", status: "ok" },
+  { jp: "ノミ・マダニ", en: "Flea & Tick", date: "2026/06", status: "soon" },
+];
+
+export const LAST_VET_VISIT = {
+  clinicJp: "渋谷動物病院",
+  clinicEn: "Shibuya Animal Hospital",
+  dateJp: "2026年4月20日",
+  dateEn: "Apr 20, 2026",
+  resultJp: "健康診断: 異常なし ✓",
+  resultEn: "Health check: All clear ✓",
+};
+
+export const REPORT_CHART_DATA = {
+  score:  [82, 85, 83, 87, 86, 88, 87],
+  temp:   [38.3, 38.6, 38.4, 38.8, 38.5, 38.7, 38.5],
+  steps:  [1800, 2600, 2400, 2200, 2000, 2800, 3100],
+  sleep:  [7.2, 8.1, 7.5, 6.8, 7.9, 8.4, 7.5],
+};
 
 export const POSTS = [
   { id: "1", user: "ハナちゃんママ", breed: "柴犬", time: "3時間前", titleJp: "柴犬の体温が少し高いのですが", titleEn: "My Shiba's temp seems high", flair: "健康", up: 47, com: 12 },

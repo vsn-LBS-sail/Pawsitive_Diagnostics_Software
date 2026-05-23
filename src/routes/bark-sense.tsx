@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import AppShell from "@/components/AppShell";
+import AppShell, { TopBar } from "@/components/AppShell";
 import { SenseBanner } from "@/components/SenseBanner";
 import { useLanguage } from "@/context/LanguageContext";
 import { usePet, displayName } from "@/context/PetContext";
@@ -11,15 +11,15 @@ type Lang = "english" | "japanese" | "mixed";
 
 // Soft pastel purple palette for this page
 const P = {
-  primary: "#447F98",
-  deep:    "#1C3A47",
-  mid:     "#4A7FA5",
-  soft:    "#B9D8E1",
-  pale:    "#D6EBF3",
-  accent:  "#447F98",
-  muted:   "#A8CCD8",
-  light:   "#B9D8E1",
-  darker:  "#1C3A47",
+  primary: "#9B8EC4",   // was #7C3AED
+  deep:    "#6B5B9E",   // was #3B1F6A
+  mid:     "#A99DD4",   // was #6D28D9
+  soft:    "#F0ECFF",   // was #EDE9FE
+  pale:    "#F8F6FF",   // was #F5F3FF
+  accent:  "#B5A8D8",   // was #8B5CF6
+  muted:   "#E8E3FF",   // was #DDD6FE
+  light:   "#D4CCF5",   // was #C4B5FD
+  darker:  "#8B7DBF",   // was #5B21B6
 };
 
 type EmotionKey =
@@ -150,7 +150,12 @@ function BarkSensePage() {
   ];
 
   return (
-    <AppShell titleJp="バークセンスAI" titleEn="BarkSense AI" noPadding>
+    <AppShell
+      noPadding
+      renderTopBar={({ menuOpen, onMenuClick }) => (
+        <TopBar showBack backTo="/home" menuOpen={menuOpen} onMenuClick={onMenuClick} />
+      )}
+    >
       <style>{`
         @keyframes bsHeroFade { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
         @keyframes bsPulseRing { 0% { transform: scale(0.8); opacity: 0.7;} 80% { transform: scale(2.4); opacity: 0;} 100% { opacity: 0;} }
@@ -483,7 +488,7 @@ function BarkSensePage() {
                       border: d.today ? `2px solid ${P.primary}` : `1.5px solid ${P.light}`,
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: 11, fontFamily: "var(--font-heading)", fontWeight: 600, color: d.today ? "white" : "#1A1A2E",
-                      boxShadow: d.today ? "0 0 0 3px rgba(124,58,237,0.2)" : "none",
+                boxShadow: d.today ? `0 0 0 3px rgba(124,58,237,0.2)` : "none",
                       position: "relative", zIndex: 1,
                     }}>
                       {lang === "english" ? d.en.slice(0, 1) : d.jp}
@@ -696,13 +701,25 @@ function BarkSensePage() {
                   strokeWidth={1}
                   fill="none"
                 />
-              ))}
+              ))}  
+
             </svg>
-            <div aria-hidden style={{
-              position: "absolute", right: -20, top: -20,
-              fontSize: 140, color: "white", opacity: 0.06,
-              fontFamily: "'Noto Serif JP', serif", fontFamily: "var(--font-heading)", fontWeight: 600, lineHeight: 1,
-            }}>声</div>
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                right: -20,
+                top: -20,
+                fontSize: 140,
+                color: "white",
+                opacity: 0.06,
+                fontFamily: "var(--font-heading)",
+                fontWeight: 600,
+                lineHeight: 1,
+              }}
+            >
+              声
+            </div>
 
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{

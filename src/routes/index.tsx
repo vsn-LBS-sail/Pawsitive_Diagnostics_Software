@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 import dogImg from "@/assets/fluffy-dog.png";
 import { PawLogo } from "@/components/PawLogo";
 
@@ -29,7 +29,7 @@ function Splash() {
   const nav = useNavigate();
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -274,6 +274,6 @@ function Splash() {
           <span style={{ width: 8, height: 8, borderRadius: 50, background: "#A8CCD8" }} />
         </div>
       </motion.div>
-    </PhoneFrame>
+    </AppShell>
   );
 }

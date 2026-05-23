@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { User, Upload, Camera, Check } from "lucide-react";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 import { Stepper, TopBar } from "@/routes/onboarding.avatar";
 import { useT } from "@/context/LanguageContext";
 import { usePet } from "@/context/PetContext";
@@ -72,7 +72,7 @@ function Step5() {
   };
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
       <div
         className="min-h-screen pb-40"
         style={{ background: "var(--color-bg-app)", fontFamily: "'Nunito','Quicksand',system-ui,sans-serif" }}
@@ -291,7 +291,7 @@ function Step5() {
           }
         `}</style>
       </div>
-    </PhoneFrame>
+    </AppShell>
   );
 }
 

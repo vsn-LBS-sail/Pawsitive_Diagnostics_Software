@@ -1,29 +1,27 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import AppShell from "@/components/AppShell";
 import { useEffect, useState, type ReactNode, type CSSProperties } from "react";
-import { DAILY_FACTS, BREEDS } from "@/lib/mock";
+import { DAILY_FACTS } from "@/lib/mock";
 import {
   Brain, Microscope, Activity, Thermometer, MapPin, Wind, Sun, GitMerge,
-  Check, BatteryMedium, Signal, Bluetooth, PawPrint, X, type LucideIcon,
+  Check, BatteryMedium, Signal, Bluetooth, PawPrint, type LucideIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { T, useT, useLanguage } from "@/context/LanguageContext";
+import { useT, useLanguage } from "@/context/LanguageContext";
 import { usePet, displayName } from "@/context/PetContext";
-import DogAvatar, { BREED_KEY_BY_JP, type BreedKey } from "@/components/DogAvatar";
-import BreedFullBody from "@/components/BreedFullBody";
 import MORNING_IMAGE from "@/assets/dashboard dog design - morning.png";
 import AFTERNOON_IMAGE from "@/assets/dashboard dog design - Afternoon.png";
 import NIGHT_IMAGE from "@/assets/dashboard dog design - Night.png";
 
-import BOY_MORN from "@/assets/dashboard boy morn.png";
-import BOY_AFT from "@/assets/dashboard boy afternoon.png";
-import BOY_EVE from "@/assets/dashboard boy eve.png";
-import BOY_NIGHT from "@/assets/dashboard boy  night.png";
+import BOY_MORN from "@/assets/B-Morning.svg.svg";
+import BOY_AFT from "@/assets/B-Afternoon.svg.svg";
+import BOY_EVE from "@/assets/B-Evening.svg.svg";
+import BOY_NIGHT from "@/assets/B-Night.svg.svg";
 
-import GIRL_MORN from "@/assets/dashboard girl morn.png";
-import GIRL_AFT from "@/assets/dashboard girl afternoon.png";
-import GIRL_EVE from "@/assets/dashboard girl eve.png";
-import GIRL_NIGHT from "@/assets/dashboard girl night.png";
+import GIRL_MORN from "@/assets/G-Afternoon.svg.svg";
+import GIRL_AFT from "@/assets/G-Afternoon.svg.svg";
+import GIRL_EVE from "@/assets/G-Evening.svg.svg";
+import GIRL_NIGHT from "@/assets/G-Night.svg.svg";
 
 export const Route = createFileRoute("/home")({ component: Home });
 
@@ -359,8 +357,6 @@ function HeroPostcard({ score, name, mood, celebrate, ownerGender }: { score: nu
 /* ---------- Page ---------- */
 function Home() {
   const [factIdx, setFactIdx] = useState(0);
-  const [sosOpen, setSosOpen] = useState(false);
-  const [editOpen, setEditOpen] = useState(false);
   const t = useT();
   const { language } = useLanguage();
   const { pet, updatePet } = usePet();
@@ -387,31 +383,10 @@ function Home() {
   const mood = pet.name?.trim()
     ? t(`${pet.name}は元気です`, `${dogName} is feeling great`)
     : t("元気です", "Feeling great");
-  const breedLabel = language === "english" ? pet.breedEn : language === "japanese" ? pet.breedJp : `${pet.breedJp} / ${pet.breedEn}`;
-  const ageLabel = pet.age != null ? t(`${pet.age}歳`, `${pet.age} yrs`) : null;
 
   return (
     <AppShell titleJp="" titleEn="" noPadding>
       <HeroPostcard score={score} name={heroName} mood={mood} celebrate={celebrate} ownerGender={pet.ownerGender} />
-
-
-      {sosOpen && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center p-4" onClick={() => setSosOpen(false)}>
-          <motion.div
-            initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            className="bg-card rounded-2xl p-6 w-full max-w-sm shadow-card"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="text-lg font-bold text-destructive"> <T jp="緊急" en="Emergency"/></h3>
-            <p className="text-sm text-muted-foreground mt-1">{t("最寄りの24時間獣医に連絡します", "Contact the nearest 24h vet")}</p>
-            <div className="mt-4 space-y-2">
-              <button className="w-full bg-destructive text-destructive-foreground rounded-xl py-3 font-bold"> {t("今すぐ電話", "Call Now")}</button>
-              <button className="w-full bg-muted rounded-xl py-3 font-medium"> {t("迷子モードを起動", "Activate Lost Mode")}</button>
-              <button onClick={() => setSosOpen(false)} className="w-full text-sm text-muted-foreground py-2">{t("キャンセル", "Cancel")}</button>
-            </div>
-          </motion.div>
-        </div>
-      )}
 
       <div style={{ padding: "0 16px" }}>
 
@@ -733,118 +708,7 @@ function Home() {
           </Link>
         </div>
       </div>
-
-      {editOpen && <EditProfileSheet onClose={() => setEditOpen(false)} />}
     </AppShell>
-  );
-}
-
-function EditProfileSheet({ onClose }: { onClose: () => void }) {
-  const t = useT();
-  const { pet, updatePet } = usePet();
-  const [name, setName] = useState(pet.name);
-  const [breedJp, setBreedJp] = useState(pet.breedJp);
-  const [age, setAge] = useState<string>(pet.age != null ? String(pet.age) : "");
-  const [weight, setWeight] = useState<string>(pet.weight != null ? String(pet.weight) : "");
-
-  const save = () => {
-    const b = BREEDS.find((x) => x.jp === breedJp);
-    updatePet({
-      name: name.trim(),
-      breedJp,
-      breedEn: b?.en ?? pet.breedEn,
-      breed: BREED_KEY_BY_JP[breedJp] ?? pet.breed,
-      age: age ? Number(age) : null,
-      weight: weight ? Number(weight) : null,
-    });
-    onClose();
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: "rgba(44,44,44,0.4)" }} onClick={onClose}>
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-md flex flex-col"
-        style={{ background: "#FFFFFF", borderRadius: "32px 32px 0 0", boxShadow: "0 -8px 32px rgba(0,0,0,0.1)", maxHeight: "85vh" }}
-      >
-        <div className="mx-auto mt-3 mb-2 rounded-full" style={{ width: 32, height: 4, background: "#E8E0DC" }} />
-        <div className="px-5 pb-3 flex items-center justify-between">
-          <h3 className="text-[15px] font-semibold" style={{ color: "#2C2C2C" }}>{t("プロフィール編集", "Edit Profile")}</h3>
-          <button onClick={onClose}><X className="w-5 h-5" style={{ color: "#8A8A8A" }} /></button>
-        </div>
-        <div className="px-5 pb-4 space-y-3 overflow-y-auto">
-          <Field label={t("名前", "Name")}>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={t("例: ハナ", "e.g. Hana")}
-              className="w-full h-[48px] rounded-[12px] px-4 text-[15px] outline-none"
-              style={{ background: "#FAFAF8", border: "1.5px solid #EDE8E4", color: "#2C2C2C" }}
-            />
-          </Field>
-          <Field label={t("犬種", "Breed")}>
-            <select
-              value={breedJp}
-              onChange={(e) => setBreedJp(e.target.value)}
-              className="w-full h-[48px] rounded-[12px] px-3 text-[15px] outline-none"
-              style={{ background: "#FAFAF8", border: "1.5px solid #EDE8E4", color: "#2C2C2C" }}
-            >
-              {BREEDS.map((b) => (
-                <option key={b.jp} value={b.jp}>{b.jp} / {b.en}</option>
-              ))}
-            </select>
-          </Field>
-          <div className="grid grid-cols-2 gap-3">
-            <Field label={t("年齢", "Age")}>
-              <input
-                value={age} onChange={(e) => setAge(e.target.value)} type="number" placeholder="3"
-                className="w-full h-[48px] rounded-[12px] px-4 text-[15px] outline-none"
-                style={{ background: "#FAFAF8", border: "1.5px solid #EDE8E4", color: "#2C2C2C" }}
-              />
-            </Field>
-            <Field label={t("体重 (kg)", "Weight (kg)")}>
-              <input
-                value={weight} onChange={(e) => setWeight(e.target.value)} type="number" placeholder="8.5"
-                className="w-full h-[48px] rounded-[12px] px-4 text-[15px] outline-none"
-                style={{ background: "#FAFAF8", border: "1.5px solid #EDE8E4", color: "#2C2C2C" }}
-              />
-            </Field>
-          </div>
-        </div>
-        <div className="px-5 pb-5 pt-2 space-y-2" style={{ borderTop: "1px solid #F5F0EC" }}>
-          <button
-            onClick={save}
-            className="w-full h-12 rounded-2xl text-white text-[15px] font-bold"
-            style={{ background: "var(--color-primary)", boxShadow: "0 6px 18px rgba(232,130,154,0.35)" }}
-          >
-            {t("保存", "Save Changes")}
-          </button>
-          <button onClick={onClose} className="w-full h-10 text-[13px] font-medium" style={{ color: "#8A8A8A" }}>
-            {t("キャンセル", "Cancel")}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <div>
-      <div className="text-[12px] font-semibold mb-1.5" style={{ color: "#2C2C2C" }}>{label}</div>
-      {children}
-    </div>
-  );
-}
-
-function Chip({ children, bg, color, border }: { children: ReactNode; bg: string; color: string; border: string }) {
-  return (
-    <span style={{
-      display: "inline-flex", alignItems: "center",
-      fontSize: 11, fontWeight: 600,
-      background: bg, color, border: `1px solid ${border}`,
-      borderRadius: 20, padding: "3px 10px", letterSpacing: "0.02em",
-    }}>{children}</span>
   );
 }
 

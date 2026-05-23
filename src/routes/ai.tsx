@@ -28,7 +28,8 @@ import { useT, useLanguage } from "@/context/LanguageContext";
 import { usePet } from "@/context/PetContext";
 import DogAvatar from "@/components/DogAvatar";
 import { motion, AnimatePresence } from "framer-motion";
-import { detectIntent, NEARBY_CLINICS, VACCINE_RECORDS, type Intent } from "@/utils/chatResponses";
+import { detectIntent, type Intent } from "@/utils/chatResponses";
+import { CLINICS as NEARBY_CLINICS, VACCINE_RECORDS } from "@/lib/mock";
 
 export const Route = createFileRoute("/ai")({ component: AI });
 
@@ -968,7 +969,7 @@ function VaccinesCard({
                 <div style={{ fontSize: 10, color: "#8A8A8A", marginTop: 2, paddingLeft: 18 }}>
                   {overdue
                     ? t("すぐに接種が必要です", "Vaccination needed soon")
-                    : `${t("次回", "Next")}: ${v.next}`}
+                    : `${t("次回", "Next")}: ${v.date}`}
                 </div>
               </div>
             );

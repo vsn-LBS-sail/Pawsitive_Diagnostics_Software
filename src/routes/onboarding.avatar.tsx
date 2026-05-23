@@ -6,7 +6,7 @@ import { useT, useLanguage } from "@/context/LanguageContext";
 import { usePet } from "@/context/PetContext";
 import { PrimaryButton } from "@/routes/auth";
 import DogAvatar, { BREED_KEY_BY_JP, type BreedKey, type EarStyle, type EyeStyle } from "@/components/DogAvatar";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 
 export const Route = createFileRoute("/onboarding/avatar")({ component: Step1 });
 
@@ -62,7 +62,7 @@ function Step1() {
     language === "english" ? en : language === "japanese" ? jp : `${jp} / ${en}`;
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
     <div className="min-h-screen pb-32" style={{ background: "var(--color-bg-app)" }}>
       <div className="px-6 pt-4">
         <TopBar to="/onboarding/dog" />
@@ -208,7 +208,7 @@ function Step1() {
         </PrimaryButton>
       </div>
     </div>
-    </PhoneFrame>
+    </AppShell>
   );
 }
 

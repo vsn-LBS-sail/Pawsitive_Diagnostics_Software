@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useLanguage, type Language } from "@/context/LanguageContext";
 import { PawPrint } from "lucide-react";
 import { PawLogo } from "@/components/PawLogo";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 
 export const Route = createFileRoute("/language")({ component: LanguagePicker });
 
@@ -20,7 +20,7 @@ function LanguagePicker() {
   const choose = () => { setLanguage(sel); nav({ to: "/auth" }); };
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
     <div className="min-h-screen flex flex-col" style={{ background: "#FAFAF8" }}>
       <HeroIllustration />
       <div className="flex-1 px-6 pb-8 w-full">
@@ -76,7 +76,7 @@ function LanguagePicker() {
         </button>
       </div>
     </div>
-    </PhoneFrame>
+    </AppShell>
   );
 }
 
@@ -108,10 +108,10 @@ export function HeroIllustration({ compact = false }: { compact?: boolean }) {
       </svg>
       {[
         { l: "20%", t: "30%", s: 8, c: "#A8CCD8", d: 0 },
-        { l: "70%", t: "20%", s: 10, c: "#D6E9F3", d: 1 },
-        { l: "85%", t: "55%", s: 6, c: "#A8CCD8", d: 2 },
-        { l: "15%", t: "65%", s: 9, c: "#B9D8E1", d: 3 },
-        { l: "55%", t: "75%", s: 7, c: "#D6E9F3", d: 1.5 },
+        { l: "70%", t: "20%", s: 12, c: "#D6E9F3", d: 2 },
+        { l: "85%", t: "55%", s: 10, c: "#A8CCD8", d: 4 },
+        { l: "15%", t: "65%", s: 14, c: "#B9D8E1", d: 1 },
+        { l: "55%", t: "75%", s: 9, c: "#D6E9F3", d: 5 },
       ].map((p, i) => (
         <div
           key={i}

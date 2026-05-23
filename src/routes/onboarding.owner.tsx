@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Download, Check } from "lucide-react";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 import { Stepper, TopBar } from "@/routes/onboarding.avatar";
 import { PrimaryButton } from "@/routes/auth";
 import { useT } from "@/context/LanguageContext";
@@ -45,7 +45,7 @@ function Step3() {
   const sel = POSES.find((p) => p.id === selected) ?? POSES[0];
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
       <div
         className="min-h-screen pb-32"
         style={{ background: "#F5EDE8", fontFamily: "'Nunito','Quicksand',system-ui,sans-serif" }}
@@ -137,7 +137,7 @@ function Step3() {
           </PrimaryButton>
         </div>
       </div>
-    </PhoneFrame>
+    </AppShell>
   );
 }
 

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Eye, EyeOff, Mail, Lock, User, PawPrint, Check, ArrowLeft, ChevronRight, Heart, Plus, Stethoscope } from "lucide-react";
 import { useT } from "@/context/LanguageContext";
 import { HeroIllustration } from "@/routes/language";
-import PhoneFrame from "@/components/PhoneFrame";
+import AppShell from "@/components/AppShell";
 import { PawLogo } from "@/components/PawLogo";
 
 export const Route = createFileRoute("/auth")({ component: Auth });
@@ -23,7 +23,7 @@ function Auth() {
   };
 
   return (
-    <PhoneFrame>
+    <AppShell hideTopBar hideBottomNav>
       <div className="min-h-screen flex flex-col" style={{ background: "#FAFAF8" }}>
         <HeroIllustration compact />
 
@@ -55,7 +55,7 @@ function Auth() {
           </Link>
         </div>
       </div>
-    </PhoneFrame>
+    </AppShell>
   );
 }
 

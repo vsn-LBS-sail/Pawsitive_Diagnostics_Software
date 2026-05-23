@@ -14,15 +14,3 @@ export function detectIntent(message: string): Intent {
   if (hit(HEALTH)) return "healthCheck";
   return "general";
 }
-
-export const NEARBY_CLINICS = [
-  { jp: "渋谷動物病院", en: "Shibuya Animal Hospital", km: 0.8, rating: 4.6, em: true, phone: "+81-3-1234-5678" },
-  { jp: "原宿ペットクリニック", en: "Harajuku Pet Clinic", km: 1.2, rating: 4.4, em: false, phone: "+81-3-2345-6789" },
-  { jp: "新宿24時間動物医療", en: "Shinjuku 24H Animal Medical", km: 2.1, rating: 4.8, em: true, phone: "+81-3-3456-7890" },
-];
-
-export const VACCINE_RECORDS = [
-  { jp: "狂犬病", en: "Rabies", last: "2024-03-15", next: "2025-03-15", status: "ok" as const },
-  { jp: "混合ワクチン", en: "Combined", last: "2024-01-10", next: "2025-01-10", status: "ok" as const },
-  { jp: "フィラリア", en: "Heartworm", last: "2023-05-01", next: "2024-05-01", status: "overdue" as const },
-];

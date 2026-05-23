@@ -14,6 +14,7 @@ import {
 import { useT, useLanguage } from "@/context/LanguageContext";
 import { usePet, type PetProfile } from "@/context/PetContext";
 import DogAvatar, { BREED_KEY_BY_JP, type BreedKey } from "@/components/DogAvatar";
+import { REPORT_CHART_DATA, VACCINE_RECORDS, LAST_VET_VISIT } from "@/lib/mock";
 
 export const Route = createFileRoute("/report")({ component: Report });
 
@@ -31,10 +32,10 @@ function Report() {
     ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     : ["月", "火", "水", "木", "金", "土", "日"];
 
-  const scoreData = [82, 85, 83, 87, 86, 88, 87].map((v, i) => ({ d: dayLabels[i], v }));
-  const tempData = [38.3, 38.6, 38.4, 38.8, 38.5, 38.7, 38.5].map((v, i) => ({ d: dayLabels[i], v }));
-  const stepsData = [1800, 2600, 2400, 2200, 2000, 2800, 3100].map((v, i) => ({ d: dayLabels[i], v }));
-  const sleepData = [7.2, 8.1, 7.5, 6.8, 7.9, 8.4, 7.5].map((v, i) => ({ d: dayLabels[i], v }));
+  const scoreData = REPORT_CHART_DATA.score.map((v, i) => ({ d: dayLabels[i], v }));
+  const tempData  = REPORT_CHART_DATA.temp.map((v, i)  => ({ d: dayLabels[i], v }));
+  const stepsData = REPORT_CHART_DATA.steps.map((v, i) => ({ d: dayLabels[i], v }));
+  const sleepData = REPORT_CHART_DATA.sleep.map((v, i) => ({ d: dayLabels[i], v }));
 
   return (
     <AppShell
@@ -227,25 +228,29 @@ function HeroCard({ pet, dogName }: { pet: PetProfile; dogName: string }) {
   const offset = circ - (score / 100) * circ;
   const breedKey: BreedKey = BREED_KEY_BY_JP[pet.breedJp] ?? "shiba";
 
-  const title = language === "english"
-    ? `${dogName}'s Health Report`
-    : `${dogName}の健康レポート`;
+  const now = new Date();
+  const monthLabel = language === "english"
+    ? now.toLocaleString("en", { month: "long", year: "numeric" })
+    : `${now.getFullYear()}年${now.getMonth() + 1}月`;
+  const todayLabel = language === "english"
+    ? now.toLocaleString("en", { month: "short", day: "numeric", year: "numeric" })
+    : `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
 
   return (
     <div style={{
-      background: "#B9D8E1",
+      background: "#FFFFFF",
       borderRadius: 24,
       marginBottom: 16,
       overflow: "hidden",
-      borderLeft: "4px solid #447F98",
-      boxShadow: "0 8px 32px rgba(68,127,152,0.12)",
+      boxShadow: "0 8px 32px rgba(232,130,154,0.12)",
     }}>
+      <div style={{ height: 8, background: "linear-gradient(90deg, #E8829A, #7B68C8, #6BAF92)" }} />
       <div style={{ padding: 20 }}>
         {/* Row 1: identity */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{
             width: 44, height: 44, borderRadius: "50%",
-            border: "2px solid #447F98", overflow: "hidden",
+            border: "2px solid #FFD4E8", overflow: "hidden",
             boxShadow: "0 4px 12px rgba(232,130,154,0.2)",
             display: "flex", alignItems: "center", justifyContent: "center",
             background: "#fff", flexShrink: 0,
@@ -263,10 +268,10 @@ function HeroCard({ pet, dogName }: { pet: PetProfile; dogName: string }) {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#2C2C2C", lineHeight: 1.2 }}>
-              {title}
+              Health Report
             </div>
             <div style={{ fontSize: 11, color: "#8A8A8A", marginTop: 2 }}>
-              {t(pet.breedJp || "柴犬", pet.breedEn || "Shiba Inu")} · {t("2026年5月", "May 2026")}
+              {t(pet.breedJp || "柴犬", pet.breedEn || "Shiba Inu")} · {monthLabel}
             </div>
           </div>
           <div style={{
@@ -338,7 +343,7 @@ function HeroCard({ pet, dogName }: { pet: PetProfile; dogName: string }) {
             </span>
           </div>
           <span style={{ fontSize: 11, color: "#C4B8B4" }}>
-            {t("2026年5月16日", "May 16, 2026")}
+            {todayLabel}
           </span>
         </div>
       </div>
@@ -443,12 +448,11 @@ function NiceTooltip({ active, payload, label, color, suffix }: any) {
 type VaxStatus = "current" | "soon" | "overdue";
 function VaccinationCard() {
   const t = useT();
-  const vaccines: { jp: string; en: string; date: string; status: VaxStatus }[] = [
-    { jp: "狂犬病", en: "Rabies", date: "2025/04/15", status: "current" },
-    { jp: "混合ワクチン", en: "Combination", date: "2025/03/02", status: "current" },
-    { jp: "フィラリア", en: "Heartworm", date: "2026/01/20", status: "current" },
-    { jp: "ノミ・マダニ", en: "Flea & Tick", date: t("次回 2026年6月", "Next: Jun 2026"), status: "soon" },
-  ];
+  const vaccines = VACCINE_RECORDS.map((v) => ({
+    jp: v.jp, en: v.en,
+    date: v.status === "soon" ? t(`次回 ${v.date}`, `Next: ${v.date}`) : v.date,
+    status: (v.status === "ok" ? "current" : v.status) as VaxStatus,
+  }));
   return (
     <div style={{
       background: "#FFFFFF", borderRadius: 20, marginBottom: 12,
@@ -540,16 +544,16 @@ function LastVisitCard() {
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 15, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#2C2C2C", lineHeight: 1.2 }}>
-            {t("渋谷動物病院", "Shibuya Animal Hospital")}
+            {t(LAST_VET_VISIT.clinicJp, LAST_VET_VISIT.clinicEn)}
           </div>
           <div style={{ fontSize: 12, color: "#8A8A8A", marginTop: 2 }}>
-            {t("2026年4月20日", "Apr 20, 2026")}
+            {t(LAST_VET_VISIT.dateJp, LAST_VET_VISIT.dateEn)}
           </div>
           <span style={{
             display: "inline-block", marginTop: 6, fontSize: 11, fontFamily: "var(--font-heading)", fontWeight: 600,
             background: "#E8F5EE", color: "#6BAF92",
             padding: "3px 10px", borderRadius: 20,
-          }}>{t("健康診断: 異常なし ✓", "Health check: All clear ✓")}</span>
+          }}>{t(LAST_VET_VISIT.resultJp, LAST_VET_VISIT.resultEn)}</span>
         </div>
       </div>
       <div style={{
@@ -600,32 +604,32 @@ function QRCard() {
 
   return (
     <div style={{
-      background: "#B9D8E1",
-      borderRadius: 20, border: "1.5px solid #447F98",
-      padding: "20px 18px", boxShadow: "0 4px 16px rgba(68,127,152,0.15)",
-      display: "flex", flexDirection: "column", alignItems: "center", gap: 8, flex: 1,
+      background: "var(--color-primary)",
+      borderRadius: 20, border: "1.5px solid #C8C0F0",
+      padding: 16, boxShadow: "0 4px 16px rgba(123,104,200,0.15)",
+      display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
     }}>
       <div style={{
         width: 56, height: 56, borderRadius: "50%", background: "#fff",
         display: "flex", alignItems: "center", justifyContent: "center",
-        boxShadow: "0 4px 12px rgba(68,127,152,0.2)", flexShrink: 0,
+        boxShadow: "0 4px 12px rgba(123,104,200,0.2)", flexShrink: 0,
       }}>
-        <QrCode size={28} color="#447F98" />
+        <QrCode size={28} color="#7B68C8" />
       </div>
-      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3A47", textAlign: "center" }}>
+      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#4A3A8A", textAlign: "center" }}>
         {t("獣医用QRコード", "Vet QR Code")}
       </div>
-      <div style={{ fontSize: 10, color: "#4A7FA5", textAlign: "center" }}>
+      <div style={{ fontSize: 10, color: "#7B68C8", textAlign: "center" }}>
         {t("毎回新しいQRを生成", "New QR every visit")}
       </div>
       
       <div style={{
         width: 120, height: 120, background: "#fff", borderRadius: 12,
-        border: "2px solid #A8CCD8", padding: generating || refId ? 8 : 6,
+        border: "2px solid #C8C0F0", padding: generating || refId ? 8 : 6,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         {generating ? (
-          <span style={{ fontSize: 13, color: "#4A7FA5", fontFamily: "var(--font-heading)", fontWeight: 600 }}>Generating...</span>
+          <span style={{ fontSize: 13, color: "#7B68C8", fontFamily: "var(--font-heading)", fontWeight: 600 }}>Generating...</span>
         ) : refId ? (
           <QRCode value={qrText} size={100} fgColor="#7C3AED" />
         ) : (
@@ -650,9 +654,9 @@ function QRCard() {
 
       <button onClick={generateQR} disabled={generating} style={{
         width: "100%", height: 40, marginTop: "auto",
-        background: generating ? "#A8CCD8" : "#447F98",
+        background: generating ? "#C8C0F0" : "linear-gradient(135deg, #7B68C8, #9B88D8)",
         color: "#fff", fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 13, borderRadius: 12,
-        boxShadow: generating ? "none" : "0 4px 12px rgba(68,127,152,0.3)",
+        boxShadow: generating ? "none" : "0 4px 12px rgba(123,104,200,0.3)",
       }}>
         {t("生成", "Generate")}
       </button>
@@ -750,8 +754,8 @@ function HealthReportCard() {
     y += 10;
     
     doc.text(`Vaccination Status: ${pet.vaccinated ? "Up to date" : "Not up to date"}`, 20, y); y+=6;
-    doc.text(`Last Vet Visit: Apr 20, 2026`, 20, y); y+=6;
-    doc.text(`Vet/Hospital: ${pet.vetName || "Shibuya Animal Hospital"}`, 20, y); y+=6;
+    doc.text(`Last Vet Visit: ${LAST_VET_VISIT.dateEn}`, 20, y); y+=6;
+    doc.text(`Vet/Hospital: ${pet.vetName || LAST_VET_VISIT.clinicEn}`, 20, y); y+=6;
     doc.text(`Last Checkup Result: All clear`, 20, y); y+=6;
     doc.text(`Known Health Conditions: ${pet.healthConditions || "None reported"}`, 20, y); y+=6;
     doc.text(`Next Appointment: Not scheduled`, 20, y); y+=6;
@@ -775,39 +779,39 @@ function HealthReportCard() {
   ];
   return (
     <div style={{
-      background: "#B9D8E1",
-      borderRadius: 20, border: "1.5px solid #447F98",
-      padding: "20px 18px", boxShadow: "0 4px 16px rgba(68,127,152,0.15)",
-      display: "flex", flexDirection: "column", alignItems: "center", gap: 8, flex: 1,
+      background: "var(--color-primary)",
+      borderRadius: 20, border: "1.5px solid #F0D890",
+      padding: 16, boxShadow: "0 4px 16px rgba(212,168,67,0.15)",
+      display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
     }}>
       <div style={{
         width: 56, height: 56, borderRadius: "50%", background: "#fff",
         display: "flex", alignItems: "center", justifyContent: "center",
-        boxShadow: "0 4px 12px rgba(68,127,152,0.2)", flexShrink: 0,
+        boxShadow: "0 4px 12px rgba(212,168,67,0.2)", flexShrink: 0,
       }}>
-        <FileDown size={28} color="#447F98" />
+        <FileDown size={28} color="#D4A843" />
       </div>
-      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#1C3A47", textAlign: "center" }}>
+      <div style={{ fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#78540A", textAlign: "center" }}>
         {t("健康レポート", "Health Report")}
       </div>
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 8, marginTop: 4, flex: 1, justifyContent: "center" }}>
+      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 4, marginTop: 4 }}>
         {items.map(([jp, en]) => (
           <div key={en} style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <div style={{
-              width: 14, height: 14, borderRadius: "50%", background: "#447F98",
+              width: 14, height: 14, borderRadius: "50%", background: "#D4A843",
               display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
             }}>
               <Check size={9} color="#fff" strokeWidth={3} />
             </div>
-            <span style={{ fontSize: 10, color: "#1C3A47" }}>{t(jp, en)}</span>
+            <span style={{ fontSize: 10, color: "#5C4000" }}>{t(jp, en)}</span>
           </div>
         ))}
       </div>
       <button onClick={generatePDF} style={{
         width: "100%", height: 40, marginTop: "auto",
-        background: "#447F98",
-        color: "#fff", fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 13, borderRadius: 12,
-        boxShadow: "0 4px 12px rgba(68,127,152,0.3)",
+        background: "var(--color-primary)",
+        color: "#fff", fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 12, borderRadius: 12,
+        boxShadow: "0 4px 12px rgba(212,168,67,0.4)",
         display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
       }}>
          {t("PDFをエクスポート", "Export PDF")}

@@ -7,7 +7,7 @@ import { usePet, displayName } from "@/context/PetContext";
 
 export const Route = createFileRoute("/temp-sense")({ component: TempSensePage });
 
-// ---------- Pastel orange identity ----------
+// ---------- Blue palette — matches motion-sense ----------
 const O = {
   primary: "#F4A56A",
   medium: "#E8895A",
