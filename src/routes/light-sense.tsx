@@ -129,7 +129,7 @@ function ColorWheel({
         position: "relative", width: size, height: size, borderRadius: "50%",
         background: `conic-gradient(from 0deg, #ff0000, #ffaa00, #ffff00, #aaff00, #00ff00, #00ffaa, #00ffff, #00aaff, #0000ff, #aa00ff, #ff00ff, #ff00aa, #ff0000)`,
         cursor: dragging ? "grabbing" : "grab", touchAction: "none",
-        boxShadow: `inset 0 0 0 1px ${P.muted}, 0 4px 20px rgba(244,160,188,0.15)`,
+        boxShadow: `inset 0 0 0 1px ${P.muted}, 0 4px 20px rgba(91, 175, 214, 0.15)`,
         boxSizing: "border-box",
       }}
     >
@@ -235,7 +235,7 @@ function Toggle({ on, onChange }: { on: boolean; onChange: () => void }) {
 // ───────────── Page ─────────────
 function LightSensePage() {
   const t = useT();
-  const [color, setColor] = useState("#FFB7C5");
+  const [color, setColor] = useState("#4169E1");
   const [saturation, setSaturation] = useState(85);
   const [brightness, setBrightness] = useState(75);
   const [mode, setMode] = useState<Mode>("steady");

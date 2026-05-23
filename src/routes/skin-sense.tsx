@@ -128,22 +128,22 @@ function SkinSensePage() {
         @keyframes ssPetal { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
         @keyframes ssScan { 0%{top:0} 50%{top:calc(100% - 2px)} 100%{top:0} }
         @keyframes ssIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes ssPulse { 0%,100%{box-shadow:0 6px 20px rgba(232,160,191,.4)} 50%{box-shadow:0 6px 28px rgba(232,160,191,.65)} }
+        @keyframes ssPulse { 0%,100%{box-shadow:0 6px 20px rgba(91,175,214,.4)} 50%{box-shadow:0 6px 28px rgba(91,175,214,.65)} }
         @keyframes ssDot { 0%,80%,100%{transform:translateY(0);opacity:.4} 40%{transform:translateY(-6px);opacity:1} }
         .ss-in { animation: ssIn 380ms cubic-bezier(.2,.7,.2,1) both; }
       `}</style>
 
-      <div style={{ background: "#FEF6FA", minHeight: "100%", paddingBottom: 110 }}>
+      <div style={{ background: C.pale, minHeight: "100%", paddingBottom: 110 }}>
         {/* ---- HERO ---- */}
         <SenseBanner
           subtitleJp="スキンセンス AI"
           titleEn="SkinSense AI"
           descriptorJp="皮膚健康診断"
           descriptorEn="Skin health analysis"
-          bgGradient="linear-gradient(135deg,#FFF5F7 0%,#FCE7F3 100%)"
+          bgGradient="linear-gradient(135deg,#EAF2F8 0%,#D6EAF5 100%)"
           kanji="皮"
-          kanjiColor="rgba(236,72,153,0.06)"
-          subtitleColor="#C98BA8"
+          kanjiColor="rgba(91,175,214,0.07)"
+          subtitleColor="#6B8FA8"
         />
 
         {/* ---- Stats card below banner ---- */}
@@ -157,7 +157,7 @@ function SkinSensePage() {
             gridTemplateColumns: "1fr 1fr 1fr",
           }}>
             {[
-              { label: t("皮膚スコア", "SKIN SCORE"), value: "94", color: "#C98BA8" },
+              { label: t("皮膚スコア", "SKIN SCORE"), value: "94", color: C.primary },
               { label: t("最終スキャン", "LAST SCAN"), value: t("5月12日", "May 12"), color: C.text },
               { label: t("状態", "CONDITION"), value: t("正常", "Normal"), color: C.ok },
             ].map((s, i) => (
@@ -195,21 +195,21 @@ function SkinSensePage() {
                 {/* scanning line */}
                 <div style={{
                   position: "absolute", left: 0, right: 0, height: 1.5,
-                  background: "linear-gradient(90deg, transparent, rgba(245,189,212,0.55), transparent)",
+                  background: "linear-gradient(90deg, transparent, rgba(91,175,214,0.55), transparent)",
                   animation: "ssScan 2.5s ease-in-out infinite",
                 }} />
                 {/* Viewfinder */}
                 <div style={{
                   width: 80, height: 80, borderRadius: "50%",
-                  border: "1px solid rgba(245,189,212,0.3)",
+                  border: "1px solid rgba(91,175,214,0.3)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   position: "relative",
                 }}>
                   <div style={{
                     position: "absolute", width: 65, height: 65, borderRadius: "50%",
-                    border: "1px solid rgba(245,189,212,0.15)",
+                    border: "1px solid rgba(91,175,214,0.15)",
                   }} />
-                  <Camera size={28} color="#C98BA8" strokeWidth={1.6} />
+                  <Camera size={28} color={C.primary} strokeWidth={1.6} />
                 </div>
                 <Bi
                   jp="愛犬の皮膚を撮影してください"
@@ -231,7 +231,7 @@ function SkinSensePage() {
                   onClick={() => { setPhoto(null); setDone(false); }}
                   style={{
                     position: "absolute", top: 10, right: 10,
-                    background: "rgba(255,255,255,0.95)", color: "#6B3A52",
+                    background: "rgba(255,255,255,0.95)", color: C.primary,
                     border: "none", borderRadius: 50, padding: "6px 12px",
                     fontSize: 11, fontFamily: "var(--font-heading)", fontWeight: 600, display: "flex", alignItems: "center", gap: 4,
                     boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
@@ -254,7 +254,7 @@ function SkinSensePage() {
                   onClick={() => cameraRef.current?.click()}
                   style={{
                     flex: 1, padding: "10px 0", borderRadius: 50,
-                    border: `1.5px solid #C98BA8`, color: "#C98BA8", background: "#fff",
+                    border: `1.5px solid ${C.primary}`, color: C.primary, background: "#fff",
                     fontSize: 13, fontWeight: 500, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                   }}
                 >
@@ -264,9 +264,9 @@ function SkinSensePage() {
                   onClick={() => galleryRef.current?.click()}
                   style={{
                     flex: 1, padding: "10px 0", borderRadius: 50,
-                    background: "var(--color-primary)", color: "#6B3A52",
+                    background: C.primary, color: "#FFFFFF",
                     border: "none", fontSize: 13, fontWeight: 600,
-                    boxShadow: "0 4px 14px rgba(232,160,191,0.3)",
+                    boxShadow: "0 4px 14px rgba(91,175,214,0.3)",
                     display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                   }}
                 >
@@ -279,7 +279,7 @@ function SkinSensePage() {
                 disabled={analyzing}
                 style={{
                   marginTop: 14, width: "100%", padding: "14px 0", borderRadius: 50,
-                  background: "var(--color-primary)", color: "#6B3A52",
+                  background: C.primary, color: "#FFFFFF",
                   border: "none", fontSize: 15, fontWeight: 600,
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                   animation: analyzing ? "none" : "ssPulse 2s ease-in-out infinite",
@@ -306,7 +306,7 @@ function SkinSensePage() {
                     jpStyle={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: C.text }}
                     enStyle={{ fontSize: 13, fontWeight: 600, color: C.text2 }}
                   />
-                  <div style={{ fontSize: 12, color: "#C98BA8", marginTop: 2, fontWeight: 600 }}>
+                  <div style={{ fontSize: 12, color: C.primary, marginTop: 2, fontWeight: 600 }}>
                     {t("信頼度 96%", "Confidence 96%")}
                   </div>
                 </div>
@@ -345,10 +345,10 @@ function SkinSensePage() {
                   }}>
                     <div style={{
                       width: 48, height: 48, borderRadius: "50%", flexShrink: 0,
-                      background: "var(--color-primary)",
+                      background: C.soft,
                       display: "flex", alignItems: "center", justifyContent: "center",
                     }}>
-                      <PawIcon color="#E8B4CC" size={22} />
+                      <PawIcon color={C.primary} size={22} />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <Bi jp={h.jp} en={h.en}
@@ -359,7 +359,7 @@ function SkinSensePage() {
                       <div style={{ display: "flex", gap: 4, marginTop: 5, flexWrap: "wrap" }}>
                         {h.tags.map((tag, ti) => (
                           <span key={ti} style={{
-                            background: C.soft, color: "#6B3A52",
+                            background: C.soft, color: C.text,
                             fontSize: 9, fontWeight: 600, borderRadius: 50,
                             padding: "2px 8px",
                           }}>{t(tag.jp, tag.en)}</span>
@@ -367,7 +367,7 @@ function SkinSensePage() {
                       </div>
                     </div>
                     <div style={{ textAlign: "right", flexShrink: 0 }}>
-                      <div style={{ fontSize: 22, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#C98BA8", lineHeight: 1 }}>{h.score}</div>
+                      <div style={{ fontSize: 22, fontFamily: "var(--font-heading)", fontWeight: 600, color: C.primary, lineHeight: 1 }}>{h.score}</div>
                       <span style={{
                         display: "inline-block", marginTop: 4, padding: "3px 8px",
                         borderRadius: 50, background: s.bg, color: s.color,
@@ -380,7 +380,7 @@ function SkinSensePage() {
             </div>
             <button style={{
               width: "100%", marginTop: 10, padding: "8px 0", border: "none", background: "transparent",
-              color: "#C98BA8", fontSize: 13, fontWeight: 600,
+              color: C.primary, fontSize: 13, fontWeight: 600,
             }}>
               {t("履歴をすべて見る ›", "View Full History ›")}
             </button>
@@ -403,15 +403,15 @@ function ScoreRing({ value }: { value: number }) {
     <svg width={52} height={52} viewBox="0 0 52 52">
       <defs>
         <linearGradient id="ssRing" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#F0A8C4" />
-          <stop offset="100%" stopColor="#F5BDD4" />
+          <stop offset="0%" stopColor="#5BAFD6" />
+          <stop offset="100%" stopColor="#7EC8E3" />
         </linearGradient>
       </defs>
       <circle cx={26} cy={26} r={r} fill="none" stroke={C.soft} strokeWidth={5} />
       <circle cx={26} cy={26} r={r} fill="none" stroke="url(#ssRing)" strokeWidth={5}
         strokeDasharray={c} strokeDashoffset={off} strokeLinecap="round"
         transform="rotate(-90 26 26)" />
-      <text x={26} y={30} textAnchor="middle" fontSize={14} fontWeight={800} fill="#C98BA8">{value}</text>
+      <text x={26} y={30} textAnchor="middle" fontSize={14} fontWeight={800} fill={C.primary}>{value}</text>
     </svg>
   );
 }
@@ -445,8 +445,8 @@ function DetailedGuide() {
         style={{
           width: "100%", padding: "12px 14px", borderRadius: 14,
           background: C.pale, border: `1px solid ${C.soft}`,
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          color: "#6B3A52", fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.06em",
+          display: "flex", alignItems: "center", justifycontent: "space-between",
+          color: C.text, fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.06em",
         }}
       >
         <span>● {t("詳細ガイド", "DETAILED GUIDE")}</span>
@@ -476,7 +476,7 @@ function GuideRow({ titleJp, titleEn, jp, en }: { titleJp: string; titleEn: stri
   return (
     <div>
       <Bi jp={titleJp} en={titleEn}
-        jpStyle={{ fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#6B3A52" }}
+        jpStyle={{ fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, color: C.text }}
         enStyle={{ fontSize: 10, color: C.text3, marginTop: 1 }}
       />
       <Bi jp={jp} en={en}
@@ -536,8 +536,8 @@ function AIChat() {
           <button key={i}
             onClick={() => sendText(q.jp, q.en)}
             style={{
-              flexShrink: 0, background: "#FEF0F6", border: "1px solid #F5BDD4",
-              color: "#9B5B76", borderRadius: 50, padding: "6px 14px",
+              flexShrink: 0, background: "#EAF2F8", border: `1px solid ${C.soft}`,
+              color: C.primary, borderRadius: 50, padding: "6px 14px",
               fontSize: 12, fontWeight: 500, whiteSpace: "nowrap",
             }}
           >{t(q.jp, q.en)}</button>
@@ -558,8 +558,8 @@ function AIChat() {
                 boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 4 }}>
-                  <PawIcon color="#E8B4CC" size={12} />
-                  <span style={{ fontSize: 10, color: "#E8B4CC", fontFamily: "var(--font-heading)", fontWeight: 600 }}>AI</span>
+                  <PawIcon color={C.primary} size={12} />
+                  <span style={{ fontSize: 10, color: C.primary, fontFamily: "var(--font-heading)", fontWeight: 600 }}>AI</span>
                 </div>
                 <Bi jp={m.jp} en={m.en}
                   jpStyle={{ fontSize: 13, color: "#374151", lineHeight: 1.6 }}
@@ -568,7 +568,7 @@ function AIChat() {
               </div>
             ) : (
               <div style={{
-                background: "var(--color-primary)", color: "#6B3A52",
+                background: C.primary, color: "#FFFFFF",
                 padding: "10px 14px", maxWidth: "82%",
                 borderRadius: "16px 16px 4px 16px",
                 fontSize: 13, lineHeight: 1.5,
@@ -611,9 +611,9 @@ function AIChat() {
         />
         <button onClick={handleSend} aria-label="Send" style={{
           width: 36, height: 36, borderRadius: "50%", border: "none",
-          background: "var(--color-primary)", color: "#6B3A52",
+          background: C.primary, color: "#FFFFFF",
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 2px 8px rgba(232,160,191,0.3)", flexShrink: 0,
+          boxShadow: "0 2px 8px rgba(91, 175, 214, 0.3)", flexShrink: 0,
         }}><Send size={16} /></button>
       </div>
     </PinkCard>

@@ -120,8 +120,8 @@ function BarkSensePage() {
     if (noise > 1.2) level = Math.min(3, level + 1);
     return level;
   });
-  // Bark activity bars (low → peak) in pastel purples
-  const heatColors = ["#E8E3FF", "#C2B5F0", "#9B8EC4", "#8B7DBF"];
+  // Bark activity bars (low → peak) in pastel blues
+  const heatColors = ["#EAF2F8", "#D6EAF5", "#7EC8E3", "#5BAFD6"];
   const nowHour = 14;
 
   // Donut
@@ -195,10 +195,10 @@ function BarkSensePage() {
           titleEn="BarkSense AI"
           descriptorJp="鳴き声から感情を解析"
           descriptorEn="Emotion from bark patterns"
-          bgGradient="linear-gradient(135deg,#F5F0FF 0%,#EDE9FE 100%)"
+          bgGradient="linear-gradient(135deg,#EAF2F8 0%,#D6EAF5 100%)"
           kanji="声"
-          kanjiColor="rgba(139,92,246,0.06)"
-          subtitleColor="#9B8EC4"
+          kanjiColor="rgba(91, 175, 214, 0.07)"
+          subtitleColor="#6B8FA8"
         />
 
         {/* Redesigned hero stats bar */}
@@ -242,7 +242,7 @@ function BarkSensePage() {
                     cx={center} cy={center}
                     r={(blobRadius * i) / 3}
                     fill="none"
-                    stroke="rgba(124,58,237,0.08)"
+                    stroke="rgba(91, 175, 214, 0.08)"
                     strokeWidth={1}
                   />
                 ))}
@@ -255,7 +255,7 @@ function BarkSensePage() {
                       x1={center} y1={center}
                       x2={center + Math.cos(a) * blobRadius}
                       y2={center + Math.sin(a) * blobRadius}
-                      stroke="rgba(124,58,237,0.06)"
+                      stroke="rgba(91, 175, 214, 0.06)"
                       strokeWidth={1}
                     />
                   );
@@ -299,8 +299,8 @@ function BarkSensePage() {
                 })()}
 
                 {/* center glass card */}
-                <circle cx={center} cy={center} r={38} fill="white" stroke="rgba(139,125,191,0.10)" />
-                <circle cx={center} cy={center} r={38} fill="none" stroke="rgba(139,125,191,0.10)" strokeWidth={6} />
+                <circle cx={center} cy={center} r={38} fill="white" stroke="rgba(91, 175, 214, 0.10)" />
+                <circle cx={center} cy={center} r={38} fill="none" stroke="rgba(91, 175, 214, 0.10)" strokeWidth={6} />
 
                 {/* labels (centered anchor so text stays inside the card) */}
                 {RADAR_ORDER.map((k, i) => {
@@ -376,9 +376,9 @@ function BarkSensePage() {
               </div>
               <div style={{
                 height: 44, borderRadius: 14,
-                background: `linear-gradient(90deg, ${P.soft}, rgba(124,58,237,0.08))`,
+                background: `linear-gradient(90deg, ${P.soft}, rgba(91, 175, 214, 0.08))`,
                 position: "relative", overflow: "hidden",
-                border: "1px solid rgba(124,58,237,0.10)",
+                border: "1px solid rgba(91, 175, 214, 0.10)",
               }}>
                 <svg viewBox="0 0 300 44" preserveAspectRatio="none" style={{ width: "200%", height: "100%", animation: "bsSignal 6s linear infinite" }}>
                   {Array.from({ length: 60 }).map((_, i) => {
@@ -486,8 +486,8 @@ function BarkSensePage() {
                       background: d.today ? P.primary : "white", flexShrink: 0,
                       border: d.today ? `2px solid ${P.primary}` : `1.5px solid ${P.light}`,
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 11, fontFamily: "var(--font-heading)", fontWeight: 600, color: d.today ? "white" : "#1A1A2E",
-                boxShadow: d.today ? `0 0 0 3px rgba(124,58,237,0.2)` : "none",
+                      fontSize: 11, fontFamily: "var(--font-heading)", fontWeight: 600, color: d.today ? "white" : "#1A2E40",
+                boxShadow: d.today ? `0 0 0 3px rgba(91, 175, 214, 0.2)` : "none",
                       position: "relative", zIndex: 1,
                     }}>
                       {lang === "english" ? d.en.slice(0, 1) : d.jp}
@@ -497,7 +497,7 @@ function BarkSensePage() {
                       background: d.today ? P.pale : "#FAFAF9",
                       borderRadius: 14, padding: "10px 12px",
                       border: d.today ? `1px solid ${P.muted}` : "1px solid rgba(0,0,0,0.04)",
-                      boxShadow: d.today ? "0 8px 20px rgba(124,58,237,0.12)" : "none",
+                      boxShadow: d.today ? "0 8px 20px rgba(91, 175, 214, 0.12)" : "none",
                       display: "flex", alignItems: "center", gap: 10,
                     }}>
                       <div style={{
@@ -565,7 +565,7 @@ function BarkSensePage() {
                 left: `calc(${(nowHour + 0.5) / 24 * 100}% - 1px)`,
                 top: -4, bottom: -4,
                 width: 2, background: P.primary,
-                boxShadow: `0 0 8px rgba(124,58,237,0.6)`,
+                boxShadow: `0 0 8px rgba(91, 175, 214, 0.6)`,
               }}>
                 <div style={{
                   position: "absolute", top: -16, left: "50%",
@@ -626,7 +626,7 @@ function BarkSensePage() {
                         strokeDashoffset={-off}
                         style={{
                           transition: "stroke-dasharray 1.1s cubic-bezier(.2,.8,.2,1)",
-                          filter: "drop-shadow(0 2px 4px rgba(139,125,191,0.18))",
+                          filter: "drop-shadow(0 2px 4px rgba(91, 175, 214, 0.18))",
                         }}
                       />
                     );
