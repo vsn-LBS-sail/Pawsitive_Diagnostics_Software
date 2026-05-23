@@ -386,334 +386,336 @@ function Home() {
 
   return (
     <AppShell titleJp="" titleEn="" noPadding>
-      <HeroPostcard score={score} name={heroName} mood={mood} celebrate={celebrate} ownerGender={pet.ownerGender} />
+      <div style={{ background: "#D5EBF3", minHeight: "100%", display: "flex", flexDirection: "column", paddingBottom: 24 }}>
+        <HeroPostcard score={score} name={heroName} mood={mood} celebrate={celebrate} ownerGender={pet.ownerGender} />
 
-      <div style={{ padding: "0 16px" }}>
+        <div style={{ padding: "0 16px" }}>
 
-        {/* Daily fact - Platinum (#DAEEE1) */}
-        <motion.div key={factIdx} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 8 }}>
-          <JCard accent="#447F98" strip="transparent" style={{ background: "#DAEEE1" }}>
-            <div style={{ padding: 16 }}>
-              <div className="flex justify-between items-center">
-                <div className="flex items-center" style={{ gap: 6 }}>
-                  <PawPrint size={14} strokeWidth={1.75} style={{ color: "#447F98" }} />
-                  <span style={{ fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#447F98", letterSpacing: "0.02em" }}>
-                    {t("今日の豆知識", "Daily Dog Fact")}
-                  </span>
+          {/* Daily fact - Platinum (#DADEE1) */}
+          <motion.div key={factIdx} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: 8 }}>
+            <JCard accent="#447F98" strip="transparent" style={{ background: "#DADEE1" }}>
+              <div style={{ padding: 16 }}>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center" style={{ gap: 6 }}>
+                    <PawPrint size={14} strokeWidth={1.75} style={{ color: "#447F98" }} />
+                    <span style={{ fontSize: 12, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#447F98", letterSpacing: "0.02em" }}>
+                      {t("今日の豆知識", "Daily Dog Fact")}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div style={{ marginTop: 10, fontSize: 15, lineHeight: 1.5, color: "#2C3E50", fontWeight: 500 }}>
-                {language === "english" ? fact.en : fact.jp}
-              </div>
-              {language === "mixed" && (
-                <div style={{ marginTop: 6, fontSize: 11, color: JP.usuzumi, lineHeight: 1.5 }}>{fact.en}</div>
-              )}
-            </div>
-          </JCard>
-        </motion.div>
-
-        {/* Health score - Ice Blue (#D6EBF3) */}
-        <div style={{ marginTop: 8 }}>
-          <JCard accent="#447F98" strip="transparent" style={{ background: "#D6EBF3" }}>
-            <div style={{ padding: 16 }} className="flex items-center gap-4">
-              <ScoreRing value={score} />
-              <div className="flex-1">
-                <div style={{ fontSize: 16, fontWeight: 600, color: JP.sumi, letterSpacing: "0.02em" }}>
-                  {t("総合健康スコア", "Overall Health Score")}
+                <div style={{ marginTop: 10, fontSize: 15, lineHeight: 1.5, color: "#2C3E50", fontWeight: 500 }}>
+                  {language === "english" ? fact.en : fact.jp}
                 </div>
-                {language === "mixed" && <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 2 }}>Overall Health Score</div>}
-                <div className="flex items-center" style={{ gap: 6, marginTop: 8, fontSize: 12 }}>
-                  <span className="relative inline-block" style={{ width: 8, height: 8 }}>
-                    <span style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#628BB5" }}/>
-                    <span className="animate-ping" style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#628BB5", opacity: 0.6 }}/>
-                  </span>
-                  <span style={{ color: "#628BB5", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.05em" }}>LIVE</span>
-                  <span style={{ color: JP.usuzumi }}>· {t("全センサー稼働中", "All sensors active")}</span>
-                </div>
+                {language === "mixed" && (
+                  <div style={{ marginTop: 6, fontSize: 11, color: JP.usuzumi, lineHeight: 1.5 }}>{fact.en}</div>
+                )}
               </div>
-            </div>
-          </JCard>
-        </div>
+            </JCard>
+          </motion.div>
 
-        {/* Collar status - Glacier (#B9DBE1) */}
-        <div style={{ marginTop: 8 }}>
-          <JCard accent="#447F98" strip="transparent" style={{ background: "#B9DBE1" }}>
-            <div style={{ padding: 16 }}>
-              <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, marginBottom: 14, letterSpacing: "0.02em" }}>
-                {t("カラーステータス", "Collar Status")}
-              </div>
-
-              <div className="flex items-center" style={{ gap: 12 }}>
-                <div className="flex items-center justify-center" style={{ width: 40, height: 40, borderRadius: "50%", background: "#FFFFFF" }}>
-                  <Check size={20} strokeWidth={2.5} style={{ color: "#628BB5" }} />
-                </div>
+          {/* Health score - Ice Blue (#D5EBF3) */}
+          <div style={{ marginTop: 8 }}>
+            <JCard accent="#447F98" strip="transparent" style={{ background: "#D5EBF3" }}>
+              <div style={{ padding: 16 }} className="flex items-center gap-4">
+                <ScoreRing value={score} />
                 <div className="flex-1">
-                  <div style={{ fontSize: 14, fontWeight: 600, color: JP.sumi }}>{t("接続済み", "Connected")}</div>
-                  <div style={{ fontSize: 12, color: JP.usuzumi }}>{t("最終同期: 2分前", "Last sync: 2 minutes ago")}</div>
-                </div>
-              </div>
-
-              <div style={{ height: 1, background: "rgba(0,0,0,0.06)", margin: "14px 0" }} />
-
-              {/* Battery & Signal container - Platinum (#DAEEE1) */}
-              <div style={{ background: "#DAEEE1", padding: "12px 14px", borderRadius: 16, marginBottom: 14 }}>
-                <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
-                  <div className="flex items-center" style={{ gap: 6 }}>
-                    <BatteryMedium size={18} strokeWidth={1.5} style={{ color: "#628BB5" }} />
-                    <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("バッテリー", "Battery")}</span>
+                  <div style={{ fontSize: 16, fontWeight: 600, color: JP.sumi, letterSpacing: "0.02em" }}>
+                    {t("総合健康スコア", "Overall Health Score")}
                   </div>
-                  <div className="flex items-center">
-                    <div style={{ width: 110, height: 6, background: "#FFFFFF", borderRadius: 4, overflow: "hidden" }}>
-                      <div style={{ width: "87%", height: "100%", background: "#628BB5", borderRadius: 4 }}/>
-                    </div>
-                    <span style={{ marginLeft: 8, fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#628BB5", fontVariantNumeric: "tabular-nums" }}>87%</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center" style={{ gap: 6 }}>
-                    <Signal size={18} strokeWidth={1.5} style={{ color: "#628BB5" }} />
-                    <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("信号強度", "Signal Strength")}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="flex items-end" style={{ gap: 3 }}>
-                      {[6, 10, 14, 18].map((h) => (
-                        <div key={h} style={{ width: 4, height: h, background: "#628BB5", borderRadius: 2 }} />
-                      ))}
-                    </div>
-                    <span style={{ marginLeft: 8, fontSize: 13, fontWeight: 600, color: "#628BB5" }}>{t("優秀", "Excellent")}</span>
+                  {language === "mixed" && <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 2 }}>Overall Health Score</div>}
+                  <div className="flex items-center" style={{ gap: 6, marginTop: 8, fontSize: 12 }}>
+                    <span className="relative inline-block" style={{ width: 8, height: 8 }}>
+                      <span style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#1D9E75" }}/>
+                      <span className="animate-ping" style={{ position:"absolute", inset:0, borderRadius:"50%", background: "#1D9E75", opacity: 0.6 }}/>
+                    </span>
+                    <span style={{ color: "#1D9E75", fontFamily: "var(--font-heading)", fontWeight: 600, letterSpacing: "0.05em" }}>LIVE</span>
+                    <span style={{ color: JP.usuzumi }}>· {t("全センサー稼働中", "All sensors active")}</span>
                   </div>
                 </div>
               </div>
+            </JCard>
+          </div>
 
-              <button
-                className="w-full flex items-center justify-center"
-                style={{
-                  background: "#FFFFFF",
-                  color: "#628BB5",
-                  border: "1px solid rgba(98, 139, 181, 0.3)",
-                  borderRadius: 12,
-                  height: 44,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  gap: 8,
-                  letterSpacing: "0.02em",
-                }}
-              >
-                <Bluetooth size={16} strokeWidth={1.75} />
-                {t("カラーを接続", "Connect Collar")}
-              </button>
-            </div>
-          </JCard>
-        </div>
-
-        {/* AI Sensors section */}
-        <SectionLabel jp="AI センサー" en="AI Sensors" />
-
-        <div className="grid grid-cols-2" style={{ gap: 8 }}>
-          {sensors.map((s, idx) => {
-            const Icon = s.Icon;
-            const sensorBgColors = [
-              "#D6EBF3", // 0: BarkSense AI (Ice Blue)
-              "#B9DBE1", // 1: SkinSense AI (Glacier)
-              "#DAEEE1", // 2: MotionSense (Platinum)
-              "#D6EBF3", // 3: TempSense AI (Ice Blue)
-              "#B9DBE1", // 4: LocationSense (Glacier)
-              "#DAEEE1", // 5: PressureSense (Platinum)
-              "#D6EBF3", // 6: LightSense AI (Ice Blue)
-              "#B9DBE1", // 7: CombineSense (Glacier)
-            ];
-            const currentBg = sensorBgColors[idx % sensorBgColors.length];
-            return (
-              <Link
-                key={s.en}
-                to={s.to}
-                style={{
-                  position: "relative",
-                  background: currentBg,
-                  borderRadius: 20,
-                  borderLeft: "4px solid #447F98", // Turquoise border left on all sensor cards
-                  boxShadow: CARD_SHADOW,
-                  overflow: "hidden",
-                  transition: "transform 0.2s ease",
-                }}
-                className="flex flex-col"
-              >
-                <div style={{ padding: 16, display: "flex", flexDirection: "column", flex: 1 }}>
-
-                  <div style={{ width: 44, height: 44, borderRadius: 12, background: s.iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Icon size={22} strokeWidth={1.5} style={{ color: s.accent }} />
-                  </div>
-
-                  <div style={{ marginTop: 12, fontSize: 14, fontWeight: 600, color: JP.sumi, letterSpacing: "0.01em", lineHeight: 1.2 }}>
-                    {t(s.jp, s.en)}
-                  </div>
-                  <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 2, lineHeight: 1.3 }}>
-                    {t(s.subJp, s.subEn)}
-                  </div>
-
-                  <div className="flex items-center justify-between" style={{ marginTop: 10, gap: 6 }}>
-                    <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, fontVariantNumeric: "tabular-nums", lineHeight: 1.1 }}>
-                      {t(s.valJp, s.valEn)}
-                    </div>
-                    <span className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: s.accent, flexShrink: 0 }}/>
-                  </div>
-
-                  {s.noteJp && (
-                    <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 4 }}>
-                      {t(s.noteJp, s.noteEn!)}
-                    </div>
-                  )}
-
-                  {s.progress !== undefined && (
-                    <div style={{ marginTop: 10, height: 4, borderRadius: 4, overflow: "hidden", background: "#FFFFFF" }}>
-                      <div style={{ width: `${s.progress}%`, height: "100%", background: "#628BB5", borderRadius: 4 }}/>
-                    </div>
-                  )}
-
+          {/* Collar status - Glacier (#B9DBE1) */}
+          <div style={{ marginTop: 8 }}>
+            <JCard accent="#447F98" strip="transparent" style={{ background: "#B9DBE1" }}>
+              <div style={{ padding: 16 }}>
+                <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, marginBottom: 14, letterSpacing: "0.02em" }}>
+                  {t("カラーステータス", "Collar Status")}
                 </div>
-              </Link>
-            );
-          })}
-        </div>
 
-        {/* Quick Access */}
-        <SectionLabel jp="クイックアクセス" en="Quick Access" />
+                <div className="flex items-center" style={{ gap: 12 }}>
+                  <div className="flex items-center justify-center" style={{ width: 40, height: 40, borderRadius: "50%", background: "#FFFFFF" }}>
+                    <Check size={20} strokeWidth={2.5} style={{ color: "#628BB6" }} />
+                  </div>
+                  <div className="flex-1">
+                    <div style={{ fontSize: 14, fontWeight: 600, color: JP.sumi }}>{t("接続済み", "Connected")}</div>
+                    <div style={{ fontSize: 12, color: JP.usuzumi }}>{t("最終同期: 2分前", "Last sync: 2 minutes ago")}</div>
+                  </div>
+                </div>
 
-        <div className="grid grid-cols-2" style={{ gap: 10, marginBottom: 16 }}>
-          {/* Health Report Card - Platinum (#DAEEE1) */}
-          <Link
-            to="/report"
-            className="relative overflow-hidden"
-            style={{
-              height: 90,
-              borderRadius: 20,
-              background: "#DAEEE1",
-              border: "0.5px solid #628BB5",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.02)";
-              e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
-            }}
-          >
-            {/* Inner highlight */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
-            {/* Decorative circles */}
-            <div style={{ position: "absolute", top: -20, right: 20, width: 60, height: 60, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 10, left: -10, width: 40, height: 40, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", top: 30, right: 50, width: 80, height: 80, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-            {/* Content */}
-            <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              <div>
-                <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
-                  {t("レポート", "Report")}
+                <div style={{ height: 1, background: "rgba(0,0,0,0.06)", margin: "14px 0" }} />
+
+                {/* Battery & Signal container - Platinum (#DADEE1) */}
+                <div style={{ background: "#DADEE1", padding: "12px 14px", borderRadius: 16, marginBottom: 14 }}>
+                  <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
+                    <div className="flex items-center" style={{ gap: 6 }}>
+                      <BatteryMedium size={18} strokeWidth={1.5} style={{ color: "#628BB6" }} />
+                      <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("バッテリー", "Battery")}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div style={{ width: 110, height: 6, background: "#DADEE1", borderRadius: 4, overflow: "hidden" }}>
+                        <div style={{ width: "87%", height: "100%", background: "#628BB6", borderRadius: 4 }}/>
+                      </div>
+                      <span style={{ marginLeft: 8, fontSize: 13, fontFamily: "var(--font-heading)", fontWeight: 600, color: "#628BB6", fontVariantNumeric: "tabular-nums" }}>87%</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center" style={{ gap: 6 }}>
+                      <Signal size={18} strokeWidth={1.5} style={{ color: "#628BB6" }} />
+                      <span style={{ fontSize: 13, color: JP.sumi, fontWeight: 500 }}>{t("信号強度", "Signal Strength")}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="flex items-end" style={{ gap: 3 }}>
+                        {[6, 10, 14, 18].map((h) => (
+                          <div key={h} style={{ width: 4, height: h, background: "#628BB6", borderRadius: 2 }} />
+                        ))}
+                      </div>
+                      <span style={{ marginLeft: 8, fontSize: 13, fontWeight: 600, color: "#628BB6" }}>{t("優秀", "Excellent")}</span>
+                    </div>
+                  </div>
                 </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
-                  Health
-                </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
-                  Report <span style={{ fontSize: 14 }}>→</span>
+
+                <button
+                  className="w-full flex items-center justify-center"
+                  style={{
+                    background: "#FFFFFF",
+                    color: "#628BB6",
+                    border: "1px solid rgba(98, 139, 181, 0.3)",
+                    borderRadius: 12,
+                    height: 44,
+                    fontSize: 14,
+                    fontWeight: 600,
+                    gap: 8,
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  <Bluetooth size={16} strokeWidth={1.75} />
+                  {t("カラーを接続", "Connect Collar")}
+                </button>
+              </div>
+            </JCard>
+          </div>
+
+          {/* AI Sensors section */}
+          <SectionLabel jp="AI センサー" en="AI Sensors" />
+
+          <div className="grid grid-cols-2" style={{ gap: 8 }}>
+            {sensors.map((s, idx) => {
+              const Icon = s.Icon;
+              const sensorBgColors = [
+                "#D5EBF3", // 0: BarkSense AI (Ice Blue)
+                "#B9DBE1", // 1: SkinSense AI (Glacier)
+                "#DADEE1", // 2: MotionSense (Platinum)
+                "#D5EBF3", // 3: TempSense AI (Ice Blue)
+                "#B9DBE1", // 4: LocationSense (Glacier)
+                "#DADEE1", // 5: PressureSense (Platinum)
+                "#D5EBF3", // 6: LightSense AI (Ice Blue)
+                "#B9DBE1", // 7: CombineSense (Glacier)
+              ];
+              const currentBg = sensorBgColors[idx % sensorBgColors.length];
+              return (
+                <Link
+                  key={s.en}
+                  to={s.to}
+                  style={{
+                    position: "relative",
+                    background: currentBg,
+                    borderRadius: 20,
+                    borderLeft: "4px solid #447F98", // Turquoise border left on all sensor cards
+                    boxShadow: CARD_SHADOW,
+                    overflow: "hidden",
+                    transition: "transform 0.2s ease",
+                  }}
+                  className="flex flex-col"
+                >
+                  <div style={{ padding: 16, display: "flex", flexDirection: "column", flex: 1 }}>
+
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: s.iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Icon size={22} strokeWidth={1.5} style={{ color: s.accent }} />
+                    </div>
+
+                    <div style={{ marginTop: 12, fontSize: 14, fontWeight: 600, color: JP.sumi, letterSpacing: "0.01em", lineHeight: 1.2 }}>
+                      {t(s.jp, s.en)}
+                    </div>
+                    <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 2, lineHeight: 1.3 }}>
+                      {t(s.subJp, s.subEn)}
+                    </div>
+
+                    <div className="flex items-center justify-between" style={{ marginTop: 10, gap: 6 }}>
+                      <div style={{ fontSize: 16, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, fontVariantNumeric: "tabular-nums", lineHeight: 1.1 }}>
+                        {t(s.valJp, s.valEn)}
+                      </div>
+                      <span className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: s.accent, flexShrink: 0 }}/>
+                    </div>
+
+                    {s.noteJp && (
+                      <div style={{ fontSize: 11, color: JP.usuzumi, marginTop: 4 }}>
+                        {t(s.noteJp, s.noteEn!)}
+                      </div>
+                    )}
+
+                    {s.progress !== undefined && (
+                      <div style={{ marginTop: 10, height: 4, borderRadius: 4, overflow: "hidden", background: "#DADEE1" }}>
+                        <div style={{ width: `${s.progress}%`, height: "100%", background: "#628BB6", borderRadius: 4 }}/>
+                      </div>
+                    )}
+
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Quick Access */}
+          <SectionLabel jp="クイックアクセス" en="Quick Access" />
+
+          <div className="grid grid-cols-2" style={{ gap: 10, marginBottom: 16 }}>
+            {/* Health Report Card - Platinum (#DADEE1) */}
+            <Link
+              to="/report"
+              className="relative overflow-hidden"
+              style={{
+                height: 90,
+                borderRadius: 20,
+                background: "#DADEE1",
+                border: "0.5px solid #628BB6",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.02)";
+                e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+              }}
+            >
+              {/* Inner highlight */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
+              {/* Decorative circles */}
+              <div style={{ position: "absolute", top: -20, right: 20, width: 60, height: 60, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", bottom: 10, left: -10, width: 40, height: 40, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: 30, right: 50, width: 80, height: 80, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              {/* Content */}
+              <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div>
+                  <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
+                    {t("レポート", "Report")}
+                  </div>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
+                    Health
+                  </div>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
+                    Report <span style={{ fontSize: 14 }}>→</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* Floating stat badge */}
-            <div style={{
-              position: "absolute",
-              top: 10,
-              right: 10,
-              background: "#628BB5",
-              color: "#fff",
-              fontSize: 11,
-              fontFamily: "var(--font-heading)", fontWeight: 600,
-              borderRadius: 10,
-              padding: "3px 8px",
-              zIndex: 2,
-              pointerEvents: "none",
-            }}>
-              87/100
-            </div>
-            {/* Large decorative icon */}
-            <Activity size={52} strokeWidth={1.5} style={{
-              position: "absolute",
-              right: -8,
-              bottom: -8,
-              color: "rgba(98, 139, 181, 0.12)",
-              pointerEvents: "none",
-            }} />
-          </Link>
+              {/* Floating stat badge */}
+              <div style={{
+                position: "absolute",
+                top: 10,
+                right: 10,
+                background: "#628BB6",
+                color: "#fff",
+                fontSize: 11,
+                fontFamily: "var(--font-heading)", fontWeight: 600,
+                borderRadius: 10,
+                padding: "3px 8px",
+                zIndex: 2,
+                pointerEvents: "none",
+              }}>
+                87/100
+              </div>
+              {/* Large decorative icon */}
+              <Activity size={52} strokeWidth={1.5} style={{
+                position: "absolute",
+                right: -8,
+                bottom: -8,
+                color: "rgba(98, 139, 182, 0.12)",
+                pointerEvents: "none",
+              }} />
+            </Link>
 
-          {/* Breeds Card - Ice Blue (#D6EBF3) */}
-          <Link
-            to="/breeds"
-            className="relative overflow-hidden"
-            style={{
-              height: 90,
-              borderRadius: 20,
-              background: "#D6EBF3",
-              border: "0.5px solid #628BB5",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.02)";
-              e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
-            }}
-          >
-            {/* Inner highlight */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
-            {/* Decorative circles */}
-            <div style={{ position: "absolute", top: -15, right: 25, width: 55, height: 55, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 5, left: -5, width: 45, height: 45, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", top: 25, right: 55, width: 75, height: 75, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
-            {/* Content */}
-            <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              <div>
-                <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
-                  {t("犬種図鑑", "Breeds")}
-                </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
-                  Breed
-                </div>
-                <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
-                  Guide <span style={{ fontSize: 14 }}>→</span>
+            {/* Breeds Card - Ice Blue (#D5EBF3) */}
+            <Link
+              to="/breeds"
+              className="relative overflow-hidden"
+              style={{
+                height: 90,
+                borderRadius: 20,
+                background: "#D5EBF3",
+                border: "0.5px solid #628BB6",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.02)";
+                e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+              }}
+            >
+              {/* Inner highlight */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.4)", zIndex: 2, pointerEvents: "none" }} />
+              {/* Decorative circles */}
+              <div style={{ position: "absolute", top: -15, right: 25, width: 55, height: 55, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", bottom: 5, left: -5, width: 45, height: 45, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: 25, right: 55, width: 75, height: 75, borderRadius: "50%", background: "rgba(0,0,0,0.02)", pointerEvents: "none" }} />
+              {/* Content */}
+              <div style={{ position: "relative", zIndex: 1, padding: "12px 14px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div>
+                  <div style={{ fontSize: 10, color: JP.usuzumi, letterSpacing: "0.08em", fontWeight: 600 }}>
+                    {t("犬種図鑑", "Breeds")}
+                  </div>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1, marginTop: 2 }}>
+                    Breed
+                  </div>
+                  <div style={{ fontSize: 18, fontFamily: "var(--font-heading)", fontWeight: 600, color: JP.sumi, lineHeight: 1.1 }}>
+                    Guide <span style={{ fontSize: 14 }}>→</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* Floating badge */}
-            <div style={{
-              position: "absolute",
-              top: 10,
-              right: 10,
-              background: "#628BB5",
-              color: "#fff",
-              fontSize: 11,
-              fontFamily: "var(--font-heading)", fontWeight: 600,
-              borderRadius: 10,
-              padding: "3px 8px",
-              zIndex: 2,
-              pointerEvents: "none",
-            }}>
-              {t("200+ 犬種", "200+ Breeds")}
-            </div>
-            {/* Large decorative icon */}
-            <PawPrint size={52} strokeWidth={1.5} style={{
-              position: "absolute",
-              right: -8,
-              bottom: -8,
-              color: "rgba(98, 139, 181, 0.12)",
-              pointerEvents: "none",
-            }} />
-          </Link>
+              {/* Floating badge */}
+              <div style={{
+                position: "absolute",
+                top: 10,
+                right: 10,
+                background: "#628BB6",
+                color: "#fff",
+                fontSize: 11,
+                fontFamily: "var(--font-heading)", fontWeight: 600,
+                borderRadius: 10,
+                padding: "3px 8px",
+                zIndex: 2,
+                pointerEvents: "none",
+              }}>
+                {t("200+ 犬種", "200+ Breeds")}
+              </div>
+              {/* Large decorative icon */}
+              <PawPrint size={52} strokeWidth={1.5} style={{
+                position: "absolute",
+                right: -8,
+                bottom: -8,
+                color: "rgba(98, 139, 182, 0.12)",
+                pointerEvents: "none",
+              }} />
+            </Link>
+          </div>
         </div>
       </div>
     </AppShell>
@@ -726,8 +728,8 @@ function ScoreRing({ value }: { value: number }) {
   return (
     <div className="relative" style={{ width: 80, height: 80 }}>
       <svg className="-rotate-90" width="80" height="80" viewBox="0 0 80 80">
-        <circle cx="40" cy="40" r={r} stroke="#A8CCD8" strokeWidth="6" fill="none"/>
-        <circle cx="40" cy="40" r={r} stroke="#628BB5" strokeWidth="6" fill="none" strokeLinecap="round"
+        <circle cx="40" cy="40" r={r} stroke="#DADEE1" strokeWidth="6" fill="none"/>
+        <circle cx="40" cy="40" r={r} stroke="#628BB6" strokeWidth="6" fill="none" strokeLinecap="round"
           strokeDasharray={c} strokeDashoffset={off} style={{ transition: "stroke-dashoffset 1.2s ease" }}/>
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">

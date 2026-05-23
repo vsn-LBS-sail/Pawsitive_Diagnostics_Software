@@ -41,14 +41,6 @@ export function TopBar({
                 <ArrowLeft size={22} strokeWidth={2} />
               </Link>
             )}
-            <Link
-              to="/settings"
-              className="flex items-center justify-center"
-              style={{ height: 42, background: "transparent" }}
-              aria-label="Profile"
-            >
-              <span style={{ fontFamily: "var(--font-display)", fontSize: 18, color: "#fff" }}>Pawsitive Diagnostics</span>
-            </Link>
           </div>
           {showTitle ? (
             <div className="text-sm font-bold truncate flex-1 text-center" style={{ color: "#fff", letterSpacing: "0.02em" }}>
