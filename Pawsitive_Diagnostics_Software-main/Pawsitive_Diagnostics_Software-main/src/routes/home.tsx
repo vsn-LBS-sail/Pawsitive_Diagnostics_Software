@@ -13,15 +13,15 @@ import MORNING_IMAGE from "@/assets/dashboard dog design - morning.png";
 import AFTERNOON_IMAGE from "@/assets/dashboard dog design - Afternoon.png";
 import NIGHT_IMAGE from "@/assets/dashboard dog design - Night.png";
 
-import BOY_MORN from "@/assets/dashboard boy morn.png";
-import BOY_AFT from "@/assets/dashboard boy afternoon.png";
-import BOY_EVE from "@/assets/dashboard boy eve.png";
-import BOY_NIGHT from "@/assets/dashboard boy  night.png";
+import BOY_MORN from "@/assets/B-Morning.svg.svg";
+import BOY_AFT from "@/assets/B-Afternoon.svg.svg";
+import BOY_EVE from "@/assets/B-Evening.svg.svg";
+import BOY_NIGHT from "@/assets/B-Night.svg.svg";
 
-import GIRL_MORN from "@/assets/dashboard girl morn.png";
-import GIRL_AFT from "@/assets/dashboard girl afternoon.png";
-import GIRL_EVE from "@/assets/dashboard girl eve.png";
-import GIRL_NIGHT from "@/assets/dashboard girl night.png";
+import GIRL_MORN from "@/assets/G-Afternoon.svg.svg";
+import GIRL_AFT from "@/assets/G-Afternoon.svg.svg";
+import GIRL_EVE from "@/assets/G-Evening.svg.svg";
+import GIRL_NIGHT from "@/assets/G-Night.svg.svg";
 
 export const Route = createFileRoute("/home")({ component: Home });
 
