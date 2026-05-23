@@ -9,20 +9,15 @@ export const Route = createFileRoute("/light-sense")({ component: LightSensePage
 
 // ───────────── Pastel pink palette ─────────────
 const P = {
-  primary: "#F4A0BC",
-  medium: "#E8849A",
-  deep: "#C96B82",
-  soft: "#FEF0F5",
-  pale: "#FFF5F8",
-  accent: "#F7B8CC",
-  muted: "#FAD0DF",
-  light: "#FDE8EF",
-  divider: "#FEE8F0",
-  white: "#FFFFFF",
-  text: "#1A1A2E",
-  text2: "#6B7280",
-  text3: "#9CA3AF",
-  ink: "#4B5563",
+  primary: "#447F98",
+  deep:    "#1C3A47",
+  mid:     "#4A7FA5",
+  soft:    "#B9D8E1",
+  pale:    "#D6EBF3",
+  accent:  "#447F98",
+  muted:   "#A8CCD8",
+  light:   "#B9D8E1",
+  darker:  "#1C3A47",
 };
 
 // ───────────── Color utils ─────────────
