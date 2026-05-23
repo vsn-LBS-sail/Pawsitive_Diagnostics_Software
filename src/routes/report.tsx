@@ -794,5 +794,4 @@ function HeroBanner({ pet }: { pet: PetProfile }) {
 
 // AlertTriangle import retained for future overdue states
 void AlertTriangle;
-
 void AlertTriangle;
